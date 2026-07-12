@@ -129,7 +129,7 @@ body{
 .blk-header .side .chef{margin-bottom:5px;}
 .blk-header .side .insta{color:var(--grey);}
 .blk-header .badgeRow{display:flex; justify-content:center; margin:4px 0;}
-.logo-badge{width:128px; height:128px; object-fit:contain;}
+.logo-badge{width:128px; height:128px; object-fit:contain; transform:rotate(-15deg);}
 .img-slot{cursor:pointer; position:relative;}
 .img-slot:hover::after{
   content:'changer l\2019image'; position:absolute; inset:auto 0 -16px 0;
@@ -147,7 +147,7 @@ body{
 .blk-section h2 .en{font-family:'Poppins',sans-serif; font-style:italic; font-weight:400; text-transform:none; color:var(--grey); font-size:13px;}
 
 /* ---------- Item row ---------- */
-.blk-item{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:2px 0;}
+.blk-item{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:2px 4px;}
 .blk-item .txt{flex:0 1 auto; max-width:78%;}
 .blk-item .fr{font-size:11.8px; font-weight:600; letter-spacing:.01em; line-height:1.3;}
 .blk-item .en{font-size:10.6px; font-style:italic; color:var(--grey); margin-top:0; line-height:1.3;}
