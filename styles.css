@@ -11,6 +11,12 @@
   /* A4 à 96 dpi */
   --page-w:794px;
   --page-h:1123px;
+  /* Apparence personnalisable (modale 🎨) */
+  --font-title:'Playfair Display', serif;
+  --font-body:'Poppins', sans-serif;
+  --title-color:#1a1a1a;
+  --accent:#227a75;
+  --page-bg:#ffffff;
 }
 
 *{box-sizing:border-box;}
@@ -61,10 +67,10 @@ body{
   display:flex; flex-direction:column; align-items:center; gap:40px;
 }
 .pdf-page{
-  background:var(--paper); width:var(--page-w); height:var(--page-h);
+  background:var(--page-bg); width:var(--page-w); height:var(--page-h);
   box-shadow:var(--shadow); position:relative;
   padding:44px 52px 52px;
-  font-family:'Poppins',sans-serif;
+  font-family:var(--font-body);
   flex:none;
 }
 .page-label{
@@ -116,8 +122,8 @@ body{
 .blk-header{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:6px;}
 .blk-header .titles{flex:1;}
 .blk-header h1{
-  font-family:'Playfair Display', serif; font-weight:800; font-size:44px;
-  line-height:1.04; margin:0;
+  font-family:var(--font-title); font-weight:800; font-size:44px;
+  line-height:1.04; margin:0; color:var(--title-color);
 }
 .blk-header .side{text-align:right; font-size:11.5px; color:var(--ink); min-width:190px;}
 .blk-header .side .chef{margin-bottom:5px;}
@@ -134,21 +140,23 @@ body{
 
 /* ---------- Section title ---------- */
 .blk-section h2{
-  font-family:'Playfair Display', serif; font-weight:800; font-size:16.5px;
+  font-family:var(--font-title); font-weight:800; font-size:16.5px; color:var(--title-color);
   margin:12px 0 4px; text-transform:uppercase; letter-spacing:.02em;
-  border-bottom:1.5px solid var(--ink); padding-bottom:3px;
+  border-bottom:1.5px solid var(--title-color); padding-bottom:3px;
 }
 .blk-section h2 .en{font-family:'Poppins',sans-serif; font-style:italic; font-weight:400; text-transform:none; color:var(--grey); font-size:13px;}
 
 /* ---------- Item row ---------- */
 .blk-item{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:2px 0;}
-.blk-item .txt{flex:1;}
+.blk-item .txt{flex:0 1 auto; max-width:78%;}
 .blk-item .fr{font-size:11.8px; font-weight:600; letter-spacing:.01em; line-height:1.3;}
 .blk-item .en{font-size:10.6px; font-style:italic; color:var(--grey); margin-top:0; line-height:1.3;}
 .blk-item .price{font-size:11.8px; font-weight:600; white-space:nowrap; min-width:56px; text-align:right;}
+.blk-item .leader{flex:1; min-width:18px; align-self:flex-start; height:13px; border-bottom:1.5px dotted #c9c9c9; margin:0 2px;}
+body.leaders-off .blk-item .leader{border-bottom:none;}
 
 /* ---------- Formule ---------- */
-.blk-formule{color:var(--teal-dark); font-weight:600; font-size:12.5px; line-height:1.45;}
+.blk-formule{color:var(--accent); font-weight:600; font-size:12.5px; line-height:1.45;}
 .blk-formule.italic{font-style:italic; font-weight:500;}
 .blk-formule.heading{font-weight:700; letter-spacing:.03em;}
 
@@ -160,7 +168,7 @@ body{
 
 /* ---------- Page break marker ---------- */
 .blk-pagebreak{
-  display:flex; align-items:center; gap:10px; color:var(--teal-dark);
+  display:flex; align-items:center; gap:10px; color:var(--accent);
   font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin:12px 0 0;
 }
 .blk-pagebreak::before,.blk-pagebreak::after{content:''; flex:1; height:1px; background:var(--teal); opacity:.4;}
@@ -223,6 +231,29 @@ body{
 .steps{font-size:12.5px; color:#333; line-height:1.7; padding-left:18px; margin:0 0 14px;}
 .steps a{color:var(--teal-dark);}
 
+/* ---------- Modale Apparence ---------- */
+.appearance-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px 18px;}
+.appearance-grid .field{margin-bottom:0;}
+.field select{
+  width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:8px; font-size:13px;
+  font-family:'Poppins',sans-serif; background:#fff;
+}
+.field select:focus{outline:none; border-color:var(--teal);}
+.field input[type="color"]{
+  width:100%; height:38px; padding:3px; border:1px solid var(--line); border-radius:8px; background:#fff; cursor:pointer;
+}
+.field.checkbox{display:flex; align-items:center; gap:8px;}
+.field.checkbox label{margin:0;}
+.field.checkbox input{width:auto;}
+
+/* ---------- Lien magique ---------- */
+#magicLinkBox{
+  margin-top:16px; padding:14px; border:1px dashed var(--teal); border-radius:10px; background:#f2fbfa;
+}
+#magicLinkBox .ttl{font-weight:700; font-size:13px; margin-bottom:4px; color:var(--teal-dark);}
+#magicLinkBox p{margin:0 0 10px; font-size:12px; color:#333; line-height:1.5;}
+#magicLinkText{display:none; width:100%; margin-top:8px; padding:8px; font-size:11px; border:1px solid var(--line); border-radius:6px;}
+
 .version-list{display:flex; flex-direction:column; gap:8px; margin-top:6px;}
 .version-row{
   display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -257,6 +288,8 @@ body{
 body.exporting .row-controls,
 body.exporting .insert-bar,
 body.exporting .page-label,
+body.exporting .blk-pagebreak,
+body.exporting .page-empty-hint,
 body.exporting .page-overflow-warning{display:none !important;}
 body.exporting .block{background:transparent !important;}
 body.exporting .block.selected{outline:none !important;}

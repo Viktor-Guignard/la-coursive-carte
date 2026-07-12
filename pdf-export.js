@@ -24,7 +24,7 @@ async function exportPdf(){
     for(let i=0;i<pages.length;i++){
       const canvas = await html2canvas(pages[i], {
         scale: 2.5,
-        backgroundColor: '#ffffff',
+        backgroundColor: null, // respecter le fond choisi (blanc/crème/ivoire)
         useCORS: true,
         width: pages[i].offsetWidth,
         height: pages[i].offsetHeight,

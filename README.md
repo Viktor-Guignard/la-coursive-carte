@@ -16,8 +16,11 @@ Modifier la carte du restaurant sans aucune compétence en mise en page :
 ## Travailler sur plusieurs ordinateurs (PC du resto, Mac…)
 
 - **Lire / reprendre le travail** : ouvrez simplement le site — la dernière version enregistrée se charge automatiquement. Aucun réglage.
-- **Enregistrer** : il faut coller une fois par ordinateur un jeton GitHub (bouton **⚙️** du site, les 5 étapes sont expliquées dedans). Le jeton ne donne accès qu'à ce repo.
-- **Filet de sécurité** : si vous fermez la page sans enregistrer, un brouillon local est conservé et proposé à la réouverture *sur le même ordinateur*. Pour retrouver votre travail ailleurs, pensez à **💾 Enregistrer une version** avant de partir.
+- **Enregistrer** : il faut un jeton GitHub, à créer **une seule fois** (bouton **⚙️** du site, les 5 étapes sont expliquées dedans). Ensuite, le bouton **✨ Copier le lien magique** fabrique un lien à mettre en favori : l'ouvrir sur n'importe quel autre ordinateur active la sauvegarde, sans rien recoller.
+- **Filet de sécurité** : si vous fermez la page sans enregistrer, un brouillon local est conservé et proposé à la réouverture *sur le même ordinateur*. Pour retrouver votre travail ailleurs, pensez à **💾 Enregistrer** avant de partir.
+- **Évitez de modifier la carte sur deux ordinateurs en même temps** : celui qui enregistre en dernier devient la carte courante. Le site vous avertit si quelqu'un a enregistré depuis votre point de départ, et rien n'est perdu (tout reste dans 🕑 Versions), mais la fusion se fait à la main.
+- **↶ / ↷** : annuler et rétablir chaque modification (aussi Ctrl/Cmd+Z).
+- **🎨 Apparence** : polices des titres et du texte, couleurs, fond de carte (blanc/crème/ivoire), pointillés entre plat et prix — enregistrés avec chaque version.
 
 ## Technique
 

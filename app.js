@@ -76,15 +76,119 @@ const BLOCK_LIBRARY = [
 /* Champs mono-lignes : Entrée = valider, pas de retour à la ligne */
 const MULTILINE_FIELDS = new Set(['insta','wifi']);
 
+/* ===================== Apparence (polices & couleurs) ===================== */
+
+const FONT_CHOICES = {
+  title: [
+    {name:'Playfair Display', gq:'Playfair+Display:wght@700;800'},
+    {name:'Cormorant Garamond', gq:'Cormorant+Garamond:wght@600;700'},
+    {name:'DM Serif Display', gq:'DM+Serif+Display'},
+    {name:'Libre Baskerville', gq:'Libre+Baskerville:wght@400;700'},
+    {name:'Oswald', gq:'Oswald:wght@500;600'},
+    {name:'Marcellus', gq:'Marcellus'},
+  ],
+  body: [
+    {name:'Poppins', gq:'Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500'},
+    {name:'Jost', gq:'Jost:ital,wght@0,400;0,500;0,600;1,400'},
+    {name:'Lato', gq:'Lato:ital,wght@0,400;0,700;1,400'},
+    {name:'Montserrat', gq:'Montserrat:ital,wght@0,400;0,600;0,700;1,400'},
+    {name:'Source Sans 3', gq:'Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400'},
+    {name:'EB Garamond', gq:'EB+Garamond:ital,wght@0,400;0,600;1,400'},
+  ],
+};
+
+function defaultStyle(){
+  return {
+    titleFont:'Playfair Display',
+    bodyFont:'Poppins',
+    titleColor:'#1a1a1a',
+    accent:'#227a75',
+    pageBg:'#ffffff',
+    leaders:true,           // pointillés entre plat et prix
+  };
+}
+
+function applyStyle(){
+  const st = state.style;
+  const root = document.documentElement;
+  root.style.setProperty('--font-title', `'${st.titleFont}', serif`);
+  root.style.setProperty('--font-body', `'${st.bodyFont}', sans-serif`);
+  root.style.setProperty('--title-color', st.titleColor);
+  root.style.setProperty('--accent', st.accent);
+  root.style.setProperty('--page-bg', st.pageBg);
+  document.body.classList.toggle('leaders-off', !st.leaders);
+  loadFonts(st);
+}
+
+function loadFonts(st){
+  const t = FONT_CHOICES.title.find(f => f.name === st.titleFont);
+  const b = FONT_CHOICES.body.find(f => f.name === st.bodyFont);
+  const parts = [];
+  if(t) parts.push('family=' + t.gq);
+  if(b) parts.push('family=' + b.gq);
+  if(!parts.length) return;
+  const href = 'https://fonts.googleapis.com/css2?' + parts.join('&') + '&display=swap';
+  let link = document.getElementById('dynFonts');
+  if(!link){
+    link = document.createElement('link');
+    link.id = 'dynFonts';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }
+  if(link.href !== href) link.href = href;
+}
+
 /* ===================== État ===================== */
 
 const state = {
   doc: defaultDoc(),
+  style: defaultStyle(),
   selectedId: null,
   dirty: false,           // modifications non enregistrées dans le cloud
+  baseVersion: null,      // nom de la version cloud dont on est parti (détection de conflit)
 };
 
-let lastDeleted = null;   // {block, index} pour « Annuler »
+/* ===================== Historique (annuler / rétablir) ===================== */
+
+let history = [], hIndex = -1;
+
+function pushHistory(){
+  history = history.slice(0, hIndex + 1);
+  history.push(JSON.stringify({doc: state.doc, style: state.style}));
+  if(history.length > 80) history.shift();
+  hIndex = history.length - 1;
+  updateHistoryButtons();
+}
+
+function resetHistory(){
+  history = [JSON.stringify({doc: state.doc, style: state.style})];
+  hIndex = 0;
+  updateHistoryButtons();
+}
+
+function restoreFromHistory(){
+  const snap = JSON.parse(history[hIndex]);
+  state.doc = snap.doc;
+  state.style = snap.style || defaultStyle();
+  state.selectedId = null;
+  applyStyle();
+  render();
+  // sauvegarde du brouillon sans nouvel élément d'historique
+  state.dirty = true;
+  updateSyncStatus();
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(saveDraft, 800);
+  updateHistoryButtons();
+}
+
+function undo(){ if(hIndex > 0){ hIndex--; restoreFromHistory(); } }
+function redo(){ if(hIndex < history.length - 1){ hIndex++; restoreFromHistory(); } }
+
+function updateHistoryButtons(){
+  const u = document.getElementById('undoBtn'), r = document.getElementById('redoBtn');
+  if(u) u.disabled = hIndex <= 0;
+  if(r) r.disabled = hIndex >= history.length - 1;
+}
 
 /* ===================== Brouillon local (sécurité) ===================== */
 
@@ -92,14 +196,17 @@ const DRAFT_KEY = 'carte_draft_v1';
 
 function saveDraft(){
   try{
-    localStorage.setItem(DRAFT_KEY, JSON.stringify({ts: new Date().toISOString(), doc: state.doc}));
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({ts: new Date().toISOString(), doc: state.doc, style: state.style}));
   }catch(e){ /* stockage plein : tant pis, le brouillon est un filet de sécurité */ }
 }
 function clearDraft(){ localStorage.removeItem(DRAFT_KEY); state.dirty = false; updateSyncStatus(); }
 function getDraft(){
   try{
     const raw = localStorage.getItem(DRAFT_KEY);
-    return raw ? JSON.parse(raw) : null;
+    const d = raw ? JSON.parse(raw) : null;
+    // un brouillon vide (tout supprimé) ne vaut rien : on l'ignore et on le purge
+    if(d && (!Array.isArray(d.doc) || d.doc.length === 0)){ localStorage.removeItem(DRAFT_KEY); return null; }
+    return d;
   }catch(e){ return null; }
 }
 
@@ -107,6 +214,7 @@ let draftTimer = null;
 function markDirty(){
   state.dirty = true;
   updateSyncStatus();
+  pushHistory();
   clearTimeout(draftTimer);
   draftTimer = setTimeout(saveDraft, 800);
 }
@@ -169,6 +277,7 @@ function renderBlockInner(blk){
           <div class="fr">${ed(blk.id,'fr',esc(blk.fr))}</div>
           <div class="en">${ed(blk.id,'en',esc(blk.en))}</div>
         </div>
+        <div class="leader"></div>
         <div class="price">${ed(blk.id,'price',esc(blk.price))}</div>`;
     case 'formule':
       return ed(blk.id,'text',esc(blk.text),'', 'div');
@@ -301,15 +410,10 @@ function buildBlockEl(blk){
       markDirty(); render();
     }
     if(act==='del'){
-      lastDeleted = { block: state.doc[idx], index: idx };
+      if(state.selectedId === blk.id) state.selectedId = null;
       state.doc.splice(idx,1);
       markDirty(); render();
-      toast('Bloc supprimé', 'Annuler', () => {
-        if(!lastDeleted) return;
-        state.doc.splice(Math.min(lastDeleted.index, state.doc.length), 0, lastDeleted.block);
-        lastDeleted = null;
-        markDirty(); render();
-      });
+      toast('Bloc supprimé', 'Annuler', undo);
     }
   });
 
@@ -426,9 +530,76 @@ function toast(msg, actionLabel, actionFn){
   toast._t = setTimeout(()=> t.classList.remove('show'), actionLabel ? 6000 : 2600);
 }
 
+/* ===================== Annuler / Rétablir : boutons & clavier ===================== */
+
+document.getElementById('undoBtn').addEventListener('click', undo);
+document.getElementById('redoBtn').addEventListener('click', redo);
+document.addEventListener('keydown', (e) => {
+  // dans un champ en cours d'édition, laisser l'annulation native du texte
+  const el = document.activeElement;
+  if(el && el.isContentEditable) return;
+  const mod = e.metaKey || e.ctrlKey;
+  if(!mod) return;
+  if(e.key === 'z' || e.key === 'Z'){
+    e.preventDefault();
+    if(e.shiftKey) redo(); else undo();
+  } else if(e.key === 'y' || e.key === 'Y'){
+    e.preventDefault();
+    redo();
+  }
+});
+
+/* ===================== Modale Apparence ===================== */
+
+const appearanceBackdrop = document.getElementById('appearanceBackdrop');
+
+function fillAppearanceForm(){
+  const st = state.style;
+  const selT = document.getElementById('titleFontSel');
+  const selB = document.getElementById('bodyFontSel');
+  selT.innerHTML = FONT_CHOICES.title.map(f => `<option${f.name===st.titleFont?' selected':''}>${f.name}</option>`).join('');
+  selB.innerHTML = FONT_CHOICES.body.map(f => `<option${f.name===st.bodyFont?' selected':''}>${f.name}</option>`).join('');
+  document.getElementById('titleColorInp').value = st.titleColor;
+  document.getElementById('accentColorInp').value = st.accent;
+  document.getElementById('pageBgSel').value = st.pageBg;
+  document.getElementById('leadersChk').checked = !!st.leaders;
+}
+
+function readAppearanceForm(){
+  state.style = {
+    titleFont: document.getElementById('titleFontSel').value,
+    bodyFont: document.getElementById('bodyFontSel').value,
+    titleColor: document.getElementById('titleColorInp').value,
+    accent: document.getElementById('accentColorInp').value,
+    pageBg: document.getElementById('pageBgSel').value,
+    leaders: document.getElementById('leadersChk').checked,
+  };
+  applyStyle();
+  markDirty();
+  requestAnimationFrame(checkOverflow);
+}
+
+document.getElementById('appearanceBtn').addEventListener('click', () => {
+  fillAppearanceForm();
+  appearanceBackdrop.classList.add('open');
+});
+document.getElementById('appearanceClose').addEventListener('click', ()=> appearanceBackdrop.classList.remove('open'));
+appearanceBackdrop.addEventListener('click', (e)=>{ if(e.target===appearanceBackdrop) appearanceBackdrop.classList.remove('open'); });
+['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk'].forEach(id => {
+  document.getElementById(id).addEventListener('change', readAppearanceForm);
+});
+document.getElementById('appearanceReset').addEventListener('click', () => {
+  state.style = defaultStyle();
+  applyStyle();
+  fillAppearanceForm();
+  markDirty();
+});
+
 /* ===================== Boot ===================== */
 
+applyStyle();
 render();
+resetHistory();
 
 /* La mesure de débordement n'est fiable qu'une fois styles + polices chargés */
 window.addEventListener('load', checkOverflow);
@@ -442,4 +613,7 @@ window.addEventListener('resize', () => {
 /* Exposé pour storage.js et pdf-export.js */
 window.__CARTE_STATE__ = state;
 window.__CARTE_RENDER__ = render;
-window.__CARTE_HELPERS__ = { toast, markDirty, clearDraft, getDraft, updateSyncStatus };
+window.__CARTE_HELPERS__ = {
+  toast, markDirty, clearDraft, getDraft, updateSyncStatus,
+  applyStyle, resetHistory, defaultStyle, checkOverflow,
+};
