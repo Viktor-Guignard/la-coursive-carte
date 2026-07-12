@@ -1,47 +1,35 @@
 # Éditeur de carte — La Coursive des Alpes
 
-Site permettant de modifier la carte du restaurant sans compétences en mise en page :
-- Cliquer sur n'importe quel texte pour l'éditer directement.
-- Ajouter des blocs (titre de section, plat, formule, note, séparateur, saut de page) via **+ Ajouter un bloc**.
-- Réorganiser / supprimer un bloc avec les flèches ↑ ↓ et ✕ qui apparaissent au survol.
-- Exporter la carte en PDF fidèle à la mise en page (**⬇️ Exporter en PDF**).
-- Enregistrer des versions horodatées dans le cloud, sans jamais écraser les précédentes (**💾 Enregistrer une version**), et les recharger depuis n'importe quel ordinateur (**🕑 Versions**).
+**Site : https://viktor-guignard.github.io/la-coursive-carte/**
 
-## Mise en route (à faire une seule fois)
+Modifier la carte du restaurant sans aucune compétence en mise en page :
 
-Le stockage cloud utilise **Firebase** (gratuit). Sans cette étape, l'édition et l'export PDF fonctionnent déjà, mais l'enregistrement de versions reste désactivé.
+- **Cliquer sur un texte** pour l'éditer directement (Entrée ou clic ailleurs pour valider).
+- **✕ au bout de chaque ligne** pour supprimer un plat (avec bouton « Annuler » pendant 6 s).
+- **⧉ ↑ ↓** au survol d'une ligne : dupliquer, monter, descendre.
+- **+ Ajouter un bloc** : titre de section, plat, formule, note, séparateur, saut de page.
+- **Cliquer sur le logo ou le QR code** pour les remplacer par une autre image.
+- **⬇️ Exporter en PDF** : PDF A4 exact (sans fond perdu ni traits de coupe — la carte est sur fond blanc), nommé automatiquement `carte_AAAA-MM-JJ_HHhMM.pdf`.
+- **💾 Enregistrer une version** : chaque enregistrement crée un fichier horodaté dans le dossier [`versions/`](versions/) de ce repo — rien n'est jamais écrasé.
+- **🕑 Versions** : recharger n'importe quelle version depuis n'importe quel ordinateur.
 
-1. Allez sur [console.firebase.google.com](https://console.firebase.google.com) → **Ajouter un projet** (gratuit, quelques clics).
-2. Dans le projet : icône **`</>`** → **Créer une application Web**, donnez-lui un nom, validez.
-3. Firebase affiche un objet `firebaseConfig` : copiez ces valeurs dans le fichier [`firebase-config.js`](firebase-config.js) de ce repo (vous pouvez éditer ce fichier directement depuis l'interface GitHub, pas besoin d'outil spécial).
-4. Menu Firebase → **Authentication** → **Get started** → activer **E-mail/Mot de passe**, puis **Add user** : entrez votre email et un mot de passe → c'est votre connexion au site.
-5. Menu Firebase → **Firestore Database** → **Create database** → mode production, région proche (`europe-west`).
-6. Onglet **Rules** de Firestore, remplacez le contenu par :
-   ```
-   rules_version = '2';
-   service cloud.firestore {
-     match /databases/{database}/documents {
-       match /versions/{docId} {
-         allow read, write: if request.auth != null;
-       }
-     }
-   }
-   ```
-   puis **Publier**.
-7. Rechargez le site : le bandeau "Firebase non configuré" disparaît, cliquez sur **Connexion** avec votre email/mot de passe.
+## Travailler sur plusieurs ordinateurs (PC du resto, Mac…)
 
-Le fichier `firebase-config.js` n'est pas un secret sensible — l'accès réel est protégé par les règles Firestore ci-dessus (seul un utilisateur connecté peut lire/écrire).
+- **Lire / reprendre le travail** : ouvrez simplement le site — la dernière version enregistrée se charge automatiquement. Aucun réglage.
+- **Enregistrer** : il faut coller une fois par ordinateur un jeton GitHub (bouton **⚙️** du site, les 5 étapes sont expliquées dedans). Le jeton ne donne accès qu'à ce repo.
+- **Filet de sécurité** : si vous fermez la page sans enregistrer, un brouillon local est conservé et proposé à la réouverture *sur le même ordinateur*. Pour retrouver votre travail ailleurs, pensez à **💾 Enregistrer une version** avant de partir.
 
-## Développement local
+## Technique
 
-Aucun outil de build requis. Ouvrez simplement un serveur statique à la racine, par exemple :
+- Site 100 % statique (HTML/CSS/JS, aucun build), hébergé sur GitHub Pages — chaque push sur `main` republie automatiquement.
+- Versions stockées en JSON dans `versions/` via l'API GitHub Contents (lecture publique, écriture par jeton *fine-grained* limité à ce repo).
+- Export PDF : `html2canvas` + `jsPDF`, une page A4 par bloc « saut de page ».
+- Le logo « Le vrai fait maison » et le QR code d'origine (extraits du PDF de février 2023) sont dans [`assets/`](assets/).
+
+### Développement local
 
 ```
 python3 -m http.server 8000
 ```
 
-puis ouvrez `http://localhost:8000`.
-
-## Publication (GitHub Pages)
-
-Déjà configuré : chaque push sur `main` republie automatiquement le site via GitHub Pages.
+puis ouvrez `http://localhost:8000`. Note : la liste des versions lit le repo GitHub distant même en local.

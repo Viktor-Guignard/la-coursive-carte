@@ -6,18 +6,24 @@
 <title>La Coursive des Alpes — Éditeur de carte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
 <div id="toolbar">
   <div class="brand">La Coursive <small>Éditeur de carte</small></div>
   <button class="tbtn secondary" id="addBlockBtn">+ Ajouter un bloc</button>
-  <button class="tbtn teal" id="saveVersionBtn" disabled>💾 Enregistrer une version</button>
-  <button class="tbtn secondary" id="versionsBtn" disabled>🕑 Versions</button>
+  <button class="tbtn teal" id="saveVersionBtn">💾 Enregistrer une version</button>
+  <button class="tbtn secondary" id="versionsBtn">🕑 Versions</button>
   <button class="tbtn" id="exportPdfBtn">⬇️ Exporter en PDF</button>
-  <span id="authStatus"><span class="dot"></span><span> non connecté</span></span>
-  <button class="tbtn secondary" id="loginBtn">Connexion</button>
+  <span id="syncStatus"><span class="dot"></span><span class="txt"></span></span>
+  <button class="tbtn secondary" id="settingsBtn" title="Réglages">⚙️</button>
+</div>
+
+<div id="draftBanner">
+  <span class="msg"></span>
+  <button class="primary" id="draftResume">Reprendre le brouillon</button>
+  <button id="draftDiscard">Ignorer</button>
 </div>
 
 <div id="canvasWrap"></div>
@@ -32,24 +38,27 @@
   </div>
 </div>
 
-<!-- Connexion -->
-<div class="modal-backdrop" id="loginBackdrop">
+<!-- Réglages : jeton GitHub -->
+<div class="modal-backdrop" id="settingsBackdrop">
   <div class="modal">
-    <button class="modal-close" id="loginClose">×</button>
-    <h3>Connexion</h3>
-    <p class="sub">Connectez-vous pour enregistrer et charger des versions dans le cloud.</p>
-    <form id="loginForm">
+    <button class="modal-close" id="settingsClose">×</button>
+    <h3>Réglages — sauvegarde cloud</h3>
+    <p class="sub">Les versions sont lisibles partout sans réglage. Pour <b>enregistrer</b> depuis cet ordinateur, collez une fois votre jeton GitHub.</p>
+    <ol class="steps">
+      <li>Ouvrez <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (connecté à votre compte GitHub).</li>
+      <li><b>Token name</b> : « carte coursive » — <b>Expiration</b> : 1 an.</li>
+      <li><b>Repository access</b> : <i>Only select repositories</i> → choisissez <b>la-coursive-carte</b>.</li>
+      <li><b>Permissions</b> → <i>Repository permissions</i> → <b>Contents</b> : <i>Read and write</i>.</li>
+      <li>Bouton <b>Generate token</b>, copiez le jeton (commence par <code>github_pat_…</code>) et collez-le ci-dessous.</li>
+    </ol>
+    <form id="tokenForm">
       <div class="field">
-        <label>Email</label>
-        <input type="email" id="loginEmail" required autocomplete="username">
+        <label>Jeton GitHub (stocké uniquement sur cet ordinateur)</label>
+        <input type="password" id="tokenInput" placeholder="github_pat_…" autocomplete="off">
+        <div class="hint">Ce jeton ne donne accès qu'au repo de la carte, rien d'autre. À coller une fois par ordinateur (PC du resto, Mac, etc.).</div>
       </div>
-      <div class="field">
-        <label>Mot de passe</label>
-        <input type="password" id="loginPassword" required autocomplete="current-password">
-      </div>
-      <div style="color:#c94b4b; font-size:12px; min-height:16px;" id="loginError"></div>
       <div class="modal-actions">
-        <button type="submit" class="tbtn teal">Se connecter</button>
+        <button type="submit" class="tbtn teal">Enregistrer le jeton</button>
       </div>
     </form>
   </div>
@@ -60,23 +69,18 @@
   <div class="modal">
     <button class="modal-close" id="versionsClose">×</button>
     <h3>Versions enregistrées</h3>
-    <p class="sub">Chaque enregistrement crée une nouvelle version horodatée, sans jamais écraser les précédentes.</p>
+    <p class="sub">Chaque enregistrement crée une nouvelle version horodatée, sans jamais écraser les précédentes. La plus récente se charge automatiquement à l'ouverture du site.</p>
     <div class="version-list" id="versionList"></div>
   </div>
 </div>
 
 <div id="toast"></div>
 
-<script src="firebase-config.js" onerror="console.warn('firebase-config.js manquant — copiez firebase-config.example.js et renommez-le.')"></script>
-<script>
-  window.FIREBASE_CONFIG = window.FIREBASE_CONFIG || null;
-</script>
-<script src="app.js"></script>
-<script type="module" src="firebase.js"></script>
-
+<script src="app.js?v=2"></script>
+<script src="storage.js?v=2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="pdf-export.js"></script>
+<script src="pdf-export.js?v=2"></script>
 
 </body>
 </html>

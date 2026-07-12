@@ -13,14 +13,14 @@ function defaultDoc(){
       wifi:'Wifi: LiveboxCdb0<br>mdp: lacoursive73',
       logoImg:null, qrImg:null
     }),
-    b('formule', {text:'MENUS', italic:false, heading:true}),
-    b('formule', {text:'ENTRÉE + PLAT ou/or PLAT + DESSERT 35€', italic:false}),
-    b('formule', {text:'ENTRÉE + PLAT + DESSERT 39€', italic:false}),
+    b('formule', {text:'MENUS', heading:true}),
+    b('formule', {text:'ENTRÉE + PLAT ou/or PLAT + DESSERT 35€'}),
+    b('formule', {text:'ENTRÉE + PLAT + DESSERT 39€'}),
     b('note', {text:'*Plats possibles dans les menus / Dishes included in the menu'}),
     b('section', {fr:'À PARTAGER', en:'To share'}),
     b('item', {fr:'CROQUE JAMBON À LA TRUFFE ET BEAUFORT', en:'Truffle ham and Beaufort cheese bread', price:'20€'}),
     b('item', {fr:'FOIE GRAS MAISON EN BALLOTTINE', en:'Home made foie gras terrine', price:'25€'}),
-    b('item', {fr:'PÂTÉ EN CROÛTE MAISON DE FOIE GRAS, VOLAILLE ET PORC, CHUTNEY DE MANGUES', en:'Home made poultry, pork and foie gras pie, mango chutney', price:'20€'}),
+    b('item', {fr:'PÂTÉ EN CROÛTE MAISON DE FOIE GRAS ET VOLAILLE ET PORC, CHUTNEY DE MANGUES', en:'Home made poultry, pork and foie gras pie, mango chutney', price:'20€'}),
     b('item', {fr:'PLANCHE DE FROMAGES DES ALPES', en:'Selection of cheeses from Alps', price:'19€'}),
     b('item', {fr:'SAUMON LABEL ROUGE MARINÉ FAÇON GRAVLAX', en:"Marinated red label salmon as gravlax' style", price:'23€'}),
     b('item', {fr:'JAMBON BLANC À LA TRUFFE ET CHORIZO IBÉRIQUE', en:'Truffle white ham and iberian chorizo', price:'20€'}),
@@ -38,7 +38,7 @@ function defaultDoc(){
     b('pagebreak', {}),
 
     b('formule', {text:'NOUVEAU !!!', italic:true}),
-    b('section', {fr:'PIZZAS CHICS!', en:''}),
+    b('section', {fr:'PIZZAS CHICS!', en:null}),
     b('item', {fr:'SPIANATA: base tomate, mozzarella fior di latte, oignons cuisinés, chorizo ibérique', en:'Tomato, mozzarella Fior di latte, onions cooked, iberico chorizo', price:'20€'}),
     b('item', {fr:'TARTUFO: base crème, mozzarella ricotta, fior di latte, jambon blanc à la truffe, huile de truffe, roquette et noix caramélisées', en:'Cream, ricotta, mozzarella fior di latte, truffle ham, truffle oil, arugula salad and candied nuts', price:'25€'}),
     b('item', {fr:'CLASSICO MARGARITA: Base tomate, mozzarella fior di latte, basilic', en:'Tomato, mozzarella Fior di latte, basil', price:'18€*'}),
@@ -67,23 +67,70 @@ function defaultDoc(){
 const BLOCK_LIBRARY = [
   {type:'section', ttl:'Titre de section', desc:'Ex : « ENTRÉES / Starters »', make:()=>({fr:'NOUVELLE SECTION', en:'New section'})},
   {type:'item', ttl:'Plat', desc:'Nom FR, nom EN, prix', make:()=>({fr:'NOUVEAU PLAT', en:'New dish', price:'0€'})},
-  {type:'formule', ttl:'Ligne formule', desc:'Texte en couleur (ex. prix menu)', make:()=>({text:'NOUVELLE FORMULE', italic:false})},
+  {type:'formule', ttl:'Ligne formule', desc:'Texte en couleur (ex. prix menu)', make:()=>({text:'NOUVELLE FORMULE'})},
   {type:'note', ttl:'Note / mention', desc:'Petit texte italique gris', make:()=>({text:'Note...'})},
   {type:'divider', ttl:'Séparateur', desc:'Ligne fine de séparation', make:()=>({})},
   {type:'pagebreak', ttl:'Saut de page', desc:'Démarre une nouvelle page PDF', make:()=>({})},
 ];
+
+/* Champs mono-lignes : Entrée = valider, pas de retour à la ligne */
+const MULTILINE_FIELDS = new Set(['insta','wifi']);
 
 /* ===================== État ===================== */
 
 const state = {
   doc: defaultDoc(),
   selectedId: null,
-  currentVersionName: null,
+  dirty: false,           // modifications non enregistrées dans le cloud
 };
+
+let lastDeleted = null;   // {block, index} pour « Annuler »
+
+/* ===================== Brouillon local (sécurité) ===================== */
+
+const DRAFT_KEY = 'carte_draft_v1';
+
+function saveDraft(){
+  try{
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({ts: new Date().toISOString(), doc: state.doc}));
+  }catch(e){ /* stockage plein : tant pis, le brouillon est un filet de sécurité */ }
+}
+function clearDraft(){ localStorage.removeItem(DRAFT_KEY); state.dirty = false; updateSyncStatus(); }
+function getDraft(){
+  try{
+    const raw = localStorage.getItem(DRAFT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+let draftTimer = null;
+function markDirty(){
+  state.dirty = true;
+  updateSyncStatus();
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(saveDraft, 800);
+}
+
+function updateSyncStatus(){
+  const el = document.getElementById('syncStatus');
+  const txt = el.querySelector('.txt');
+  const hasToken = !!window.CarteStorage && window.CarteStorage.hasToken();
+  el.classList.remove('ok','warn');
+  if(state.dirty){
+    el.classList.add('warn');
+    txt.textContent = 'Modifications non enregistrées';
+  } else if(hasToken){
+    el.classList.add('ok');
+    txt.textContent = 'Sauvegarde cloud activée';
+  } else {
+    txt.textContent = 'Lecture seule — jeton requis pour enregistrer (⚙️)';
+  }
+}
 
 /* ===================== Rendu ===================== */
 
 const canvasWrap = document.getElementById('canvasWrap');
+const PAGE_H = 1123; // hauteur A4 en px (96 dpi)
 
 function esc(s){
   const d = document.createElement('div');
@@ -103,19 +150,19 @@ function renderBlockInner(blk){
         <div class="titles">
           <h1>${ed(blk.id,'line1',esc(blk.line1))}<br>${ed(blk.id,'line2',esc(blk.line2))}</h1>
         </div>
-        <div class="badgeRow logoSlot" data-id="${blk.id}" data-field="logoImg">
-          ${blk.logoImg ? `<img src="${blk.logoImg}" class="logo-badge" style="border-radius:50%;object-fit:cover;">` : logoPlaceholderSvg()}
+        <div class="badgeRow img-slot" data-id="${blk.id}" data-field="logoImg" title="Cliquer pour remplacer le logo">
+          <img src="${blk.logoImg || 'assets/logo.png'}" class="logo-badge" alt="logo">
         </div>
         <div class="side">
           <div class="chef">${ed(blk.id,'chef',esc(blk.chef))}</div>
           <div class="insta">${ed(blk.id,'insta',blk.insta)}</div>
-          <div class="qr-box qrSlot" data-id="${blk.id}" data-field="qrImg">
-            ${blk.qrImg ? `<img src="${blk.qrImg}">` : `<span style="font-size:9px;color:#999;text-align:center;">QR<br>code</span>`}
+          <div class="qr-box img-slot" data-id="${blk.id}" data-field="qrImg" title="Cliquer pour remplacer le QR code">
+            <img src="${blk.qrImg || 'assets/qr.png'}" alt="QR code">
           </div>
           <div class="wifi" style="margin-top:8px;">${ed(blk.id,'wifi',blk.wifi)}</div>
         </div>`;
     case 'section':
-      return `<h2>${ed(blk.id,'fr',esc(blk.fr))} ${blk.en!==undefined ? '<span class="en">/ '+ed(blk.id,'en',esc(blk.en))+'</span>' : ''}</h2>`;
+      return `<h2>${ed(blk.id,'fr',esc(blk.fr))}${blk.en != null ? ' <span class="en">/ '+ed(blk.id,'en',esc(blk.en))+'</span>' : ''}</h2>`;
     case 'item':
       return `
         <div class="txt">
@@ -140,27 +187,8 @@ function blockClass(blk){
   const map = {header:'blk-header', section:'blk-section', item:'blk-item', formule:'blk-formule', note:'blk-note', divider:'blk-divider', pagebreak:'blk-pagebreak'};
   let c = map[blk.type] || '';
   if(blk.type==='formule' && blk.italic) c += ' italic';
+  if(blk.type==='formule' && blk.heading) c += ' heading';
   return c;
-}
-
-function logoPlaceholderSvg(){
-  return `<svg class="logo-badge" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="100" cy="100" r="96" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-    <path id="circlePathTop" d="M 20,100 A 80,80 0 0 1 180,100" fill="none"/>
-    <path id="circlePathBottom" d="M 180,105 A 80,80 0 0 1 20,105" fill="none"/>
-    <text font-family="Poppins, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2" fill="#1a1a1a">
-      <textPath href="#circlePathTop" startOffset="50%" text-anchor="middle">LE VRAI FAIT MAISON</textPath>
-    </text>
-    <text font-family="Poppins, sans-serif" font-size="11" font-weight="600" letter-spacing="1.5" fill="#1a1a1a">
-      <textPath href="#circlePathBottom" startOffset="50%" text-anchor="middle">REAL HOME COOKING</textPath>
-    </text>
-    <g transform="translate(100,102)" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linejoin="round">
-      <path d="M -22,10 L 0,-22 L 22,10"/>
-      <path d="M -12,10 L -12,-4"/>
-      <path d="M 12,10 L 12,-4"/>
-      <path d="M -30,14 L 30,14"/>
-    </g>
-  </svg>`;
 }
 
 function render(){
@@ -181,28 +209,47 @@ function render(){
       hint.textContent = 'Page vide — ajoutez un bloc';
       pageEl.appendChild(hint);
     }
-    pageBlocks.forEach((blk, idxInPage) => {
-      pageEl.appendChild(buildInsertBar(state.doc.indexOf(blk)));
+    pageBlocks.forEach(blk => {
+      pageEl.appendChild(buildInsertBar(state.doc.indexOf(blk) - 1));
       pageEl.appendChild(buildBlockEl(blk));
     });
-    pageEl.appendChild(buildInsertBar(state.doc.indexOf(pageBlocks[pageBlocks.length-1] || null), true, pageNum));
+    if(pageBlocks.length > 0){
+      pageEl.appendChild(buildInsertBar(state.doc.indexOf(pageBlocks[pageBlocks.length-1])));
+    }
+    const warn = document.createElement('div');
+    warn.className = 'page-overflow-warning';
+    warn.textContent = '⚠️ Le contenu dépasse la page A4 — déplacez des blocs ou ajoutez un saut de page';
+    pageEl.appendChild(warn);
     canvasWrap.appendChild(pageEl);
     pageNum++;
     pageBlocks = [];
   };
 
   state.doc.forEach(blk => {
-    if(blk.type === 'pagebreak'){
-      pageBlocks.push(blk);
-      flushPage();
-    } else {
-      pageBlocks.push(blk);
-    }
+    pageBlocks.push(blk);
+    if(blk.type === 'pagebreak') flushPage();
   });
   flushPage();
+
+  requestAnimationFrame(checkOverflow);
 }
 
-function buildInsertBar(afterIndex, isEnd, pageNum){
+function checkOverflow(){
+  // Mesure valable uniquement en mise en page A4 (pas en vue mobile,
+  // ni quand la fenêtre n'est pas encore dimensionnée)
+  if(!window.innerWidth || matchMedia('(max-width:900px)').matches){
+    document.querySelectorAll('.pdf-page').forEach(p => p.classList.remove('overflowing'));
+    return;
+  }
+  document.querySelectorAll('.pdf-page').forEach(page => {
+    // retirer d'abord la classe : le bandeau d'avertissement (30px sous la page)
+    // gonflerait scrollHeight et rendrait l'état collant
+    page.classList.remove('overflowing');
+    page.classList.toggle('overflowing', page.scrollHeight > PAGE_H + 2);
+  });
+}
+
+function buildInsertBar(afterIndex){
   const bar = document.createElement('div');
   bar.className = 'insert-bar';
   const btn = document.createElement('button');
@@ -219,16 +266,17 @@ function buildBlockEl(blk){
   wrap.innerHTML = renderBlockInner(blk);
 
   const controls = document.createElement('div');
-  controls.className = 'block-controls';
+  controls.className = 'row-controls';
   controls.innerHTML = `
-    <button class="bctrl" data-act="up" title="Monter">↑</button>
-    <button class="bctrl" data-act="down" title="Descendre">↓</button>
-    <button class="bctrl danger" data-act="del" title="Supprimer">✕</button>`;
+    <button class="rctrl del" data-act="del" title="Supprimer">✕</button>
+    <button class="rctrl" data-act="dup" title="Dupliquer">⧉</button>
+    <button class="rctrl" data-act="up" title="Monter">↑</button>
+    <button class="rctrl" data-act="down" title="Descendre">↓</button>`;
   wrap.appendChild(controls);
 
   wrap.addEventListener('click', (e) => {
-    if(e.target.closest('.bctrl')) return;
-    if(e.target.closest('.logoSlot') || e.target.closest('.qrSlot')) return;
+    if(e.target.closest('.rctrl')) return;
+    if(e.target.closest('.img-slot')) return;
     state.selectedId = blk.id;
   });
 
@@ -236,19 +284,36 @@ function buildBlockEl(blk){
     const act = e.target.dataset.act;
     if(!act) return;
     const idx = state.doc.findIndex(x=>x.id===blk.id);
-    if(act==='up' && idx>0){ [state.doc[idx-1],state.doc[idx]]=[state.doc[idx],state.doc[idx-1]]; render(); }
-    if(act==='down' && idx<state.doc.length-1){ [state.doc[idx+1],state.doc[idx]]=[state.doc[idx],state.doc[idx+1]]; render(); }
+    if(idx < 0) return;
+    if(act==='up' && idx>0){
+      [state.doc[idx-1],state.doc[idx]]=[state.doc[idx],state.doc[idx-1]];
+      markDirty(); render();
+    }
+    if(act==='down' && idx<state.doc.length-1){
+      [state.doc[idx+1],state.doc[idx]]=[state.doc[idx],state.doc[idx+1]];
+      markDirty(); render();
+    }
+    if(act==='dup'){
+      const copy = JSON.parse(JSON.stringify(state.doc[idx]));
+      copy.id = newId();
+      state.doc.splice(idx+1, 0, copy);
+      state.selectedId = copy.id;
+      markDirty(); render();
+    }
     if(act==='del'){
-      if(confirm('Supprimer ce bloc ?')){
-        state.doc.splice(idx,1);
-        render();
-      }
+      lastDeleted = { block: state.doc[idx], index: idx };
+      state.doc.splice(idx,1);
+      markDirty(); render();
+      toast('Bloc supprimé', 'Annuler', () => {
+        if(!lastDeleted) return;
+        state.doc.splice(Math.min(lastDeleted.index, state.doc.length), 0, lastDeleted.block);
+        lastDeleted = null;
+        markDirty(); render();
+      });
     }
   });
 
-  wrap.querySelectorAll('.logoSlot,.qrSlot').forEach(slot=>{
-    slot.style.cursor = 'pointer';
-    slot.title = 'Cliquer pour changer l\'image';
+  wrap.querySelectorAll('.img-slot').forEach(slot=>{
     slot.addEventListener('click', ()=> triggerImageUpload(slot.dataset.id, slot.dataset.field));
   });
 
@@ -265,27 +330,52 @@ function triggerImageUpload(blockId, field){
     const reader = new FileReader();
     reader.onload = () => {
       const blk = state.doc.find(b=>b.id===blockId);
+      if(!blk) return;
       blk[field] = reader.result;
-      render();
+      markDirty(); render();
     };
     reader.readAsDataURL(file);
   };
   input.click();
 }
 
-/* Edition inline: on blur, écrire la valeur dans state.doc */
+/* ===================== Édition inline ===================== */
+
+/* Validation à la sortie du champ */
 canvasWrap.addEventListener('blur', (e) => {
   const el = e.target;
   if(!el.matches || !el.matches('[contenteditable="true"]')) return;
   const id = el.dataset.id, field = el.dataset.field;
   const blk = state.doc.find(b=>b.id===id);
   if(!blk) return;
-  if(field==='insta' || field==='wifi'){
-    blk[field] = el.innerHTML.replace(/<div>|<\/div>/g,'<br>');
-  } else {
-    blk[field] = el.textContent;
+  const newVal = MULTILINE_FIELDS.has(field)
+    ? el.innerHTML.replace(/<div><br><\/div>/g,'<br>').replace(/<div>/g,'<br>').replace(/<\/div>/g,'')
+    : el.textContent;
+  if(blk[field] !== newVal){
+    blk[field] = newVal;
+    markDirty();
   }
 }, true);
+
+/* Entrée = valider (sauf champs multilignes) ; Échap = valider aussi */
+canvasWrap.addEventListener('keydown', (e) => {
+  const el = e.target;
+  if(!el.matches || !el.matches('[contenteditable="true"]')) return;
+  if(e.key === 'Escape'){ e.preventDefault(); el.blur(); return; }
+  if(e.key === 'Enter' && !MULTILINE_FIELDS.has(el.dataset.field)){
+    e.preventDefault();
+    el.blur();
+  }
+});
+
+/* Coller en texte brut (évite d'importer du gras/couleurs de Word etc.) */
+canvasWrap.addEventListener('paste', (e) => {
+  const el = e.target;
+  if(!el.matches || !el.closest('[contenteditable="true"]')) return;
+  e.preventDefault();
+  const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+  document.execCommand('insertText', false, text);
+});
 
 /* ===================== Ajout de bloc ===================== */
 
@@ -314,23 +404,42 @@ BLOCK_LIBRARY.forEach(opt=>{
     state.doc.splice(insertAt, 0, newBlk);
     state.selectedId = newBlk.id;
     pickerBackdrop.classList.remove('open');
-    render();
+    markDirty(); render();
   };
   blockGrid.appendChild(el);
 });
 
-/* ===================== Toast ===================== */
-function toast(msg){
+/* ===================== Toast (avec action optionnelle) ===================== */
+
+function toast(msg, actionLabel, actionFn){
   const t = document.getElementById('toast');
-  t.textContent = msg;
+  t.innerHTML = '';
+  t.appendChild(document.createTextNode(msg));
+  if(actionLabel && actionFn){
+    const btn = document.createElement('button');
+    btn.textContent = actionLabel;
+    btn.onclick = () => { actionFn(); t.classList.remove('show'); };
+    t.appendChild(btn);
+  }
   t.classList.add('show');
   clearTimeout(toast._t);
-  toast._t = setTimeout(()=> t.classList.remove('show'), 2600);
+  toast._t = setTimeout(()=> t.classList.remove('show'), actionLabel ? 6000 : 2600);
 }
 
 /* ===================== Boot ===================== */
+
 render();
 
-/* Exposé pour firebase.js et pdf-export.js (modules séparés) */
+/* La mesure de débordement n'est fiable qu'une fois styles + polices chargés */
+window.addEventListener('load', checkOverflow);
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(checkOverflow);
+let resizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(checkOverflow, 200);
+});
+
+/* Exposé pour storage.js et pdf-export.js */
 window.__CARTE_STATE__ = state;
 window.__CARTE_RENDER__ = render;
+window.__CARTE_HELPERS__ = { toast, markDirty, clearDraft, getDraft, updateSyncStatus };
