@@ -43,7 +43,7 @@ async function listVersions(){
   const items = await res.json();
   return items
     .filter(it => it.type === 'file' && it.name.endsWith('.json'))
-    .map(it => ({ name: it.name.replace(/\.json$/,''), path: it.path }))
+    .map(it => ({ name: it.name.replace(/\.json$/,''), path: it.path, sha: it.sha }))
     .sort((a,b) => b.name.localeCompare(a.name));  // noms horodatés zéro-paddés → tri chrono
 }
 
@@ -94,7 +94,28 @@ async function saveVersion(doc, style){
   return name;
 }
 
-window.CarteStorage = { hasToken, getToken, listVersions, loadVersion, saveVersion };
+/* Supprime définitivement une version (jeton requis). */
+async function deleteVersion(path, sha){
+  const token = getToken();
+  if(!token) throw new Error('NO_TOKEN');
+  const res = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${path}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/vnd.github+json',
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      message: 'Suppression de ' + path,
+      sha,
+      branch: GH.branch,
+    })
+  });
+  if(res.status === 401 || res.status === 403) throw new Error('BAD_TOKEN');
+  if(!res.ok) throw new Error('GitHub API ' + res.status);
+}
+
+window.CarteStorage = { hasToken, getToken, listVersions, loadVersion, saveVersion, deleteVersion };
 
 /* ===================== Branchement UI ===================== */
 
@@ -252,7 +273,24 @@ versionsBtn.addEventListener('click', async () => {
         </div>
         <div class="vactions">
           <button class="load">Charger</button>
+          ${hasToken() ? '<button class="delete" title="Supprimer définitivement">🗑</button>' : ''}
         </div>`;
+      const delBtn = row.querySelector('.delete');
+      if(delBtn) delBtn.addEventListener('click', async () => {
+        if(!confirm('Supprimer définitivement la version « ' + v.name + ' » ?\n\nContrairement au reste, cette action ne peut PAS être annulée.')) return;
+        delBtn.disabled = true;
+        try{
+          await deleteVersion(v.path, v.sha);
+          row.remove();
+          H().toast('Version « ' + v.name + ' » supprimée.');
+          // si on vient de supprimer la plus récente, rafraîchir le badge
+          if(i === 0) versionsBtn.click();
+        }catch(err){
+          console.error(err);
+          delBtn.disabled = false;
+          H().toast(err.message === 'BAD_TOKEN' ? 'Jeton refusé — vérifiez ⚙️ Réglages.' : 'Erreur de suppression — réessayez.');
+        }
+      });
       row.querySelector('.load').addEventListener('click', async () => {
         if(S().dirty && !confirm('Des modifications non enregistrées seront remplacées par « ' + v.name + ' ». Continuer ?')) return;
         try{
