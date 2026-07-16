@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-16T12:06:23Z",
+ "updatedAt": "2026-07-16T12:26:48.318Z",
  "menus": [
   {
    "key": "carte",
@@ -26,7 +26,7 @@
      "id": "b1",
      "type": "section",
      "fr": "À PARTAGER",
-     "en": "To share"
+     "en": "To share test"
     },
     {
      "id": "b2",
@@ -2381,7 +2381,7 @@
   },
   {
    "key": "cocktails",
-   "label": "Cocktails signature",
+   "label": "Cocktails",
    "style": {
     "titleFont": "Playfair Display",
     "bodyFont": "Poppins",
