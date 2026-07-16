@@ -5,7 +5,10 @@
   "titleColor": "#1a1a1a",
   "accent": "#a3801c",
   "pageBg": "#ffffff",
-  "leaders": true
+  "leaders": true,
+  "format": "carte34",
+  "margin": "compacte",
+  "theme": "classique"
  },
  "blocks": [
   {

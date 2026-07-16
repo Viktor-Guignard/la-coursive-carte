@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-12T16:00:00Z",
+ "updatedAt": "2026-07-16T07:53:22Z",
  "menus": [
   {
    "key": "carte",
@@ -10,7 +10,10 @@
     "titleColor": "#1a1a1a",
     "accent": "#a3801c",
     "pageBg": "#ffffff",
-    "leaders": true
+    "leaders": true,
+    "format": "a4",
+    "margin": "normale",
+    "theme": "classique"
    },
    "blocks": [
     {
@@ -309,7 +312,10 @@
     "titleColor": "#1a1a1a",
     "accent": "#a3801c",
     "pageBg": "#ffffff",
-    "leaders": true
+    "leaders": true,
+    "format": "carte34",
+    "margin": "compacte",
+    "theme": "classique"
    },
    "blocks": [
     {
@@ -387,12 +393,15 @@
    "key": "vins",
    "label": "Vins",
    "style": {
-    "titleFont": "Playfair Display",
+    "titleFont": "Cormorant Garamond",
     "bodyFont": "Poppins",
     "titleColor": "#1a1a1a",
     "accent": "#a3801c",
     "pageBg": "#ffffff",
-    "leaders": true
+    "leaders": true,
+    "format": "a4",
+    "margin": "normale",
+    "theme": "vigne"
    },
    "blocks": [
     {
@@ -1170,7 +1179,10 @@
     "titleColor": "#1a1a1a",
     "accent": "#a3801c",
     "pageBg": "#ffffff",
-    "leaders": true
+    "leaders": true,
+    "format": "a4",
+    "margin": "normale",
+    "theme": "classique"
    },
    "blocks": [
     {
@@ -2326,7 +2338,10 @@
     "titleColor": "#1a1a1a",
     "accent": "#a3801c",
     "pageBg": "#ffffff",
-    "leaders": true
+    "leaders": true,
+    "format": "a5",
+    "margin": "normale",
+    "theme": "classique"
    },
    "blocks": [
     {

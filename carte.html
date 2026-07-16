@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="carte-public.css?v=1">
+<link rel="stylesheet" href="carte-public.css?v=2">
 </head>
 <body>
 
@@ -18,7 +18,10 @@
   <p class="sub">Méribel · Restaurant &amp; Lounge Bar</p>
 </header>
 
-<nav id="tabs" class="tabs"></nav>
+<div class="tabs-zone">
+  <nav id="tabs" class="tabs"></nav>
+  <div id="jump" class="jump"></div>
+</div>
 
 <main id="menuRoot">
   <div class="loading">Chargement de la carte…</div>
@@ -29,6 +32,7 @@
   <p class="tiny" id="updated"></p>
 </footer>
 
-<script src="carte-public.js?v=1"></script>
+<button id="topBtn" aria-label="Revenir en haut">↑</button>
+<script src="carte-public.js?v=2"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-/* Export PDF : chaque .pdf-page = une page A4 exacte (210×297 mm), sans fond perdu ni traits de coupe. */
+/* Export PDF : chaque .pdf-page = une page au format choisi dans 🎨 Apparence
+   (A4, carte 14×34, A5…), sans fond perdu ni traits de coupe. */
 
 async function exportPdf(){
   const btn = document.getElementById('exportPdfBtn');
@@ -19,7 +20,12 @@ async function exportPdf(){
 
   try{
     const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+    const st = window.__CARTE_STATE__.style || {};
+    const FORMATS = window.__CARTE_HELPERS__.PAGE_FORMATS;
+    const fmt = FORMATS[st.format] || FORMATS.a4;
+    const [wMm, hMm] = fmt.mm;
+    const orientation = wMm > hMm ? 'landscape' : 'portrait';
+    const pdf = new jsPDF({ orientation, unit:'mm', format:[wMm, hMm] });
 
     for(let i=0;i<pages.length;i++){
       const canvas = await html2canvas(pages[i], {
@@ -30,8 +36,8 @@ async function exportPdf(){
         height: pages[i].offsetHeight,
       });
       const imgData = canvas.toDataURL('image/jpeg', 0.93);
-      if(i > 0) pdf.addPage('a4', 'portrait');
-      pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
+      if(i > 0) pdf.addPage([wMm, hMm], orientation);
+      pdf.addImage(imgData, 'JPEG', 0, 0, wMm, hMm);
     }
 
     const d = new Date();

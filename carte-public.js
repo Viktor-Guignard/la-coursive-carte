@@ -9,7 +9,7 @@
 
   function renderMenu(menu) {
     const wrap = document.createElement('div');
-    wrap.className = 'm-cols';
+    wrap.className = 'm-cols' + ((menu.style && menu.style.theme === 'vigne') ? ' vigne' : '');
     let sec = null;
     const ensure = () => { if (!sec) { sec = document.createElement('div'); sec.className = 'm-section'; wrap.appendChild(sec); } return sec; };
 
@@ -72,15 +72,42 @@
         tabsEl.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         panels.forEach((p, j) => p.style.display = j === i ? '' : 'none');
+        buildJump(panel);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
+
+    buildJump(panels[0]);
 
     if (pub.updatedAt) {
       const d = new Date(pub.updatedAt);
       if (!isNaN(d)) document.getElementById('updated').textContent = 'Carte mise à jour le ' + d.toLocaleDateString('fr-FR');
     }
   }
+
+  /* Chips d'accès rapide aux sections du menu affiché (si ≥ 4 sections) */
+  function buildJump(panel) {
+    const jump = document.getElementById('jump');
+    jump.innerHTML = '';
+    const sections = panel.querySelectorAll('.m-section > h2');
+    if (sections.length < 4) return;
+    sections.forEach(h2 => {
+      const b = document.createElement('button');
+      b.textContent = (h2.childNodes[0].textContent || '').trim().toLowerCase();
+      b.addEventListener('click', () => {
+        const y = h2.getBoundingClientRect().top + window.scrollY - document.querySelector('.tabs-zone').offsetHeight - 8;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+      jump.appendChild(b);
+    });
+  }
+
+  /* Retour en haut */
+  const topBtn = document.getElementById('topBtn');
+  window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   async function load() {
     // 1) raw (rapide, sans quota) ; 2) repli API si raw indisponible

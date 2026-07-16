@@ -40,6 +40,23 @@ const FONT_CHOICES = {
   ],
 };
 
+/* Formats de page réels (px @96dpi + mm pour le PDF) */
+const PAGE_FORMATS = {
+  a4:      { label:'A4 portrait (21 × 29,7 cm)',  w:794,  h:1123, mm:[210,297] },
+  a4l:     { label:'A4 paysage (29,7 × 21 cm)',   w:1123, h:794,  mm:[297,210] },
+  carte34: { label:'Carte haute (14 × 34 cm)',    w:529,  h:1285, mm:[140,340] },
+  a5:      { label:'A5 portrait (14,8 × 21 cm)',  w:559,  h:794,  mm:[148,210] },
+};
+const PAGE_MARGINS = {
+  compacte: { label:'Compactes', pad:'26px 30px 30px' },
+  normale:  { label:'Normales',  pad:'44px 52px 52px' },
+  large:    { label:'Larges',    pad:'62px 70px 70px' },
+};
+const PAGE_THEMES = {
+  classique: { label:'Classique' },
+  vigne:     { label:'Vigne (ornements)' },
+};
+
 function defaultStyle(){
   return {
     titleFont:'Playfair Display',
@@ -48,19 +65,32 @@ function defaultStyle(){
     accent:'#227a75',
     pageBg:'#ffffff',
     leaders:true,           // pointillés entre plat et prix
+    format:'a4',
+    margin:'normale',
+    theme:'classique',
   };
 }
 
 function applyStyle(){
   const st = state.style;
+  const fmt = PAGE_FORMATS[st.format] || PAGE_FORMATS.a4;
+  const mar = PAGE_MARGINS[st.margin] || PAGE_MARGINS.normale;
   const root = document.documentElement;
   root.style.setProperty('--font-title', `'${st.titleFont}', serif`);
   root.style.setProperty('--font-body', `'${st.bodyFont}', sans-serif`);
   root.style.setProperty('--title-color', st.titleColor);
   root.style.setProperty('--accent', st.accent);
   root.style.setProperty('--page-bg', st.pageBg);
+  root.style.setProperty('--page-w', fmt.w + 'px');
+  root.style.setProperty('--page-h', fmt.h + 'px');
+  root.style.setProperty('--page-pad', mar.pad);
   document.body.classList.toggle('leaders-off', !st.leaders);
+  document.body.classList.toggle('theme-vigne', st.theme === 'vigne');
   loadFonts(st);
+}
+
+function currentPageH(){
+  return (PAGE_FORMATS[state.style.format] || PAGE_FORMATS.a4).h;
 }
 
 function loadFonts(st){
@@ -181,7 +211,6 @@ function updateSyncStatus(){
 /* ===================== Rendu ===================== */
 
 const canvasWrap = document.getElementById('canvasWrap');
-const PAGE_H = 1123; // hauteur A4 en px (96 dpi)
 
 function esc(s){
   const d = document.createElement('div');
@@ -270,7 +299,7 @@ function render(){
     }
     const warn = document.createElement('div');
     warn.className = 'page-overflow-warning';
-    warn.textContent = '⚠️ Le contenu dépasse la page A4 — déplacez des blocs ou ajoutez un saut de page';
+    warn.textContent = '⚠️ Le contenu dépasse la page — déplacez des blocs ou ajoutez un saut de page';
     pageEl.appendChild(warn);
     canvasWrap.appendChild(pageEl);
     pageNum++;
@@ -293,11 +322,12 @@ function checkOverflow(){
     document.querySelectorAll('.pdf-page').forEach(p => p.classList.remove('overflowing'));
     return;
   }
+  const pageH = currentPageH();
   document.querySelectorAll('.pdf-page').forEach(page => {
     // retirer d'abord la classe : le bandeau d'avertissement (30px sous la page)
     // gonflerait scrollHeight et rendrait l'état collant
     page.classList.remove('overflowing');
-    page.classList.toggle('overflowing', page.scrollHeight > PAGE_H + 2);
+    page.classList.toggle('overflowing', page.scrollHeight > pageH + 2);
   });
 }
 
@@ -502,6 +532,12 @@ function fillAppearanceForm(){
   const selB = document.getElementById('bodyFontSel');
   selT.innerHTML = FONT_CHOICES.title.map(f => `<option${f.name===st.titleFont?' selected':''}>${f.name}</option>`).join('');
   selB.innerHTML = FONT_CHOICES.body.map(f => `<option${f.name===st.bodyFont?' selected':''}>${f.name}</option>`).join('');
+  document.getElementById('formatSel').innerHTML = Object.entries(PAGE_FORMATS)
+    .map(([k,f]) => `<option value="${k}"${k===(st.format||'a4')?' selected':''}>${f.label}</option>`).join('');
+  document.getElementById('marginSel').innerHTML = Object.entries(PAGE_MARGINS)
+    .map(([k,m]) => `<option value="${k}"${k===(st.margin||'normale')?' selected':''}>${m.label}</option>`).join('');
+  document.getElementById('themeSel').innerHTML = Object.entries(PAGE_THEMES)
+    .map(([k,t]) => `<option value="${k}"${k===(st.theme||'classique')?' selected':''}>${t.label}</option>`).join('');
   document.getElementById('titleColorInp').value = st.titleColor;
   document.getElementById('accentColorInp').value = st.accent;
   document.getElementById('pageBgSel').value = st.pageBg;
@@ -516,6 +552,9 @@ function readAppearanceForm(){
     accent: document.getElementById('accentColorInp').value,
     pageBg: document.getElementById('pageBgSel').value,
     leaders: document.getElementById('leadersChk').checked,
+    format: document.getElementById('formatSel').value,
+    margin: document.getElementById('marginSel').value,
+    theme: document.getElementById('themeSel').value,
   };
   applyStyle();
   markDirty();
@@ -528,7 +567,7 @@ document.getElementById('appearanceBtn').addEventListener('click', () => {
 });
 document.getElementById('appearanceClose').addEventListener('click', ()=> appearanceBackdrop.classList.remove('open'));
 appearanceBackdrop.addEventListener('click', (e)=>{ if(e.target===appearanceBackdrop) appearanceBackdrop.classList.remove('open'); });
-['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk'].forEach(id => {
+['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk','formatSel','marginSel','themeSel'].forEach(id => {
   document.getElementById(id).addEventListener('change', readAppearanceForm);
 });
 document.getElementById('appearanceReset').addEventListener('click', () => {
@@ -584,4 +623,5 @@ window.__CARTE_RENDER__ = render;
 window.__CARTE_HELPERS__ = {
   toast, markDirty, clearDraft, getDraft, updateSyncStatus,
   applyStyle, resetHistory, defaultStyle, checkOverflow,
+  PAGE_FORMATS,
 };

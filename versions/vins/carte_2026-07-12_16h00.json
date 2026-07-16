@@ -1,11 +1,14 @@
 {
  "style": {
-  "titleFont": "Playfair Display",
+  "titleFont": "Cormorant Garamond",
   "bodyFont": "Poppins",
   "titleColor": "#1a1a1a",
   "accent": "#a3801c",
   "pageBg": "#ffffff",
-  "leaders": true
+  "leaders": true,
+  "format": "a4",
+  "margin": "normale",
+  "theme": "vigne"
  },
  "blocks": [
   {
