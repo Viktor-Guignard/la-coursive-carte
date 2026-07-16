@@ -129,7 +129,7 @@ document.getElementById('publishBtn').addEventListener('click', async () => {
     publishedKeys = new Set(keys);
     publishedAt = payload.updatedAt;
     render();
-    toast('Publié ! La page du QR est à jour (jusqu\'à 1 min de propagation).');
+    toast('Publié ! Jusqu\'à 5 min de propagation avant que le QR affiche la mise à jour.');
   } catch (err) {
     console.error(err);
     if (err.message === 'BAD_TOKEN') { toast('Jeton refusé — vérifiez ⚙️.'); settingsBackdrop.classList.add('open'); }
