@@ -19,22 +19,15 @@
  },
  "blocks": [
   {
-   "id": "mh_logo",
-   "type": "image",
-   "src": "assets/logo.png",
-   "widthPct": 13
-  },
-  {
-   "id": "mh_name",
-   "type": "formule",
-   "text": "LA COURSIVE DES ALPES, par Laurent Hillairet",
-   "heading": true,
-   "color": "#909054"
-  },
-  {
-   "id": "mh_tag",
-   "type": "note",
-   "text": "Ici, tout est fait maison — Here, everything is homemade."
+   "id": "mh_header",
+   "type": "header",
+   "line1": "La Coursive",
+   "line2": "des Alpes",
+   "chef": "Par le chef Laurent Hillairet",
+   "insta": "Suivez-nous sur instagram<br>@lacoursivemeribel",
+   "wifi": "Wifi: LiveboxCdb0<br>mdp: lacoursive73",
+   "logoImg": "assets/logo-or.png",
+   "qrImg": "assets/qr.png"
   },
   {
    "id": "b1",
