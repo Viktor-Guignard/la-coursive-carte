@@ -6,12 +6,12 @@
 <title>La Coursive des Alpes — Éditeur de carte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
 <div id="toolbar">
-  <div class="brand">La Coursive <small>Éditeur de carte</small></div>
+  <div class="brand">La Coursive <small id="menuBadge">Carte</small></div>
   <button class="tbtn secondary" id="undoBtn" title="Annuler (Ctrl/Cmd+Z)" disabled>↶</button>
   <button class="tbtn secondary" id="redoBtn" title="Rétablir (Ctrl/Cmd+Shift+Z)" disabled>↷</button>
   <button class="tbtn secondary" id="addBlockBtn">+ Ajouter un bloc</button>
@@ -22,6 +22,8 @@
   <span id="syncStatus"><span class="dot"></span><span class="txt"></span></span>
   <button class="tbtn secondary" id="settingsBtn" title="Réglages">⚙️</button>
 </div>
+
+<nav id="menuTabs"></nav>
 
 <div id="draftBanner">
   <span class="msg"></span>
@@ -127,11 +129,13 @@
 
 <div id="toast"></div>
 
-<script src="app.js?v=5"></script>
-<script src="storage.js?v=5"></script>
+<script src="menus-config.js?v=6"></script>
+<script src="gh.js?v=6"></script>
+<script src="app.js?v=6"></script>
+<script src="storage.js?v=6"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="pdf-export.js?v=5"></script>
+<script src="pdf-export.js?v=6"></script>
 
 </body>
 </html>

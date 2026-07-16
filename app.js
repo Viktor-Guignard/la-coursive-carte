@@ -3,66 +3,9 @@
 let uidCounter = 1;
 function newId(){ return 'b' + (uidCounter++) + '_' + Math.random().toString(36).slice(2,7); }
 
-function defaultDoc(){
-  const b = (type, fields) => ({ id: newId(), type, ...fields });
-  return [
-    b('header', {
-      line1:'La Coursive', line2:'des Alpes',
-      chef:'Par le chef Laurent Hillairet',
-      insta:'Suivez-nous sur instagram<br>@lacoursivemeribel',
-      wifi:'Wifi: LiveboxCdb0<br>mdp: lacoursive73',
-      logoImg:null, qrImg:null
-    }),
-    b('formule', {text:'MENUS', heading:true}),
-    b('formule', {text:'ENTRÉE + PLAT ou/or PLAT + DESSERT 35€'}),
-    b('formule', {text:'ENTRÉE + PLAT + DESSERT 39€'}),
-    b('note', {text:'*Plats possibles dans les menus / Dishes included in the menu'}),
-    b('section', {fr:'À PARTAGER', en:'To share'}),
-    b('item', {fr:'CROQUE JAMBON À LA TRUFFE ET BEAUFORT', en:'Truffle ham and Beaufort cheese bread', price:'20€'}),
-    b('item', {fr:'FOIE GRAS MAISON EN BALLOTTINE', en:'Home made foie gras terrine', price:'25€'}),
-    b('item', {fr:'PÂTÉ EN CROÛTE MAISON DE FOIE GRAS ET VOLAILLE ET PORC, CHUTNEY DE MANGUES', en:'Home made poultry, pork and foie gras pie, mango chutney', price:'20€'}),
-    b('item', {fr:'PLANCHE DE FROMAGES DES ALPES', en:'Selection of cheeses from Alps', price:'19€'}),
-    b('item', {fr:'SAUMON LABEL ROUGE MARINÉ FAÇON GRAVLAX', en:"Marinated red label salmon as gravlax' style", price:'23€'}),
-    b('item', {fr:'JAMBON BLANC À LA TRUFFE ET CHORIZO IBÉRIQUE', en:'Truffle white ham and iberian chorizo', price:'20€'}),
-    b('item', {fr:'PLANCHE MIXTE', en:'Truffle white ham and chorizo/cheeses', price:'23€'}),
-    b('item', {fr:'CORNET DE FRITES MAISON', en:'Home made French fries', price:'8€'}),
-    b('section', {fr:'ENTRÉES', en:'Starters'}),
-    b('item', {fr:'VELOUTÉ DE COURGE, NOIX CARAMÉLISÉES', en:'Pumpkin soup, and nuts candied', price:'17€*/22€*'}),
-    b('item', {fr:'OEUF PARFAIT AUX CHAMPIGNONS ET CHÂTAIGNES', en:'Poched egg with mushrooms and chestnuts', price:'18€*/26€'}),
-    b('item', {fr:"SAUMON LABEL ROUGE MARINÉ FAÇON GRAVLAX", en:"Marinated Red Label salmon as Gravlax' style (+4€ dans le menu)", price:'23€*'}),
-    b('item', {fr:'HOUMOUS POIS CHICHES, CRÈME DE FÉTA ET POIVRONS CONFITS, GRENADE', en:'Houmous, feta cream and candied peppers, pomegranate', price:'17€ / 26€'}),
-    b('item', {fr:'PÂTÉ EN CROÛTE DE VOLAILLE, PORC ET FOIE GRAS, CHUTNEY DE MANGUES', en:'Home made poultry, pork and foie gras pie, mango chutney', price:'20€'}),
-    b('item', {fr:'VITELLO TONNATO (Viande de veau et sauce au thon et câpres)', en:'Home made Vitello tonnato, veal slices with tuna sauce and capers', price:'21€'}),
-    b('note', {text:'Prix nets, service compris'}),
-
-    b('pagebreak', {}),
-
-    b('formule', {text:'NOUVEAU !!!', italic:true}),
-    b('section', {fr:'PIZZAS CHICS!', en:null}),
-    b('item', {fr:'SPIANATA: base tomate, mozzarella fior di latte, oignons cuisinés, chorizo ibérique', en:'Tomato, mozzarella Fior di latte, onions cooked, iberico chorizo', price:'20€'}),
-    b('item', {fr:'TARTUFO: base crème, mozzarella ricotta, fior di latte, jambon blanc à la truffe, huile de truffe, roquette et noix caramélisées', en:'Cream, ricotta, mozzarella fior di latte, truffle ham, truffle oil, arugula salad and candied nuts', price:'25€'}),
-    b('item', {fr:'CLASSICO MARGARITA: Base tomate, mozzarella fior di latte, basilic', en:'Tomato, mozzarella Fior di latte, basil', price:'18€*'}),
-    b('item', {fr:'MOZZA LOVER: Base tomate, mozzarella fior di latte, burrata, scarmozza fumée, basilic', en:'Tomato, mozzarella Fior di latte, burrata, scarmozza fumée, basilic', price:'22€'}),
-    b('section', {fr:'PLATS', en:'Dishes'}),
-    b('item', {fr:'« LA » SALADE CAESAR, BACON', en:'Caesar salad with roasted chicken, with bacon', price:'23€*'}),
-    b('item', {fr:'CABILLAUD RÔTI FAÇON THAI, RAVIOLES À LA RICOTTA ET POIREAUX, CRUMBLE DE NOIX DE CAJOU', en:'Cod fish cooked as « thai » style, confit leeks and ricotta ravioli, cashew nut crumble', price:'32€'}),
-    b('item', {fr:'POULPE SNACKÉ, AVOCAT GRILLÉ, CHORIZO ET RISOTTO D’ÉPEAUTRE', en:'Octopus grilled, grilled avocado, chorizo and spelled risotto', price:'37€'}),
-    b('item', {fr:'RACLETTE AÉRIENNE, BRIOCHE PERDUE ET JAMBON BLANC À LA TRUFFE', en:'Espuma of Raclette, French toast brioch bread and truffle ham', price:'24€'}),
-    b('item', {fr:'CRÈME DE POMMES DE TERRE, COMME UNE TARTIFLETTE', en:'Potatoes soup cooked as Tartiflette style', price:'23€*'}),
-    b('item', {fr:'« MÉRIBURGER » AU BEAUFORT, FRITES TOUT MAISON (SUPPL. FOIE GRAS +6€)', en:'Special Home made Burger bun with Beaufort cheese, French fries (extra Foie gras roasted +6€)', price:'27€'}),
-    b('item', {fr:'BOEUF CONFIT DE « 7 HEURES » À LA ROYALE (foie gras poêlé), POMME PURÉE BIEN BEURRÉE', en:'Confit beef « 7 hours » with foie gras roasted, mashed potatoes (+6€ dans le menu)', price:'33€*'}),
-    b('item', {fr:'RIS DE VEAU ET SARRASIN, HARISSA DE CAROTTES, SPAETZLE', en:'Sweetbread and buckwheat, carrot harissa and spaetzle', price:'39€'}),
-    b('section', {fr:'PLAT POUR DEUX', en:'For two people'}),
-    b('item', {fr:'MORCEAUX CHOISIS DE VIANDE METZGER À PARTAGER (SELON ARRIVAGE), PURÉE BIEN BEURRÉE', en:'Selection of piece of meat served for two people, depending on availability, mashed potatoes', price:'95€'}),
-    b('section', {fr:'DESSERTS', en:'Deserts'}),
-    b('item', {fr:'CRAQUANT TOUT CHOCOLAT, GLACE VANILLE ET CACAHUÈTES', en:'Chocolate cake, vanilla ice cream and peanuts', price:'14€*'}),
-    b('item', {fr:'POIRE DE SAVOIE, RIZ AU LAIT ET CARAMEL AU BEURRE SALÉ, AMANDES ET NOISETTES', en:'Pear from Savoie, milk rice and caramel with salted butter, almonds and hazelnuts', price:'13€*'}),
-    b('item', {fr:'BABA AU RHUM, CONFIT D’ORANGES, CRÈME LÉGÈRE VANILLÉE', en:'Famous rhum baba cake, homemade orange jam and vanilla chantilly cream', price:'14€*'}),
-    b('item', {fr:'PAVLOVA MANGUE, COCO, PASSION', en:'Passion fruit, mango and coconut pavlova', price:'15€'}),
-    b('section', {fr:'MENU KIDS', en:"Kid's menu"}),
-    b('item', {fr:'VOLAILLE JAUNE RÔTIE ET FRITES OU PURÉE MAISON, FONDANT CHOCOLAT', en:'Roasted chicken and mashed potatoes or French fries, chocolate cake', price:'19€'}),
-  ];
-}
+/* Le contenu réel de chaque carte est chargé depuis le cloud (versions/<clé>/).
+   En attendant, on part d'un document vide. */
+function defaultDoc(){ return []; }
 
 const BLOCK_LIBRARY = [
   {type:'section', ttl:'Titre de section', desc:'Ex : « ENTRÉES / Starters »', make:()=>({fr:'NOUVELLE SECTION', en:'New section'})},
@@ -192,7 +135,7 @@ function updateHistoryButtons(){
 
 /* ===================== Brouillon local (sécurité) ===================== */
 
-const DRAFT_KEY = 'carte_draft_v1';
+const DRAFT_KEY = 'carte_draft_' + window.currentMenuKey();
 
 function saveDraft(){
   try{
@@ -595,8 +538,33 @@ document.getElementById('appearanceReset').addEventListener('click', () => {
   markDirty();
 });
 
+/* ===================== Onglets des cartes ===================== */
+
+function buildMenuTabs(){
+  const bar = document.getElementById('menuTabs');
+  if(!bar) return;
+  const active = window.currentMenuKey();
+  bar.innerHTML = '';
+  window.COURSIVE_MENUS.forEach(m => {
+    const a = document.createElement('a');
+    a.href = '?menu=' + m.key;
+    a.className = 'menu-tab' + (m.key === active ? ' active' : '');
+    a.innerHTML = `<span class="lbl">${m.label}</span>${m.hint ? `<span class="hint">${m.hint}</span>` : ''}`;
+    bar.appendChild(a);
+  });
+  const pub = document.createElement('a');
+  pub.href = 'publier.html';
+  pub.className = 'menu-tab publish-tab';
+  pub.innerHTML = '<span class="lbl">📱 Publier / QR</span>';
+  bar.appendChild(pub);
+
+  const badge = document.getElementById('menuBadge');
+  if(badge) badge.textContent = window.currentMenuLabel();
+}
+
 /* ===================== Boot ===================== */
 
+buildMenuTabs();
 applyStyle();
 render();
 resetHistory();

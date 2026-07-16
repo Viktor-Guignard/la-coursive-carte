@@ -1,0 +1,81 @@
+{
+ "style": {
+  "titleFont": "Playfair Display",
+  "bodyFont": "Poppins",
+  "titleColor": "#1a1a1a",
+  "accent": "#a3801c",
+  "pageBg": "#ffffff",
+  "leaders": true
+ },
+ "blocks": [
+  {
+   "id": "b44",
+   "type": "section",
+   "fr": "À PARTAGER",
+   "en": "To share"
+  },
+  {
+   "id": "b45",
+   "type": "item",
+   "fr": "CROQUE JAMBON À LA TRUFFE ET BEAUFORT",
+   "en": "Truffle ham and Beaufort cheese bread",
+   "price": "23€"
+  },
+  {
+   "id": "b46",
+   "type": "item",
+   "fr": "FOIE GRAS MAISON EN BALLOTTINE",
+   "en": "Homemade foie gras terrine",
+   "price": "26€"
+  },
+  {
+   "id": "b47",
+   "type": "item",
+   "fr": "PÂTÉ EN CROÛTE DE FOIE GRAS, PORC ET VOLAILLE",
+   "en": "Homemade poultry, pork and foie gras pie",
+   "price": "22€"
+  },
+  {
+   "id": "b48",
+   "type": "item",
+   "fr": "PLANCHE DE FROMAGES DES ALPES",
+   "en": "Selection of cheeses from Alps",
+   "price": "22€"
+  },
+  {
+   "id": "b49",
+   "type": "item",
+   "fr": "SAUMON LABEL ROUGE MARINÉ FAÇON GRAVLAX",
+   "en": "Marinated red label salmon as gravlax' style",
+   "price": "26€"
+  },
+  {
+   "id": "b50",
+   "type": "item",
+   "fr": "PLANCHE DE CHARCUTERIE ITALIENNE, mortadelle à la pistache, bresaola, jambon blanc à la truffe, spianata",
+   "en": "Italian charcuterie board",
+   "price": "23€"
+  },
+  {
+   "id": "b51",
+   "type": "item",
+   "fr": "PLANCHE MIXTE",
+   "en": "Truffle white ham and chorizo / cheeses",
+   "price": "26€"
+  },
+  {
+   "id": "b52",
+   "type": "item",
+   "fr": "CORNET DE FRITES",
+   "en": "French fries",
+   "price": "8€"
+  },
+  {
+   "id": "b53",
+   "type": "item",
+   "fr": "LES ŒUFS MAYONNAISE À LA TRUFFE",
+   "en": "Truffle eggs mayonnaise",
+   "price": "21€"
+  }
+ ]
+}

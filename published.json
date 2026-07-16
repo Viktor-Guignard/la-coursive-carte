@@ -1,0 +1,2369 @@
+{
+ "updatedAt": "2026-07-12T16:00:00Z",
+ "menus": [
+  {
+   "key": "carte",
+   "label": "Carte",
+   "style": {
+    "titleFont": "Playfair Display",
+    "bodyFont": "Poppins",
+    "titleColor": "#1a1a1a",
+    "accent": "#a3801c",
+    "pageBg": "#ffffff",
+    "leaders": true
+   },
+   "blocks": [
+    {
+     "id": "b1",
+     "type": "section",
+     "fr": "À PARTAGER",
+     "en": "To share"
+    },
+    {
+     "id": "b2",
+     "type": "item",
+     "fr": "CROQUE JAMBON À LA TRUFFE ET BEAUFORT",
+     "en": "Truffle ham and Beaufort cheese bread",
+     "price": "23€"
+    },
+    {
+     "id": "b3",
+     "type": "item",
+     "fr": "FOIE GRAS MAISON EN BALLOTTINE (100gr)",
+     "en": "Homemade foie gras terrine",
+     "price": "26€"
+    },
+    {
+     "id": "b4",
+     "type": "item",
+     "fr": "PLANCHE DE FROMAGES DES ALPES",
+     "en": "Selection of cheeses from Alps",
+     "price": "22€"
+    },
+    {
+     "id": "b5",
+     "type": "item",
+     "fr": "PLANCHE DE CHARCUTERIE ITALIENNE : mortadelle pistache, bresaola, jambon blanc à la truffe, spianata",
+     "en": "Italian charcuterie board",
+     "price": "23€"
+    },
+    {
+     "id": "b6",
+     "type": "item",
+     "fr": "PLANCHE MIXTE, CHARCUTERIE ET FROMAGES",
+     "en": "Charcuterie and cheeses board",
+     "price": "26€"
+    },
+    {
+     "id": "b7",
+     "type": "item",
+     "fr": "FRITES MAISON",
+     "en": "French fries",
+     "price": "8€"
+    },
+    {
+     "id": "b8",
+     "type": "section",
+     "fr": "ENTRÉES",
+     "en": "Starters"
+    },
+    {
+     "id": "b9",
+     "type": "item",
+     "fr": "CAPPUCCINO DE CHÂTAIGNES, fregola au Beaufort et noix caramélisées",
+     "en": "Chestnuts soup, fregola pasta with Beaufort cheese and candied walnuts",
+     "price": "Petit 17 / Grand 22€"
+    },
+    {
+     "id": "b10",
+     "type": "item",
+     "fr": "FRICASSÉE DE CHAMPIGNONS ET VOLAILLE, émulsion morilles",
+     "en": "Chicken with mushrooms fricassée, morels emulsion",
+     "price": "18€"
+    },
+    {
+     "id": "b11",
+     "type": "item",
+     "fr": "RACLETTE AÉRIENNE, brioche en pain perdu, crumble de raclette",
+     "en": "Espuma of Raclette cheese, brioch bread cooking as pain perdu's style, raclette crumble",
+     "price": "17€"
+    },
+    {
+     "id": "b12",
+     "type": "item",
+     "fr": "HOUMOUS, pois chiche, crémeux burrata, avocat grillé et grenade",
+     "en": "Chickpea houmous, creamy burrata, grilled avocado and pomegranate",
+     "price": "Petit 17 / Grand 26€"
+    },
+    {
+     "id": "b13",
+     "type": "item",
+     "fr": "VITELLO TONNATO, veau et sauce au thon et câpres, harissa de carottes",
+     "en": "Veal slices with tuna and capers sauce, carrots sauce",
+     "price": "22€"
+    },
+    {
+     "id": "b14",
+     "type": "item",
+     "fr": "SAUMON GRAVLAX, label rouge, pickles de légumes",
+     "en": "Marinated red label salmon as gravlax' style, vegetables pickles",
+     "price": "26€"
+    },
+    {
+     "id": "b15",
+     "type": "section",
+     "fr": "PIZZAS",
+     "en": null
+    },
+    {
+     "id": "b16",
+     "type": "item",
+     "fr": "SPIANATA : base tomate, mozzarella fior di latte, spianata, roquette, parmesan",
+     "en": "Tomato, Mozzarella Fior di latte, spianata, arugula salad, parmesan cheese",
+     "price": "24€"
+    },
+    {
+     "id": "b17",
+     "type": "item",
+     "fr": "TARTUFO : base crème, mozzarella fior di latte, jambon blanc à la truffe, truffe noire et roquette",
+     "en": "Cream, Mozzarella Fior di latte, truffle ham, black truffle and arugula salad",
+     "price": "49€"
+    },
+    {
+     "id": "b18",
+     "type": "item",
+     "fr": "CLASSICO MARGARITA : base tomate, mozzarella fior di latte, basilic",
+     "en": "Tomato, Mozzarella Fior di latte, basil",
+     "price": "19€"
+    },
+    {
+     "id": "b19",
+     "type": "item",
+     "fr": "MOZZA LOVER : base tomate, mozzarella fior di latte, burrata, scarmozza fumée, basilic, roquette",
+     "en": "Tomato, Mozzarella Fior di latte, burrata, scarmozza, basil, arugula salad",
+     "price": "25€"
+    },
+    {
+     "id": "b20",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b21",
+     "type": "section",
+     "fr": "PLATS",
+     "en": "Main Courses"
+    },
+    {
+     "id": "b22",
+     "type": "item",
+     "fr": "« LA » SALADE CAESAR, bacon, volaille rôtie, parmesan",
+     "en": "Caesar salad, roasted chicken, bacon and parmesan cheese",
+     "price": "25€"
+    },
+    {
+     "id": "b23",
+     "type": "item",
+     "fr": "VÉRITABLES LINGUINI CARBONARA, guanciale (lard italien)",
+     "en": "True carbonara linguini",
+     "price": "26€"
+    },
+    {
+     "id": "b24",
+     "type": "item",
+     "fr": "« MÉRIBURGER » AU BEAUFORT, steak haché, lard croustillant, confit d'oignons, roquette, frites maison",
+     "en": "Special homemade burger bun with beef meat, Beaufort cheese, crispy bacon, candied onions, French fries",
+     "price": "29€"
+    },
+    {
+     "id": "b25",
+     "type": "item",
+     "fr": "BŒUF CONFIT DE « 8 HEURES », foie gras poêlé, gnocchi au parmesan",
+     "en": "Confit beef « 8 hours » with roasted foie gras, parmesan gnocchi",
+     "price": "41€"
+    },
+    {
+     "id": "b26",
+     "type": "item",
+     "fr": "FILET DE BŒUF AUX POIVRES, croustillant de pommes de terre et morilles",
+     "en": "Beef tenderloin with peppers, crispy potatoes and morels mushrooms",
+     "price": "49€"
+    },
+    {
+     "id": "b27",
+     "type": "item",
+     "fr": "SAINT-JACQUES POÊLÉES, risoni et céleri en risotto au Comté",
+     "en": "Roasted scallops, risoni and celeri risotto with Comté cheese",
+     "price": "40€"
+    },
+    {
+     "id": "b28",
+     "type": "item",
+     "fr": "POULPE SNACKÉ, rigatoni à la ricotta, chou-fleur grillé, émulsion curry-gingembre",
+     "en": "Snacked octopus, ricotta rigatoni, grilled cauliflower, curry-ginger sauce",
+     "price": "37€"
+    },
+    {
+     "id": "b29",
+     "type": "item",
+     "fr": "LÉGUMES DU MOMENT",
+     "en": "Cooked vegetables of the moment",
+     "price": "Petit 11 / Grand 23€"
+    },
+    {
+     "id": "b30",
+     "type": "section",
+     "fr": "CÔTÉ ALPES",
+     "en": "Alps side"
+    },
+    {
+     "id": "b31",
+     "type": "note",
+     "text": "Prix par personne / min 2 personnes — Price per person / min 2 people"
+    },
+    {
+     "id": "b32",
+     "type": "item",
+     "fr": "FONDUE SUISSE, SALADE",
+     "en": "2 cheeses fondue (vacherin fribourgeois, gruyère suisse), salad, roasted potatoes",
+     "price": "31€"
+    },
+    {
+     "id": "b33",
+     "type": "item",
+     "fr": "ASSIETTE DE JAMBON BLANC À LA TRUFFE",
+     "en": "Truffle ham plate",
+     "price": "18€"
+    },
+    {
+     "id": "b34",
+     "type": "section",
+     "fr": "À PARTAGER POUR DEUX",
+     "en": "For 2 people"
+    },
+    {
+     "id": "b35",
+     "type": "note",
+     "text": "Min. 30 min"
+    },
+    {
+     "id": "b36",
+     "type": "item",
+     "fr": "CÔTE DE BŒUF DE 800 GR, frites maison",
+     "en": "Rib of beef, homemade French fries",
+     "price": "110€"
+    },
+    {
+     "id": "b37",
+     "type": "item",
+     "fr": "ÉPAULE D'AGNEAU CONFITE, légumes rôtis",
+     "en": "Lamb shoulder slowly cooked, roasted vegetables",
+     "price": "97€"
+    },
+    {
+     "id": "b38",
+     "type": "section",
+     "fr": "DESSERTS",
+     "en": "Desserts"
+    },
+    {
+     "id": "b39",
+     "type": "item",
+     "fr": "LA POIRE POCHÉE FAÇON BELLE-HÉLÈNE",
+     "en": "Poached pear as Belle-Hélène's style",
+     "price": "13€"
+    },
+    {
+     "id": "b40",
+     "type": "item",
+     "fr": "BABA AU RHUM, confit d'oranges et chantilly vanillée",
+     "en": "Rhum baba cake, orange jam and vanilla chantilly",
+     "price": "12€"
+    },
+    {
+     "id": "b41",
+     "type": "item",
+     "fr": "TARTELETTE AU CHOCOLAT, crémeux, glace noisette",
+     "en": "Chocolate creamy tart, hazelnuts ice cream",
+     "price": "14€"
+    },
+    {
+     "id": "b42",
+     "type": "item",
+     "fr": "RIZ AU LAIT, fruits secs torréfiés (noisettes, amandes, pistaches), caramel crémeux au beurre salé",
+     "en": "Rice pudding, roasted nuts (hazelnuts, almonds, pistachios), creamy salted butter caramel",
+     "price": "12€"
+    },
+    {
+     "id": "b43",
+     "type": "note",
+     "text": "Ici, tout est fait maison — Here, everything is homemade. La Coursive des Alpes, par Laurent Hillairet."
+    }
+   ]
+  },
+  {
+   "key": "partager",
+   "label": "À partager",
+   "style": {
+    "titleFont": "Playfair Display",
+    "bodyFont": "Poppins",
+    "titleColor": "#1a1a1a",
+    "accent": "#a3801c",
+    "pageBg": "#ffffff",
+    "leaders": true
+   },
+   "blocks": [
+    {
+     "id": "b44",
+     "type": "section",
+     "fr": "À PARTAGER",
+     "en": "To share"
+    },
+    {
+     "id": "b45",
+     "type": "item",
+     "fr": "CROQUE JAMBON À LA TRUFFE ET BEAUFORT",
+     "en": "Truffle ham and Beaufort cheese bread",
+     "price": "23€"
+    },
+    {
+     "id": "b46",
+     "type": "item",
+     "fr": "FOIE GRAS MAISON EN BALLOTTINE",
+     "en": "Homemade foie gras terrine",
+     "price": "26€"
+    },
+    {
+     "id": "b47",
+     "type": "item",
+     "fr": "PÂTÉ EN CROÛTE DE FOIE GRAS, PORC ET VOLAILLE",
+     "en": "Homemade poultry, pork and foie gras pie",
+     "price": "22€"
+    },
+    {
+     "id": "b48",
+     "type": "item",
+     "fr": "PLANCHE DE FROMAGES DES ALPES",
+     "en": "Selection of cheeses from Alps",
+     "price": "22€"
+    },
+    {
+     "id": "b49",
+     "type": "item",
+     "fr": "SAUMON LABEL ROUGE MARINÉ FAÇON GRAVLAX",
+     "en": "Marinated red label salmon as gravlax' style",
+     "price": "26€"
+    },
+    {
+     "id": "b50",
+     "type": "item",
+     "fr": "PLANCHE DE CHARCUTERIE ITALIENNE, mortadelle à la pistache, bresaola, jambon blanc à la truffe, spianata",
+     "en": "Italian charcuterie board",
+     "price": "23€"
+    },
+    {
+     "id": "b51",
+     "type": "item",
+     "fr": "PLANCHE MIXTE",
+     "en": "Truffle white ham and chorizo / cheeses",
+     "price": "26€"
+    },
+    {
+     "id": "b52",
+     "type": "item",
+     "fr": "CORNET DE FRITES",
+     "en": "French fries",
+     "price": "8€"
+    },
+    {
+     "id": "b53",
+     "type": "item",
+     "fr": "LES ŒUFS MAYONNAISE À LA TRUFFE",
+     "en": "Truffle eggs mayonnaise",
+     "price": "21€"
+    }
+   ]
+  },
+  {
+   "key": "vins",
+   "label": "Vins",
+   "style": {
+    "titleFont": "Playfair Display",
+    "bodyFont": "Poppins",
+    "titleColor": "#1a1a1a",
+    "accent": "#a3801c",
+    "pageBg": "#ffffff",
+    "leaders": true
+   },
+   "blocks": [
+    {
+     "id": "b54",
+     "type": "section",
+     "fr": "LES VINS AU VERRE",
+     "en": "Wines by glass · 15 cl"
+    },
+    {
+     "id": "b55",
+     "type": "formule",
+     "text": "Bulles · 12,5 cl",
+     "heading": true
+    },
+    {
+     "id": "b56",
+     "type": "item",
+     "fr": "Coupe de Prosecco D.O.C. 500 Extra Dry",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b57",
+     "type": "item",
+     "fr": "Champagne AOP Devaux, Blanc de Noirs, Cœur des Bar",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b58",
+     "type": "formule",
+     "text": "Vins blancs",
+     "heading": true
+    },
+    {
+     "id": "b59",
+     "type": "item",
+     "fr": "Roussette de Savoie, AOP, Marestel",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b60",
+     "type": "item",
+     "fr": "Beaujolais blanc, AOP, Chardonnay, Château de Corcelles",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b61",
+     "type": "item",
+     "fr": "Crozes-Hermitage, AOP, Les Meysonniers, M. Chapoutier",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b62",
+     "type": "item",
+     "fr": "VDF, Pakhus, P. et S. Ravier (vin doux)",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b63",
+     "type": "formule",
+     "text": "Vins rouges",
+     "heading": true
+    },
+    {
+     "id": "b64",
+     "type": "item",
+     "fr": "IGP Collines rhodaniennes, Combe Pilate, Syrah, M. Chapoutier",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b65",
+     "type": "item",
+     "fr": "Mondeuse, AOP, Les Intemporelles, sélection Dionysos",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b66",
+     "type": "item",
+     "fr": "VDF du Bugey, Gamay/Poulsard, Pied de Mouton, Dom. des Sonnettes",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b67",
+     "type": "item",
+     "fr": "Vin du Moment",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b68",
+     "type": "formule",
+     "text": "Vins rosés",
+     "heading": true
+    },
+    {
+     "id": "b69",
+     "type": "item",
+     "fr": "Coteaux d'Aix en Provence, AOP, Aix",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b70",
+     "type": "section",
+     "fr": "LES BULLES",
+     "en": "Sparkling wines · 37,5 / 75 / 150 cl"
+    },
+    {
+     "id": "b71",
+     "type": "formule",
+     "text": "Les bruts",
+     "heading": true
+    },
+    {
+     "id": "b72",
+     "type": "item",
+     "fr": "Champagne AOP, Devaux, Blanc de Noirs, Cœur des Bar",
+     "en": "",
+     "price": "79€"
+    },
+    {
+     "id": "b73",
+     "type": "item",
+     "fr": "Champagne AOP, Ayala Brut Majeur",
+     "en": "",
+     "price": "85€"
+    },
+    {
+     "id": "b74",
+     "type": "item",
+     "fr": "Champagne AOP, Ruinart Blanc Brut « R »",
+     "en": "",
+     "price": "99€"
+    },
+    {
+     "id": "b75",
+     "type": "item",
+     "fr": "Champagne AOP, Ruinart Blanc Brut « R » — 150 cl",
+     "en": "",
+     "price": "199€"
+    },
+    {
+     "id": "b76",
+     "type": "item",
+     "fr": "Champagne AOP, Lallier, Extra Brut",
+     "en": "",
+     "price": "110€"
+    },
+    {
+     "id": "b77",
+     "type": "item",
+     "fr": "Champagne AOP, Bollinger, La Grande Année 2015",
+     "en": "",
+     "price": "288€"
+    },
+    {
+     "id": "b78",
+     "type": "formule",
+     "text": "Les blancs de blancs",
+     "heading": true
+    },
+    {
+     "id": "b79",
+     "type": "item",
+     "fr": "Champagne AOP, Ruinart, Blanc de Blancs — 75 cl",
+     "en": "",
+     "price": "151€"
+    },
+    {
+     "id": "b80",
+     "type": "formule",
+     "text": "Le rosé",
+     "heading": true
+    },
+    {
+     "id": "b81",
+     "type": "item",
+     "fr": "Champagne Rosé AOP, Devaux, Côte des Bar",
+     "en": "",
+     "price": "86€"
+    },
+    {
+     "id": "b82",
+     "type": "formule",
+     "text": "Les autres bulles",
+     "heading": true
+    },
+    {
+     "id": "b83",
+     "type": "item",
+     "fr": "Crémant de Savoie AOP Brut, Blanc, Dom. Perrier",
+     "en": "",
+     "price": "36€"
+    },
+    {
+     "id": "b84",
+     "type": "item",
+     "fr": "Prosecco D.O.C., 500 Extra Dry",
+     "en": "",
+     "price": "38€"
+    },
+    {
+     "id": "b85",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b86",
+     "type": "section",
+     "fr": "LES DOUX ET MOELLEUX",
+     "en": "Sweet wines · 75 cl"
+    },
+    {
+     "id": "b87",
+     "type": "item",
+     "fr": "VDF Moelleux de Savoie, L'Authentique, Roussette de Savoie, F. Carrel, vendanges tardives (50 cl), 2015",
+     "en": "",
+     "price": "60€"
+    },
+    {
+     "id": "b88",
+     "type": "item",
+     "fr": "VDF Pakhus, P. et S. Ravier",
+     "en": "",
+     "price": "36€"
+    },
+    {
+     "id": "b89",
+     "type": "item",
+     "fr": "Coteaux du Layon, AOP, Dom. de la Roulerie, 2018",
+     "en": "",
+     "price": "56€"
+    },
+    {
+     "id": "b90",
+     "type": "item",
+     "fr": "Moscato d'Asti, DOCG Ricossa (Piémont)",
+     "en": "",
+     "price": "35€"
+    },
+    {
+     "id": "b91",
+     "type": "section",
+     "fr": "LES VINS BLANCS",
+     "en": "White wines · 75 / 150 cl"
+    },
+    {
+     "id": "b92",
+     "type": "formule",
+     "text": "La Savoie",
+     "heading": true
+    },
+    {
+     "id": "b93",
+     "type": "item",
+     "fr": "Roussette de Savoie Marestel AOP, Château de La Mar, Le Golliat",
+     "en": "",
+     "price": "52€"
+    },
+    {
+     "id": "b94",
+     "type": "item",
+     "fr": "Roussette de Savoie AOP, Ch. Monterminod, Dom. Perrier (50 cl)",
+     "en": "",
+     "price": "30€"
+    },
+    {
+     "id": "b95",
+     "type": "item",
+     "fr": "Roussette de Savoie AOP, Ch. Monterminod, Dom. Perrier (75 cl)",
+     "en": "",
+     "price": "45€"
+    },
+    {
+     "id": "b96",
+     "type": "item",
+     "fr": "Roussette de Savoie AOP, Ch. Monterminod, Dom. Perrier (150 cl)",
+     "en": "",
+     "price": "93€"
+    },
+    {
+     "id": "b97",
+     "type": "item",
+     "fr": "VDF, Viognier, Château de Candie, « 1891 », Dom. Perrier",
+     "en": "",
+     "price": "38€"
+    },
+    {
+     "id": "b98",
+     "type": "item",
+     "fr": "Vin de Savoie Ayze, Jonquille, vieilles vignes, Fam. Montessuit",
+     "en": "",
+     "price": "42€"
+    },
+    {
+     "id": "b99",
+     "type": "item",
+     "fr": "Apremont, AOP, Dom. Blard",
+     "en": "",
+     "price": "46€"
+    },
+    {
+     "id": "b100",
+     "type": "item",
+     "fr": "Abymes, AOP, Electrick, P. et S. Ravier",
+     "en": "",
+     "price": "35€"
+    },
+    {
+     "id": "b101",
+     "type": "item",
+     "fr": "Chardonnay, AOP, Dom. Grisard",
+     "en": "",
+     "price": "39€"
+    },
+    {
+     "id": "b102",
+     "type": "item",
+     "fr": "Mondeuse Blanche, AOP, Dom. Grisard",
+     "en": "",
+     "price": "56€"
+    },
+    {
+     "id": "b103",
+     "type": "item",
+     "fr": "IGP vin des Allobroges, Domaine des Ardoisières, Cuvée Argile",
+     "en": "",
+     "price": "70€"
+    },
+    {
+     "id": "b104",
+     "type": "item",
+     "fr": "Chignin Bergeron, AOP, Les Intemporelles",
+     "en": "",
+     "price": "44€"
+    },
+    {
+     "id": "b105",
+     "type": "formule",
+     "text": "La Vallée du Rhône",
+     "heading": true
+    },
+    {
+     "id": "b106",
+     "type": "item",
+     "fr": "Saint-Joseph, AOP, Les Granits, M. Chapoutier, cuvée parcellaire 2016",
+     "en": "",
+     "price": "170€"
+    },
+    {
+     "id": "b107",
+     "type": "item",
+     "fr": "Ermitage, AOP, De l'Orée, M. Chapoutier, 2006",
+     "en": "",
+     "price": "290€"
+    },
+    {
+     "id": "b108",
+     "type": "item",
+     "fr": "Châteauneuf-du-Pape, AOP, Château La Nerthe, 2023",
+     "en": "",
+     "price": "112€"
+    },
+    {
+     "id": "b109",
+     "type": "formule",
+     "text": "La Grande Bourgogne et le Beaujolais",
+     "heading": true
+    },
+    {
+     "id": "b110",
+     "type": "item",
+     "fr": "Mâcon Davayé, AOP, Manoir du Capucin",
+     "en": "",
+     "price": "45€"
+    },
+    {
+     "id": "b111",
+     "type": "item",
+     "fr": "Pernand-Vergelesses, AOP, Dom. Henri de Villamont, 2020",
+     "en": "",
+     "price": "87€"
+    },
+    {
+     "id": "b112",
+     "type": "item",
+     "fr": "Beaujolais blanc, AOP, Chardonnay, Château de Corcelles",
+     "en": "",
+     "price": "39€"
+    },
+    {
+     "id": "b113",
+     "type": "item",
+     "fr": "Saint-Bris, AOP, André Goichot",
+     "en": "",
+     "price": "41€"
+    },
+    {
+     "id": "b114",
+     "type": "item",
+     "fr": "Chablis, AOP, Dom. Gueguen",
+     "en": "",
+     "price": "62€"
+    },
+    {
+     "id": "b115",
+     "type": "formule",
+     "text": "La Vallée de la Loire",
+     "heading": true
+    },
+    {
+     "id": "b116",
+     "type": "item",
+     "fr": "Pouilly-Fumé, AOP, Château de Tracy",
+     "en": "",
+     "price": "75€"
+    },
+    {
+     "id": "b117",
+     "type": "item",
+     "fr": "Saumur, AOP, Domaine de l'Enchantoir, Terres Blanches",
+     "en": "",
+     "price": "43€"
+    },
+    {
+     "id": "b118",
+     "type": "formule",
+     "text": "Le Sud et l'Italie",
+     "heading": true
+    },
+    {
+     "id": "b119",
+     "type": "item",
+     "fr": "Côtes de Provence, AOP, Château Tour l'Évêque",
+     "en": "",
+     "price": "41€"
+    },
+    {
+     "id": "b120",
+     "type": "item",
+     "fr": "Trebbiano d'Abruzzo, DOC, Di Berardino-Fonteamonte (Abruzzes)",
+     "en": "",
+     "price": "32€"
+    },
+    {
+     "id": "b121",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b122",
+     "type": "section",
+     "fr": "LES ROSÉS",
+     "en": "Pink wines · 75 cl"
+    },
+    {
+     "id": "b123",
+     "type": "item",
+     "fr": "Côtes de Provence AOP, Château Minuty Prestige",
+     "en": "",
+     "price": "51€"
+    },
+    {
+     "id": "b124",
+     "type": "item",
+     "fr": "Coteaux d'Aix en Provence, AOP, Aix",
+     "en": "",
+     "price": "38€"
+    },
+    {
+     "id": "b125",
+     "type": "section",
+     "fr": "LES VINS ROUGES",
+     "en": "Red wines · 75 / 150 cl"
+    },
+    {
+     "id": "b126",
+     "type": "formule",
+     "text": "La Savoie et le Bugey",
+     "heading": true
+    },
+    {
+     "id": "b127",
+     "type": "item",
+     "fr": "Mondeuse d'Arbin AOP, Clos Descotes, Maison Richard",
+     "en": "",
+     "price": "39€"
+    },
+    {
+     "id": "b128",
+     "type": "item",
+     "fr": "Mondeuse, AOP, Dom. Saint-Germain, Le pied de la Barme",
+     "en": "",
+     "price": "54€"
+    },
+    {
+     "id": "b129",
+     "type": "item",
+     "fr": "Gamay de Jongieux AOP, vieilles vignes, E. Carrel",
+     "en": "",
+     "price": "36€"
+    },
+    {
+     "id": "b130",
+     "type": "item",
+     "fr": "IGP vin des Allobroges, Etraire de l'Adui, Dom. Grisard",
+     "en": "",
+     "price": "41€"
+    },
+    {
+     "id": "b131",
+     "type": "item",
+     "fr": "IGP vin des Allobroges, Cuvée Argile, Dom. des Ardoisières, 2023",
+     "en": "",
+     "price": "84€"
+    },
+    {
+     "id": "b132",
+     "type": "item",
+     "fr": "Pinot, AOP, Le Pinot, Château de la Mar",
+     "en": "",
+     "price": "65€"
+    },
+    {
+     "id": "b133",
+     "type": "item",
+     "fr": "Persan, AOP, Dom. Giachino",
+     "en": "",
+     "price": "58€"
+    },
+    {
+     "id": "b134",
+     "type": "item",
+     "fr": "VDF du Bugey, Gamay/Poulsard, Pied de Mouton, Dom. des Sonnettes",
+     "en": "",
+     "price": "40€"
+    },
+    {
+     "id": "b135",
+     "type": "item",
+     "fr": "VDF du Bugey, Pinot noir, Tête de Fruits Rouges, Dom. des Sonnettes",
+     "en": "",
+     "price": "50€"
+    },
+    {
+     "id": "b136",
+     "type": "formule",
+     "text": "La Vallée du Rhône — Nord",
+     "heading": true
+    },
+    {
+     "id": "b137",
+     "type": "item",
+     "fr": "Côte-Rôtie, AOP, P. Gaillard, 2023",
+     "en": "",
+     "price": "149€"
+    },
+    {
+     "id": "b138",
+     "type": "item",
+     "fr": "Saint-Joseph, AOP, Yannick Alléno, M. Chapoutier",
+     "en": "",
+     "price": "66€"
+    },
+    {
+     "id": "b139",
+     "type": "item",
+     "fr": "Crozes-Hermitage, AOP, Les Meysonniers, M. Chapoutier",
+     "en": "",
+     "price": "56€"
+    },
+    {
+     "id": "b140",
+     "type": "item",
+     "fr": "Crozes-Hermitage, AOP, Les Meysonniers, M. Chapoutier (150 cl)",
+     "en": "",
+     "price": "112€"
+    },
+    {
+     "id": "b141",
+     "type": "formule",
+     "text": "La Vallée du Rhône — Sud",
+     "heading": true
+    },
+    {
+     "id": "b142",
+     "type": "item",
+     "fr": "Rasteau, AOP, L'Andéol, Famille Perrin",
+     "en": "",
+     "price": "47€"
+    },
+    {
+     "id": "b143",
+     "type": "item",
+     "fr": "Châteauneuf-du-Pape, AOP, Château La Nerthe, 2021 — 75 cl",
+     "en": "",
+     "price": "157€"
+    },
+    {
+     "id": "b144",
+     "type": "item",
+     "fr": "Châteauneuf-du-Pape, AOP, Château La Nerthe, 2017 — 150 cl",
+     "en": "",
+     "price": "299€"
+    },
+    {
+     "id": "b145",
+     "type": "item",
+     "fr": "Vacqueyras, AOP, Dom. des Ondines",
+     "en": "",
+     "price": "54€"
+    },
+    {
+     "id": "b146",
+     "type": "formule",
+     "text": "La Grande Bourgogne",
+     "heading": true
+    },
+    {
+     "id": "b147",
+     "type": "item",
+     "fr": "Marsannay, AOP, Les Récilles, E. Guillard, 2022",
+     "en": "",
+     "price": "72€"
+    },
+    {
+     "id": "b148",
+     "type": "item",
+     "fr": "Pommard, AOP, Maison Prunier-Bonheur, 2022",
+     "en": "",
+     "price": "166€"
+    },
+    {
+     "id": "b149",
+     "type": "item",
+     "fr": "Gevrey-Chambertin, AOP, v.v., Frédéric Magnien, 2021",
+     "en": "",
+     "price": "198€"
+    },
+    {
+     "id": "b150",
+     "type": "formule",
+     "text": "Le Beaujolais",
+     "heading": true
+    },
+    {
+     "id": "b151",
+     "type": "item",
+     "fr": "Brouilly, AOP, Château Des Tours, Dom. Des Tours",
+     "en": "",
+     "price": "45€"
+    },
+    {
+     "id": "b152",
+     "type": "formule",
+     "text": "La Vallée de la Loire",
+     "heading": true
+    },
+    {
+     "id": "b153",
+     "type": "item",
+     "fr": "Saumur Champigny, AOP, Les calcaires",
+     "en": "",
+     "price": "41€"
+    },
+    {
+     "id": "b154",
+     "type": "item",
+     "fr": "Sancerre, AOP, Dom. Vacheron",
+     "en": "",
+     "price": "88€"
+    },
+    {
+     "id": "b155",
+     "type": "formule",
+     "text": "Le Bordelais",
+     "heading": true
+    },
+    {
+     "id": "b156",
+     "type": "item",
+     "fr": "Pessac-Léognan, AOP, Château Tour Léognan, Second vin du Château Carbonieux, 2022",
+     "en": "",
+     "price": "82€"
+    },
+    {
+     "id": "b157",
+     "type": "item",
+     "fr": "Haut-Médoc, AOP, Château Victoria, Cru Bourgeois, 75 cl, 2021",
+     "en": "",
+     "price": "66€"
+    },
+    {
+     "id": "b158",
+     "type": "item",
+     "fr": "Haut-Médoc, AOP, Château Victoria, Cru Bourgeois, 2019, 150 cl",
+     "en": "",
+     "price": "126€"
+    },
+    {
+     "id": "b159",
+     "type": "item",
+     "fr": "Saint-Estèphe, AOP, Frank Phélan, Second vin du Château Phélan Ségur, 2019",
+     "en": "",
+     "price": "88€"
+    },
+    {
+     "id": "b160",
+     "type": "item",
+     "fr": "Saint-Estèphe, AOP, Château Montrose, Grand cru classé, 2012",
+     "en": "",
+     "price": "320€"
+    },
+    {
+     "id": "b161",
+     "type": "item",
+     "fr": "Saint-Julien, AOP, Aspirant de Beychevelle, 3ème vin du Château Beychevelle, 2023",
+     "en": "",
+     "price": "94€"
+    },
+    {
+     "id": "b162",
+     "type": "item",
+     "fr": "Pauillac, AOP, Baron Nathaniel, Maison Rotschild, 2021",
+     "en": "",
+     "price": "70€"
+    },
+    {
+     "id": "b163",
+     "type": "formule",
+     "text": "Le Languedoc",
+     "heading": true
+    },
+    {
+     "id": "b164",
+     "type": "item",
+     "fr": "Pic-Saint-Loup AOP, Bergerie de l'Hortus",
+     "en": "",
+     "price": "56€"
+    },
+    {
+     "id": "b165",
+     "type": "formule",
+     "text": "L'Italie",
+     "heading": true
+    },
+    {
+     "id": "b166",
+     "type": "item",
+     "fr": "Montepulciano d'Abruzzo, DOC, Di Bernardino (Abruzzes)",
+     "en": "",
+     "price": "39€"
+    },
+    {
+     "id": "b167",
+     "type": "item",
+     "fr": "IGT Salento, Tenuta Giustini, Terrame, Primitivo (Pouilles)",
+     "en": "",
+     "price": "46€"
+    }
+   ]
+  },
+  {
+   "key": "boissons",
+   "label": "Alcools & boissons",
+   "style": {
+    "titleFont": "Playfair Display",
+    "bodyFont": "Poppins",
+    "titleColor": "#1a1a1a",
+    "accent": "#a3801c",
+    "pageBg": "#ffffff",
+    "leaders": true
+   },
+   "blocks": [
+    {
+     "id": "b168",
+     "type": "section",
+     "fr": "COCKTAILS CLASSIQUES",
+     "en": "Cocktails"
+    },
+    {
+     "id": "b169",
+     "type": "formule",
+     "text": "Les Spritz",
+     "heading": true
+    },
+    {
+     "id": "b170",
+     "type": "item",
+     "fr": "APEROL SPRITZ (Orange)",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b171",
+     "type": "item",
+     "fr": "FRENCH PAMPELLE SPRITZ (Pamplemousse / Grapefruit)",
+     "en": "",
+     "price": "15€"
+    },
+    {
+     "id": "b172",
+     "type": "item",
+     "fr": "SAINT-GERMAIN SPRITZ (Fleur de sureau / Elderflower)",
+     "en": "",
+     "price": "16€"
+    },
+    {
+     "id": "b173",
+     "type": "item",
+     "fr": "LIMONCELLO SPRITZ (Citron / Lemon)",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b174",
+     "type": "item",
+     "fr": "ITALICUS SPRITZ (Bergamote)",
+     "en": "",
+     "price": "15€"
+    },
+    {
+     "id": "b175",
+     "type": "item",
+     "fr": "SARTI ROSA SPRITZ (Orange sanguine, Mangue, Passion)",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b176",
+     "type": "item",
+     "fr": "KUMQUAT SPRITZ (Kumquat)",
+     "en": "",
+     "price": "15€"
+    },
+    {
+     "id": "b177",
+     "type": "item",
+     "fr": "SPRITZ DE NORMANDIE (Pomme / Apple)",
+     "en": "Apéritif supérieur de pomme « Double Jus », tonic, cidre",
+     "price": "14€"
+    },
+    {
+     "id": "b178",
+     "type": "formule",
+     "text": "Les Mules",
+     "heading": true
+    },
+    {
+     "id": "b179",
+     "type": "item",
+     "fr": "LONDON MULE",
+     "en": "Gin Nuage, citron vert, Fever Tree Ginger Beer, Angostura bitter",
+     "price": "14€"
+    },
+    {
+     "id": "b180",
+     "type": "item",
+     "fr": "MOSCOW MULE",
+     "en": "Vodka Nuage, citron vert, Fever Tree Ginger Beer, Angostura bitter",
+     "price": "14€"
+    },
+    {
+     "id": "b181",
+     "type": "item",
+     "fr": "JAMAICAN MULE",
+     "en": "Rhum Planteray Original Dark, citron vert, Fever Tree Ginger Beer, Angostura bitter",
+     "price": "14€"
+    },
+    {
+     "id": "b182",
+     "type": "item",
+     "fr": "MEXICAN MULE",
+     "en": "Tequila, citron vert, Fever Tree Ginger Beer, Angostura bitter",
+     "price": "15€"
+    },
+    {
+     "id": "b183",
+     "type": "item",
+     "fr": "ITALIAN MULE",
+     "en": "Amaretto Adriatico, citron vert, Fever Tree Ginger Beer, Angostura bitter",
+     "price": "15€"
+    },
+    {
+     "id": "b184",
+     "type": "formule",
+     "text": "Et les autres…",
+     "heading": true
+    },
+    {
+     "id": "b185",
+     "type": "item",
+     "fr": "ESPRESSO MARTINI",
+     "en": "Vodka, liqueur de café Fair x Richard, sirop de vanille, café expresso",
+     "price": "17€"
+    },
+    {
+     "id": "b186",
+     "type": "item",
+     "fr": "ESPRESSO MARTINI GUILLOTINE",
+     "en": "Vodka Guillotine Héritage vieillie, liqueur de café Fair x Richard, sirop de vanille, café expresso",
+     "price": "19€"
+    },
+    {
+     "id": "b187",
+     "type": "item",
+     "fr": "BLOODY MARY",
+     "en": "Vodka Nuage, jus de tomate, sel de céleri, Worcestershire sauce",
+     "price": "16€"
+    },
+    {
+     "id": "b188",
+     "type": "item",
+     "fr": "BLOODY MARY SPICY",
+     "en": "Vodka Nuage, jus de tomate, sel de céleri, Chipotle Humo (liqueur de piment), Worcestershire sauce",
+     "price": "17€"
+    },
+    {
+     "id": "b189",
+     "type": "item",
+     "fr": "NEGRONI (9 cl)",
+     "en": "Gin Nuage, Vermouth rouge Dolin, Campari",
+     "price": "15€"
+    },
+    {
+     "id": "b190",
+     "type": "item",
+     "fr": "DRY MARTINI",
+     "en": "Gin Hendrick's, Vermouth dry Dolin, olive verte",
+     "price": "15€"
+    },
+    {
+     "id": "b191",
+     "type": "item",
+     "fr": "COSMOPOLITAN",
+     "en": "Vodka Nuage, jus de cranberry, citron, Cointreau",
+     "price": "15€"
+    },
+    {
+     "id": "b192",
+     "type": "item",
+     "fr": "OLD FASHIONED",
+     "en": "Whisky Buffalo Trace Bourbon, citron vert, sucre, Angostura bitter",
+     "price": "16€"
+    },
+    {
+     "id": "b193",
+     "type": "item",
+     "fr": "MEZCALITA",
+     "en": "Mezcal, sirop d'agave, jus d'ananas, citron vert, baies roses, zeste de citron",
+     "price": "19€"
+    },
+    {
+     "id": "b194",
+     "type": "item",
+     "fr": "MANHATTAN (9 cl)",
+     "en": "Whiskey Bulleit Rye, vermouth rouge Dolin, Angostura bitter",
+     "price": "14€"
+    },
+    {
+     "id": "b195",
+     "type": "item",
+     "fr": "PORN STAR MARTINI",
+     "en": "Vodka Nuage, Fair passion liqueur, sirop de vanille, jus de passion, citron vert, shot de prosecco",
+     "price": "18€"
+    },
+    {
+     "id": "b196",
+     "type": "item",
+     "fr": "SEX ON THE BEACH (15 cl)",
+     "en": "Vodka Nuage, crème de pêche, jus de cranberry, jus d'ananas",
+     "price": "14€"
+    },
+    {
+     "id": "b197",
+     "type": "item",
+     "fr": "MOJITO (12 cl)",
+     "en": "Rhum Planteray Original Dark, citron vert, menthe fraîche, sucre cassonade, eau gazeuse, Angostura bitter",
+     "price": "15€"
+    },
+    {
+     "id": "b198",
+     "type": "item",
+     "fr": "PINA COLADA",
+     "en": "Rhum Planteray Original Dark, jus d'ananas, coco",
+     "price": "14€"
+    },
+    {
+     "id": "b199",
+     "type": "item",
+     "fr": "CAIPIRINHA",
+     "en": "Cachaça Sagatiba, cassonade, citron vert",
+     "price": "13€"
+    },
+    {
+     "id": "b200",
+     "type": "item",
+     "fr": "MARGARITA",
+     "en": "Tequila Vecindad 100% Agave, Fair Kumquat triple sec, citron vert",
+     "price": "16€"
+    },
+    {
+     "id": "b201",
+     "type": "item",
+     "fr": "MARGARITA SPICY",
+     "en": "Tequila Vecindad 100% Agave infusée au piment, Fair Kumquat triple sec, citron vert",
+     "price": "18€"
+    },
+    {
+     "id": "b202",
+     "type": "item",
+     "fr": "PISCO SOUR",
+     "en": "La Caravedo pisco, citron vert, blanc d'œuf",
+     "price": "14€"
+    },
+    {
+     "id": "b203",
+     "type": "item",
+     "fr": "WHISKY SOUR",
+     "en": "Whisky Monkey Shoulder, citron vert, blanc d'œuf",
+     "price": "14€"
+    },
+    {
+     "id": "b204",
+     "type": "item",
+     "fr": "AMARETTO SOUR",
+     "en": "Amaretto Adriatico, citron vert, blanc d'œuf",
+     "price": "15€"
+    },
+    {
+     "id": "b205",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b206",
+     "type": "section",
+     "fr": "COCKTAILS SANS ALCOOL",
+     "en": "Mocktails · 12€"
+    },
+    {
+     "id": "b207",
+     "type": "item",
+     "fr": "COCO CÂLINE",
+     "en": "Jus d'ananas, jus de fraise, sirop de vanille et coco",
+     "price": ""
+    },
+    {
+     "id": "b208",
+     "type": "item",
+     "fr": "FRESH GARDEN",
+     "en": "Basilic, concombre, ginger beer, jus de pomme, sirop de sucre, jus de citron, infusion thé citron cannelle",
+     "price": ""
+    },
+    {
+     "id": "b209",
+     "type": "item",
+     "fr": "EXOTICO",
+     "en": "Jus de mangue, jus de passion, jus d'ananas, curry, sirop de vanille, jus de citron",
+     "price": ""
+    },
+    {
+     "id": "b210",
+     "type": "item",
+     "fr": "DETOX",
+     "en": "Concombre, avocat, feuille de menthe, gingembre frais, miel, jus d'ananas",
+     "price": ""
+    },
+    {
+     "id": "b211",
+     "type": "note",
+     "text": "VIRGIN NEGRONI, VIRGIN SPRITZ, AMERICANO… et autres déclinaisons de cocktails sont disponibles avec VRMH, JNPR, BTTR, SPRZ."
+    },
+    {
+     "id": "b212",
+     "type": "section",
+     "fr": "APÉRITIFS",
+     "en": null
+    },
+    {
+     "id": "b213",
+     "type": "item",
+     "fr": "Vermouth rouge, blanc et Dry de la Maison Dolin (Chambéry) — 6 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b214",
+     "type": "item",
+     "fr": "Porto rouge AOP Dos Lusiadas, Last bottled vintage 2017 — 6 cl",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b215",
+     "type": "item",
+     "fr": "Bonal, apéritif Gentiane-Quina — 6 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b216",
+     "type": "item",
+     "fr": "Campari — 6 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b217",
+     "type": "item",
+     "fr": "Ricard — 2 cl",
+     "en": "",
+     "price": "5€"
+    },
+    {
+     "id": "b218",
+     "type": "item",
+     "fr": "Lillet rouge — 6 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b219",
+     "type": "item",
+     "fr": "Suze — 6 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b220",
+     "type": "item",
+     "fr": "Kir vin blanc au Chardonnay de Savoie — 15 cl (cassis, pêche, myrtille, mûre)",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b221",
+     "type": "item",
+     "fr": "Kir Champagne Devaux — 15 cl",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b222",
+     "type": "item",
+     "fr": "Chambérysette (apéritif à la fraise) — 6 cl",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b223",
+     "type": "section",
+     "fr": "BIÈRES ET CIDRE",
+     "en": "Beers and cider"
+    },
+    {
+     "id": "b224",
+     "type": "item",
+     "fr": "Ginette (belge) Lager en pression 25 cl / Panaché et Monaco 25 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b225",
+     "type": "item",
+     "fr": "Ginette (belge) Lager en pression 50 cl / Panaché et Monaco 50 cl",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b226",
+     "type": "item",
+     "fr": "Bière blanche Mont Blanc 33 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b227",
+     "type": "item",
+     "fr": "Bière IPA Mont Blanc 33 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b228",
+     "type": "item",
+     "fr": "Duvel 33 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b229",
+     "type": "item",
+     "fr": "Paix Dieu 33 cl",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b230",
+     "type": "item",
+     "fr": "Corona Extra 33 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b231",
+     "type": "item",
+     "fr": "Heineken sans alcool 33 cl",
+     "en": "",
+     "price": "7€"
+    },
+    {
+     "id": "b232",
+     "type": "item",
+     "fr": "Cidre Rosé Écusson Le Délicieux 33 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b233",
+     "type": "item",
+     "fr": "Supplément Picon 25 / 50 cl",
+     "en": "",
+     "price": "1 / 2€"
+    },
+    {
+     "id": "b234",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b235",
+     "type": "section",
+     "fr": "GINS",
+     "en": "4 cl"
+    },
+    {
+     "id": "b236",
+     "type": "item",
+     "fr": "Gin Nuage Premium (France)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b237",
+     "type": "item",
+     "fr": "Gin Malfy Pompelmo Rosa (Italie) / Gin Malfy Citron (Italie)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b238",
+     "type": "item",
+     "fr": "Gin G'Vine (France)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b239",
+     "type": "item",
+     "fr": "Gin Mare (Espagne)",
+     "en": "",
+     "price": "15€"
+    },
+    {
+     "id": "b240",
+     "type": "item",
+     "fr": "Gin Hendrick's (Écosse)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b241",
+     "type": "item",
+     "fr": "Gin Monkey 47 (Allemagne)",
+     "en": "",
+     "price": "16€"
+    },
+    {
+     "id": "b242",
+     "type": "item",
+     "fr": "Gin Madlord (France)",
+     "en": "",
+     "price": "17€"
+    },
+    {
+     "id": "b243",
+     "type": "item",
+     "fr": "Gin Saffron (France)",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b244",
+     "type": "section",
+     "fr": "RHUMS",
+     "en": "4 cl"
+    },
+    {
+     "id": "b245",
+     "type": "formule",
+     "text": "Rhums blancs",
+     "heading": true
+    },
+    {
+     "id": "b246",
+     "type": "item",
+     "fr": "Rhum agricole La Favorite Cœur de canne blanc (Martinique)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b247",
+     "type": "formule",
+     "text": "Rhums ambrés",
+     "heading": true
+    },
+    {
+     "id": "b248",
+     "type": "item",
+     "fr": "Rhum Planteray Original Dark (Barbade, Jamaïque)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b249",
+     "type": "item",
+     "fr": "Rhum Botran 15 (Guatemala)",
+     "en": "",
+     "price": "12€"
+    },
+    {
+     "id": "b250",
+     "type": "item",
+     "fr": "Rhum Bumbu (Barbade)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b251",
+     "type": "item",
+     "fr": "Rhum Diplomatico Mantuano (Vénézuela)",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b252",
+     "type": "item",
+     "fr": "Rhum Centenario Fundación 20 (Costa Rica)",
+     "en": "",
+     "price": "17€"
+    },
+    {
+     "id": "b253",
+     "type": "item",
+     "fr": "Rhum Zacapa 23 ans (Guatemala)",
+     "en": "",
+     "price": "19€"
+    },
+    {
+     "id": "b254",
+     "type": "section",
+     "fr": "TEQUILA, MEZCAL, CACHAÇA & PISCO",
+     "en": "4 cl · 100% agave"
+    },
+    {
+     "id": "b255",
+     "type": "item",
+     "fr": "Tequila Vecindad (Mexique)",
+     "en": "",
+     "price": "12€"
+    },
+    {
+     "id": "b256",
+     "type": "item",
+     "fr": "Cachaça Sagatiba Cristalina (Brésil)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b257",
+     "type": "item",
+     "fr": "Mezcal Union (Mexique)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b258",
+     "type": "item",
+     "fr": "Pisco La Caravedo (Pérou)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b259",
+     "type": "section",
+     "fr": "WHISKIES",
+     "en": "4 cl"
+    },
+    {
+     "id": "b260",
+     "type": "formule",
+     "text": "Single Malt",
+     "heading": true
+    },
+    {
+     "id": "b261",
+     "type": "item",
+     "fr": "Vegetal Musette, Benjamin Kuentz (France)",
+     "en": "",
+     "price": "15€"
+    },
+    {
+     "id": "b262",
+     "type": "item",
+     "fr": "Talisker Port Ruighe (Écosse)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b263",
+     "type": "item",
+     "fr": "The Dalmore 12 ans (Écosse)",
+     "en": "",
+     "price": "22€"
+    },
+    {
+     "id": "b264",
+     "type": "formule",
+     "text": "Blend",
+     "heading": true
+    },
+    {
+     "id": "b265",
+     "type": "item",
+     "fr": "Monkey Shoulder (Écosse)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b266",
+     "type": "item",
+     "fr": "Jameson Blended Irish (Irlande)",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b267",
+     "type": "formule",
+     "text": "US spirits",
+     "heading": true
+    },
+    {
+     "id": "b268",
+     "type": "item",
+     "fr": "Jack Daniel's Tennessee (États-Unis)",
+     "en": "",
+     "price": "12€"
+    },
+    {
+     "id": "b269",
+     "type": "item",
+     "fr": "Buffalo Trace Bourbon (États-Unis)",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b270",
+     "type": "item",
+     "fr": "Bulleit 95 Rye (États-Unis)",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b271",
+     "type": "section",
+     "fr": "COGNAC, ARMAGNAC & CALVADOS",
+     "en": "4 cl"
+    },
+    {
+     "id": "b272",
+     "type": "item",
+     "fr": "Cognac Hennessy VS",
+     "en": "",
+     "price": "15€"
+    },
+    {
+     "id": "b273",
+     "type": "item",
+     "fr": "Bas-Armagnac, Château de Laubade, VSOP",
+     "en": "Voir carte des millésimes",
+     "price": ""
+    },
+    {
+     "id": "b274",
+     "type": "item",
+     "fr": "Calvados Extra Old 30/40",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b275",
+     "type": "section",
+     "fr": "SPIRITUEUX HYBRIDES",
+     "en": "Special spirits · 4 cl"
+    },
+    {
+     "id": "b276",
+     "type": "item",
+     "fr": "Caraxès Manguin Poire et Rhum",
+     "en": "",
+     "price": "16€"
+    },
+    {
+     "id": "b277",
+     "type": "section",
+     "fr": "VODKAS",
+     "en": "4 cl"
+    },
+    {
+     "id": "b278",
+     "type": "item",
+     "fr": "Vodka Guillotine Héritage (France)",
+     "en": "",
+     "price": "18€"
+    },
+    {
+     "id": "b279",
+     "type": "item",
+     "fr": "Vodka Nuage Merlet (France)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b280",
+     "type": "item",
+     "fr": "Vodka Grey Goose (France)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b281",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b282",
+     "type": "section",
+     "fr": "LIQUEURS, CRÈMES & EAUX DE VIE",
+     "en": "4 cl"
+    },
+    {
+     "id": "b283",
+     "type": "item",
+     "fr": "Frangelico (noisettes)",
+     "en": "",
+     "price": "12€"
+    },
+    {
+     "id": "b284",
+     "type": "item",
+     "fr": "Amaretto Adriatico / Amaretto Bianco (amandes)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b285",
+     "type": "item",
+     "fr": "Italicus (bergamote)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b286",
+     "type": "item",
+     "fr": "Grand Marnier Cordon Rouge (orange)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b287",
+     "type": "item",
+     "fr": "Fair Passion / Café / Kumquat",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b288",
+     "type": "item",
+     "fr": "Melonnade (melon)",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b289",
+     "type": "item",
+     "fr": "Chipotle Humo (piment)",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b290",
+     "type": "item",
+     "fr": "Fernet Branca",
+     "en": "",
+     "price": "12€"
+    },
+    {
+     "id": "b291",
+     "type": "item",
+     "fr": "Baileys",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b292",
+     "type": "item",
+     "fr": "Jägermeister",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b293",
+     "type": "item",
+     "fr": "Limoncello (citron)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b294",
+     "type": "item",
+     "fr": "Chartreuse verte",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b295",
+     "type": "item",
+     "fr": "Génépi",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b296",
+     "type": "item",
+     "fr": "Saint-Germain (fleur de sureau)",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b297",
+     "type": "item",
+     "fr": "La Mentheuse (crème de menthe)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b298",
+     "type": "item",
+     "fr": "La Pulpeuse (crème de citron)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b299",
+     "type": "item",
+     "fr": "La Croqueuse (crème de pomme)",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b300",
+     "type": "item",
+     "fr": "Liqueur Domaine d'Eyguebelle Aelred : Mandarine",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b301",
+     "type": "item",
+     "fr": "Liqueur de pistaches, Crema Alpina, Marzadro",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b302",
+     "type": "item",
+     "fr": "Grappa di Chardonnay",
+     "en": "",
+     "price": "12€"
+    },
+    {
+     "id": "b303",
+     "type": "item",
+     "fr": "Eau-de-vie Poire William's, G.E. Massenez",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b304",
+     "type": "section",
+     "fr": "BOISSONS FRAÎCHES",
+     "en": null
+    },
+    {
+     "id": "b305",
+     "type": "item",
+     "fr": "Jus de fruits 33 cl : orange, pomme, passion, cranberry, tomate, ananas, fraise, mangue",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b306",
+     "type": "item",
+     "fr": "Ice tea 33 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b307",
+     "type": "item",
+     "fr": "Fruits pressés",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b308",
+     "type": "item",
+     "fr": "Coca, Coca Zéro 33 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b309",
+     "type": "item",
+     "fr": "Red Bull 25 cl",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b310",
+     "type": "item",
+     "fr": "Limonade 33 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b311",
+     "type": "item",
+     "fr": "Orangina 33 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b312",
+     "type": "item",
+     "fr": "Badoit rouge 33 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b313",
+     "type": "item",
+     "fr": "Fever Tree : Tonic Water, Ginger Beer, Mediterranean, Elderflower — 20 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b314",
+     "type": "section",
+     "fr": "EAUX",
+     "en": "75 cl"
+    },
+    {
+     "id": "b315",
+     "type": "item",
+     "fr": "Eau plate",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b316",
+     "type": "item",
+     "fr": "Eau gazeuse",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b317",
+     "type": "item",
+     "fr": "Badoit rouge 33 cl",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b318",
+     "type": "section",
+     "fr": "BOISSONS CHAUDES",
+     "en": null
+    },
+    {
+     "id": "b319",
+     "type": "item",
+     "fr": "Café Malongo La Tierra",
+     "en": "",
+     "price": "3,7€"
+    },
+    {
+     "id": "b320",
+     "type": "item",
+     "fr": "Décaféiné",
+     "en": "",
+     "price": "3,7€"
+    },
+    {
+     "id": "b321",
+     "type": "item",
+     "fr": "Ristretto",
+     "en": "",
+     "price": "3,7€"
+    },
+    {
+     "id": "b322",
+     "type": "item",
+     "fr": "Double café",
+     "en": "",
+     "price": "6,7€"
+    },
+    {
+     "id": "b323",
+     "type": "item",
+     "fr": "Café crème",
+     "en": "",
+     "price": "5,5€"
+    },
+    {
+     "id": "b324",
+     "type": "item",
+     "fr": "Cappuccino",
+     "en": "",
+     "price": "6,5€"
+    },
+    {
+     "id": "b325",
+     "type": "item",
+     "fr": "Latte",
+     "en": "",
+     "price": "6,5€"
+    },
+    {
+     "id": "b326",
+     "type": "item",
+     "fr": "Chocolat chaud des alpages",
+     "en": "",
+     "price": "7,5€"
+    },
+    {
+     "id": "b327",
+     "type": "item",
+     "fr": "Thés et infusions Malongo",
+     "en": "",
+     "price": "6€"
+    },
+    {
+     "id": "b328",
+     "type": "item",
+     "fr": "Tchaï latte maison, lait végétal",
+     "en": "",
+     "price": "7€"
+    },
+    {
+     "id": "b329",
+     "type": "item",
+     "fr": "Chocolat viennois",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b330",
+     "type": "item",
+     "fr": "Vin chaud",
+     "en": "",
+     "price": "8€"
+    },
+    {
+     "id": "b331",
+     "type": "item",
+     "fr": "Vin blanc chaud",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b332",
+     "type": "item",
+     "fr": "Irish coffee",
+     "en": "",
+     "price": "14€"
+    },
+    {
+     "id": "b333",
+     "type": "item",
+     "fr": "Affogato glace vanille et amaretto",
+     "en": "",
+     "price": "12€"
+    },
+    {
+     "id": "b334",
+     "type": "item",
+     "fr": "Grog",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b335",
+     "type": "item",
+     "fr": "Café Musette : Irish coffee français",
+     "en": "",
+     "price": "15€"
+    }
+   ]
+  },
+  {
+   "key": "cocktails",
+   "label": "Cocktails signature",
+   "style": {
+    "titleFont": "Playfair Display",
+    "bodyFont": "Poppins",
+    "titleColor": "#1a1a1a",
+    "accent": "#a3801c",
+    "pageBg": "#ffffff",
+    "leaders": true
+   },
+   "blocks": [
+    {
+     "id": "b336",
+     "type": "section",
+     "fr": "COCKTAILS SIGNATURE",
+     "en": null
+    },
+    {
+     "id": "b337",
+     "type": "item",
+     "fr": "BD GIN",
+     "en": "Gin à la fraise, purée de pêche, jus de pomme, jus de citron, ginger beer, angostura",
+     "price": "18€"
+    },
+    {
+     "id": "b338",
+     "type": "item",
+     "fr": "RUBY",
+     "en": "Vodka Guillotine Héritage, Amaretto, purée de fraise, sirop de vanille, jus de cranberry, jus de citron",
+     "price": "19€"
+    },
+    {
+     "id": "b339",
+     "type": "item",
+     "fr": "GOLDEN RHUM",
+     "en": "Rhum, Frangelico, compotée d'ananas flambée au rhum et romarin, jus de citron, sirop de vanille, jus d'ananas",
+     "price": "18€"
+    },
+    {
+     "id": "b340",
+     "type": "item",
+     "fr": "GUILLOTINE MARINE",
+     "en": "Vodka Guillotine Ossietra Caviar, liqueur de Yuzu, vermouth blanc, Tonic Mediterranean, romarin fumé",
+     "price": "23€"
+    }
+   ]
+  }
+ ]
+}

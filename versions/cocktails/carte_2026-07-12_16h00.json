@@ -1,0 +1,46 @@
+{
+ "style": {
+  "titleFont": "Playfair Display",
+  "bodyFont": "Poppins",
+  "titleColor": "#1a1a1a",
+  "accent": "#a3801c",
+  "pageBg": "#ffffff",
+  "leaders": true
+ },
+ "blocks": [
+  {
+   "id": "b336",
+   "type": "section",
+   "fr": "COCKTAILS SIGNATURE",
+   "en": null
+  },
+  {
+   "id": "b337",
+   "type": "item",
+   "fr": "BD GIN",
+   "en": "Gin à la fraise, purée de pêche, jus de pomme, jus de citron, ginger beer, angostura",
+   "price": "18€"
+  },
+  {
+   "id": "b338",
+   "type": "item",
+   "fr": "RUBY",
+   "en": "Vodka Guillotine Héritage, Amaretto, purée de fraise, sirop de vanille, jus de cranberry, jus de citron",
+   "price": "19€"
+  },
+  {
+   "id": "b339",
+   "type": "item",
+   "fr": "GOLDEN RHUM",
+   "en": "Rhum, Frangelico, compotée d'ananas flambée au rhum et romarin, jus de citron, sirop de vanille, jus d'ananas",
+   "price": "18€"
+  },
+  {
+   "id": "b340",
+   "type": "item",
+   "fr": "GUILLOTINE MARINE",
+   "en": "Vodka Guillotine Ossietra Caviar, liqueur de Yuzu, vermouth blanc, Tonic Mediterranean, romarin fumé",
+   "price": "23€"
+  }
+ ]
+}
