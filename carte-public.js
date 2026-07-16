@@ -7,6 +7,11 @@
 
   function esc(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
 
+  const TAG_ICONS = {
+    veg:  { src:'assets/icon-veg.svg',  label:'Végétarien' },
+    spec: { src:'assets/icon-spec.svg', label:'Spécialité de la maison' },
+  };
+
   function renderMenu(menu) {
     const wrap = document.createElement('div');
     wrap.className = 'm-cols' + ((menu.style && menu.style.theme === 'vigne') ? ' vigne' : '');
@@ -27,6 +32,7 @@
           // "heading" = sous-titre de groupe (ex. Les Spritz)
           if (b.heading) el.className = 'm-head';
           el.textContent = b.text;
+          if (b.color) el.style.color = b.color;
           ensure().appendChild(el);
           break;
         }
@@ -37,9 +43,16 @@
         }
         case 'item': {
           const el = document.createElement('div'); el.className = 'm-item';
+          const tags = (b.tags||[]).map(t => TAG_ICONS[t] ? `<img class="item-tag" src="${TAG_ICONS[t].src}" alt="${TAG_ICONS[t].label}" title="${TAG_ICONS[t].label}">` : '').join('');
           const en = b.en ? `<div class="en">${esc(b.en)}</div>` : '';
           const p = b.price ? `<div class="p">${esc(b.price)}</div>` : '';
-          el.innerHTML = `<div class="n"><div class="fr">${esc(b.fr)}</div>${en}</div><div class="dots"></div>${p}`;
+          el.innerHTML = `<div class="n"><div class="fr">${esc(b.fr)}${tags}</div>${en}</div><div class="dots"></div>${p}`;
+          ensure().appendChild(el);
+          break;
+        }
+        case 'image': {
+          const el = document.createElement('div'); el.className = 'm-image';
+          el.innerHTML = `<img src="${esc(b.src||'')}" style="width:${b.widthPct||45}%" alt="">`;
           ensure().appendChild(el);
           break;
         }

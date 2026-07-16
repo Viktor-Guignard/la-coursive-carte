@@ -77,6 +77,7 @@ function defaultStyle(){
     mirror:false,
     theme:'classique',
     sectionUnderline:true,
+    itemSpacing:2,           // padding vertical (px) de chaque ligne plat/boisson
   };
 }
 
@@ -100,6 +101,7 @@ function applyStyle(){
   document.body.classList.toggle('leaders-off', !st.leaders);
   document.body.classList.toggle('theme-vigne', st.theme === 'vigne');
   document.body.classList.toggle('no-section-underline', st.sectionUnderline === false);
+  root.style.setProperty('--item-pad-v', (st.itemSpacing != null ? st.itemSpacing : 2) + 'px');
   loadFonts(st);
 }
 
@@ -222,6 +224,13 @@ function updateSyncStatus(){
   }
 }
 
+/* Pictogrammes de plat (extraits des PDF sources) */
+const TAG_ICONS = {
+  veg:  { src:'assets/icon-veg.svg',  label:'Végétarien' },
+  spec: { src:'assets/icon-spec.svg', label:'Spécialité de la maison' },
+};
+const TAG_CYCLE = [null, 'veg', 'spec'];
+
 /* ===================== Rendu ===================== */
 
 const canvasWrap = document.getElementById('canvasWrap');
@@ -257,14 +266,16 @@ function renderBlockInner(blk){
         </div>`;
     case 'section':
       return `<h2>${ed(blk.id,'fr',esc(blk.fr))}${blk.en != null ? ' <span class="en">/ '+ed(blk.id,'en',esc(blk.en))+'</span>' : ''}</h2>`;
-    case 'item':
+    case 'item': {
+      const tags = (blk.tags||[]).map(t => `<img class="item-tag" src="${TAG_ICONS[t]?.src||''}" title="${TAG_ICONS[t]?.label||''}" alt="${TAG_ICONS[t]?.label||''}">`).join('');
       return `
         <div class="txt">
-          <div class="fr">${ed(blk.id,'fr',esc(blk.fr))}</div>
+          <div class="fr">${ed(blk.id,'fr',esc(blk.fr))}${tags}</div>
           <div class="en">${ed(blk.id,'en',esc(blk.en))}</div>
         </div>
         <div class="leader"></div>
         <div class="price">${ed(blk.id,'price',esc(blk.price))}</div>`;
+    }
     case 'formule':
       return ed(blk.id,'text',esc(blk.text),'', 'div');
     case 'note':
@@ -366,14 +377,18 @@ function buildBlockEl(blk){
   wrap.className = 'block ' + blockClass(blk) + (state.selectedId===blk.id ? ' selected' : '');
   wrap.dataset.blockId = blk.id;
   wrap.innerHTML = renderBlockInner(blk);
+  if(blk.type === 'formule' && blk.color) wrap.style.setProperty('--formule-color-override', blk.color);
 
   const controls = document.createElement('div');
   controls.className = 'row-controls';
+  const tagBtn = blk.type === 'item'
+    ? `<button class="rctrl" data-act="tag" title="Pictogramme (végétarien / spécialité)">${blk.tags && blk.tags[0] ? `<img src="${TAG_ICONS[blk.tags[0]].src}" alt="">` : '🏷'}</button>`
+    : '';
   controls.innerHTML = `
     <button class="rctrl del" data-act="del" title="Supprimer">✕</button>
     <button class="rctrl" data-act="dup" title="Dupliquer">⧉</button>
     <button class="rctrl" data-act="up" title="Monter">↑</button>
-    <button class="rctrl" data-act="down" title="Descendre">↓</button>`;
+    <button class="rctrl" data-act="down" title="Descendre">↓</button>${tagBtn}`;
   wrap.appendChild(controls);
 
   wrap.addEventListener('click', (e) => {
@@ -383,10 +398,18 @@ function buildBlockEl(blk){
   });
 
   controls.addEventListener('click', (e) => {
-    const act = e.target.dataset.act;
+    const btn = e.target.closest('[data-act]');
+    const act = btn && btn.dataset.act;
     if(!act) return;
     const idx = state.doc.findIndex(x=>x.id===blk.id);
     if(idx < 0) return;
+    if(act==='tag'){
+      const cur = (blk.tags && blk.tags[0]) || null;
+      const next = TAG_CYCLE[(TAG_CYCLE.indexOf(cur) + 1) % TAG_CYCLE.length];
+      blk.tags = next ? [next] : [];
+      markDirty(); render();
+      return;
+    }
     if(act==='up' && idx>0){
       [state.doc[idx-1],state.doc[idx]]=[state.doc[idx],state.doc[idx-1]];
       markDirty(); render();
@@ -567,6 +590,7 @@ function fillAppearanceForm(){
   document.getElementById('pageBgSel').value = st.pageBg;
   document.getElementById('leadersChk').checked = !!st.leaders;
   document.getElementById('underlineChk').checked = st.sectionUnderline !== false;
+  document.getElementById('itemSpacingInp').value = st.itemSpacing != null ? st.itemSpacing : 2;
 }
 
 function readAppearanceForm(){
@@ -578,6 +602,7 @@ function readAppearanceForm(){
     pageBg: document.getElementById('pageBgSel').value,
     leaders: document.getElementById('leadersChk').checked,
     sectionUnderline: document.getElementById('underlineChk').checked,
+    itemSpacing: parseFloat(document.getElementById('itemSpacingInp').value) || 0,
     format: document.getElementById('formatSel').value,
     marginMm: {
       t: parseFloat(document.getElementById('marginT').value) || 0,
@@ -599,7 +624,7 @@ document.getElementById('appearanceBtn').addEventListener('click', () => {
 });
 document.getElementById('appearanceClose').addEventListener('click', ()=> appearanceBackdrop.classList.remove('open'));
 appearanceBackdrop.addEventListener('click', (e)=>{ if(e.target===appearanceBackdrop) appearanceBackdrop.classList.remove('open'); });
-['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk','underlineChk','formatSel','marginT','marginR','marginB','marginL','mirrorChk','themeSel'].forEach(id => {
+['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk','underlineChk','itemSpacingInp','formatSel','marginT','marginR','marginB','marginL','mirrorChk','themeSel'].forEach(id => {
   document.getElementById(id).addEventListener('change', readAppearanceForm);
 });
 document.getElementById('appearanceReset').addEventListener('click', () => {

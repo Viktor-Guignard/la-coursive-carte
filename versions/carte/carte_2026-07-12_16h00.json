@@ -19,6 +19,24 @@
  },
  "blocks": [
   {
+   "id": "mh_logo",
+   "type": "image",
+   "src": "assets/logo.png",
+   "widthPct": 13
+  },
+  {
+   "id": "mh_name",
+   "type": "formule",
+   "text": "LA COURSIVE DES ALPES, par Laurent Hillairet",
+   "heading": true,
+   "color": "#909054"
+  },
+  {
+   "id": "mh_tag",
+   "type": "note",
+   "text": "Ici, tout est fait maison — Here, everything is homemade."
+  },
+  {
    "id": "b1",
    "type": "section",
    "fr": "À PARTAGER",
@@ -77,7 +95,10 @@
    "type": "item",
    "fr": "CAPPUCCINO DE CHÂTAIGNES, fregola au Beaufort et noix caramélisées",
    "en": "Chestnuts soup, fregola pasta with Beaufort cheese and candied walnuts",
-   "price": "Petit 17 / Grand 22€"
+   "price": "Petit 17 / Grand 22€",
+   "tags": [
+    "veg"
+   ]
   },
   {
    "id": "b10",
@@ -91,28 +112,40 @@
    "type": "item",
    "fr": "RACLETTE AÉRIENNE, brioche en pain perdu, crumble de raclette",
    "en": "Espuma of Raclette cheese, brioch bread cooking as pain perdu's style, raclette crumble",
-   "price": "17€"
+   "price": "17€",
+   "tags": [
+    "veg"
+   ]
   },
   {
    "id": "b12",
    "type": "item",
    "fr": "HOUMOUS, pois chiche, crémeux burrata, avocat grillé et grenade",
    "en": "Chickpea houmous, creamy burrata, grilled avocado and pomegranate",
-   "price": "Petit 17 / Grand 26€"
+   "price": "Petit 17 / Grand 26€",
+   "tags": [
+    "veg"
+   ]
   },
   {
    "id": "b13",
    "type": "item",
    "fr": "VITELLO TONNATO, veau et sauce au thon et câpres, harissa de carottes",
    "en": "Veal slices with tuna and capers sauce, carrots sauce",
-   "price": "22€"
+   "price": "22€",
+   "tags": [
+    "spec"
+   ]
   },
   {
    "id": "b14",
    "type": "item",
    "fr": "SAUMON GRAVLAX, label rouge, pickles de légumes",
    "en": "Marinated red label salmon as gravlax' style, vegetables pickles",
-   "price": "26€"
+   "price": "26€",
+   "tags": [
+    "spec"
+   ]
   },
   {
    "id": "b15",
@@ -139,14 +172,20 @@
    "type": "item",
    "fr": "CLASSICO MARGARITA : base tomate, mozzarella fior di latte, basilic",
    "en": "Tomato, Mozzarella Fior di latte, basil",
-   "price": "19€"
+   "price": "19€",
+   "tags": [
+    "veg"
+   ]
   },
   {
    "id": "b19",
    "type": "item",
    "fr": "MOZZA LOVER : base tomate, mozzarella fior di latte, burrata, scarmozza fumée, basilic, roquette",
    "en": "Tomato, Mozzarella Fior di latte, burrata, scarmozza, basil, arugula salad",
-   "price": "25€"
+   "price": "25€",
+   "tags": [
+    "veg"
+   ]
   },
   {
    "id": "b20",
@@ -212,7 +251,10 @@
    "type": "item",
    "fr": "LÉGUMES DU MOMENT",
    "en": "Cooked vegetables of the moment",
-   "price": "Petit 11 / Grand 23€"
+   "price": "Petit 11 / Grand 23€",
+   "tags": [
+    "veg"
+   ]
   },
   {
    "id": "b30",
@@ -230,7 +272,10 @@
    "type": "item",
    "fr": "FONDUE SUISSE, SALADE",
    "en": "2 cheeses fondue (vacherin fribourgeois, gruyère suisse), salad, roasted potatoes",
-   "price": "31€"
+   "price": "31€",
+   "tags": [
+    "veg"
+   ]
   },
   {
    "id": "b33",
@@ -296,7 +341,10 @@
    "type": "item",
    "fr": "RIZ AU LAIT, fruits secs torréfiés (noisettes, amandes, pistaches), caramel crémeux au beurre salé",
    "en": "Rice pudding, roasted nuts (hazelnuts, almonds, pistachios), creamy salted butter caramel",
-   "price": "12€"
+   "price": "12€",
+   "tags": [
+    "spec"
+   ]
   },
   {
    "id": "b43",
