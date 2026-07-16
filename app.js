@@ -76,6 +76,7 @@ function defaultStyle(){
     marginMm:{t:12, r:14, b:14, l:14},
     mirror:false,
     theme:'classique',
+    sectionUnderline:true,
   };
 }
 
@@ -98,6 +99,7 @@ function applyStyle(){
   root.style.setProperty('--page-pad-even', `${px(me.t)} ${px(me.r)} ${px(me.b)} ${px(me.l)}`);
   document.body.classList.toggle('leaders-off', !st.leaders);
   document.body.classList.toggle('theme-vigne', st.theme === 'vigne');
+  document.body.classList.toggle('no-section-underline', st.sectionUnderline === false);
   loadFonts(st);
 }
 
@@ -296,9 +298,11 @@ function render(){
   const flushPage = () => {
     const pageEl = document.createElement('div');
     pageEl.className = 'pdf-page' + (pageNum % 2 === 0 ? ' page-even' : '');
+    const fmt = PAGE_FORMATS[state.style.format] || PAGE_FORMATS.a4;
+    const [wMm, hMm] = fmt.mm;
     const label = document.createElement('div');
     label.className = 'page-label';
-    label.textContent = 'Page ' + pageNum;
+    label.innerHTML = `Page ${pageNum} <span class="page-fmt">— ${wMm} × ${hMm} mm (${fmt.label.replace(/ \(.*\)/,'')})</span>`;
     pageEl.appendChild(label);
     if(pageBlocks.length === 0){
       const hint = document.createElement('div');
@@ -562,6 +566,7 @@ function fillAppearanceForm(){
   document.getElementById('accentColorInp').value = st.accent;
   document.getElementById('pageBgSel').value = st.pageBg;
   document.getElementById('leadersChk').checked = !!st.leaders;
+  document.getElementById('underlineChk').checked = st.sectionUnderline !== false;
 }
 
 function readAppearanceForm(){
@@ -572,6 +577,7 @@ function readAppearanceForm(){
     accent: document.getElementById('accentColorInp').value,
     pageBg: document.getElementById('pageBgSel').value,
     leaders: document.getElementById('leadersChk').checked,
+    sectionUnderline: document.getElementById('underlineChk').checked,
     format: document.getElementById('formatSel').value,
     marginMm: {
       t: parseFloat(document.getElementById('marginT').value) || 0,
@@ -593,7 +599,7 @@ document.getElementById('appearanceBtn').addEventListener('click', () => {
 });
 document.getElementById('appearanceClose').addEventListener('click', ()=> appearanceBackdrop.classList.remove('open'));
 appearanceBackdrop.addEventListener('click', (e)=>{ if(e.target===appearanceBackdrop) appearanceBackdrop.classList.remove('open'); });
-['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk','formatSel','marginT','marginR','marginB','marginL','mirrorChk','themeSel'].forEach(id => {
+['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk','underlineChk','formatSel','marginT','marginR','marginB','marginL','mirrorChk','themeSel'].forEach(id => {
   document.getElementById(id).addEventListener('change', readAppearanceForm);
 });
 document.getElementById('appearanceReset').addEventListener('click', () => {

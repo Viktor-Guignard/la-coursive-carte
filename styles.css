@@ -160,9 +160,13 @@ body.publier-page{padding-top:84px; background:#eef1f0;}
 .theme-vigne .blk-item .leader{border-bottom-color:rgba(163,128,28,.38);}
 .theme-vigne .blk-item .fr{font-weight:500;}
 .page-label{
-  position:absolute; top:-26px; left:0; font-size:11px; color:var(--grey);
-  letter-spacing:.06em; text-transform:uppercase;
+  position:absolute; top:-28px; left:0; font-size:11px; color:var(--grey);
+  letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;
 }
+.page-label .page-fmt{color:var(--teal-dark); font-weight:700; letter-spacing:.03em;}
+
+/* Pas de filet sous les titres de section (fidèle à la composition d'origine) */
+.no-section-underline .blk-section h2{border-bottom:none;}
 .page-overflow-warning{
   position:absolute; left:0; right:0; bottom:-30px;
   display:none; align-items:center; justify-content:center; gap:8px;
