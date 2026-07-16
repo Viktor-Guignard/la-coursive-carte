@@ -122,6 +122,11 @@ body.publier-page{padding-top:84px; background:#eef1f0;}
   font-family:var(--font-body);
   flex:none;
 }
+.pdf-page.page-even{padding:var(--page-pad-even, var(--page-pad, 44px 52px 52px));}
+
+/* ---------- Bloc image / logo ---------- */
+.blk-image .img-block-slot{display:flex; justify-content:center;}
+.blk-image img{max-width:100%; height:auto;}
 
 /* ===================== Thème « Vigne » (ornements vectoriels) ===================== */
 
@@ -320,6 +325,12 @@ body.leaders-off .blk-item .leader{border-bottom:none;}
   font-family:'Poppins',sans-serif; background:#fff;
 }
 .field select:focus{outline:none; border-color:var(--teal);}
+.margin-inputs{display:flex; gap:6px;}
+.margin-inputs input{
+  width:25%; padding:8px 6px; border:1px solid var(--line); border-radius:8px;
+  font-size:13px; font-family:'Poppins',sans-serif; text-align:center;
+}
+.margin-inputs input:focus{outline:none; border-color:var(--teal);}
 .field input[type="color"]{
   width:100%; height:38px; padding:3px; border:1px solid var(--line); border-radius:8px; background:#fff; cursor:pointer;
 }

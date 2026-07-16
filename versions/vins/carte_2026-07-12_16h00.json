@@ -7,8 +7,14 @@
   "pageBg": "#ffffff",
   "leaders": true,
   "format": "a4",
-  "margin": "normale",
-  "theme": "vigne"
+  "theme": "vigne",
+  "marginMm": {
+   "t": 21,
+   "r": 12,
+   "b": 20,
+   "l": 55
+  },
+  "mirror": true
  },
  "blocks": [
   {
@@ -353,6 +359,10 @@
    "price": "44€"
   },
   {
+   "id": "pb_v1",
+   "type": "pagebreak"
+  },
+  {
    "id": "b105",
    "type": "formule",
    "text": "La Vallée du Rhône",
@@ -626,6 +636,10 @@
    "fr": "Vacqueyras, AOP, Dom. des Ondines",
    "en": "",
    "price": "54€"
+  },
+  {
+   "id": "pb_v2",
+   "type": "pagebreak"
   },
   {
    "id": "b146",

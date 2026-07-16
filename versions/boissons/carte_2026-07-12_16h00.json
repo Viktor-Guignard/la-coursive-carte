@@ -7,8 +7,14 @@
   "pageBg": "#ffffff",
   "leaders": true,
   "format": "a4",
-  "margin": "normale",
-  "theme": "classique"
+  "theme": "classique",
+  "marginMm": {
+   "t": 15,
+   "r": 12,
+   "b": 15,
+   "l": 55
+  },
+  "mirror": true
  },
  "blocks": [
   {
@@ -153,6 +159,10 @@
    "fr": "BLOODY MARY SPICY",
    "en": "Vodka Nuage, jus de tomate, sel de céleri, Chipotle Humo (liqueur de piment), Worcestershire sauce",
    "price": "17€"
+  },
+  {
+   "id": "pb_b1",
+   "type": "pagebreak"
   },
   {
    "id": "b189",
@@ -629,6 +639,10 @@
    "price": "11€"
   },
   {
+   "id": "pb_b2",
+   "type": "pagebreak"
+  },
+  {
    "id": "b259",
    "type": "section",
    "fr": "WHISKIES",
@@ -931,6 +945,10 @@
    "fr": "Eau-de-vie Poire William's, G.E. Massenez",
    "en": "",
    "price": "11€"
+  },
+  {
+   "id": "pb_b3",
+   "type": "pagebreak"
   },
   {
    "id": "b304",

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-16T07:53:22Z",
+ "updatedAt": "2026-07-16T12:06:23Z",
  "menus": [
   {
    "key": "carte",
@@ -12,8 +12,14 @@
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "a4",
-    "margin": "normale",
-    "theme": "classique"
+    "theme": "classique",
+    "marginMm": {
+     "t": 18,
+     "r": 11,
+     "b": 18,
+     "l": 15
+    },
+    "mirror": false
    },
    "blocks": [
     {
@@ -314,10 +320,22 @@
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "carte34",
-    "margin": "compacte",
-    "theme": "classique"
+    "theme": "classique",
+    "marginMm": {
+     "t": 10,
+     "r": 8,
+     "b": 10,
+     "l": 8
+    },
+    "mirror": false
    },
    "blocks": [
+    {
+     "id": "blogo_partager",
+     "type": "image",
+     "src": "assets/logo-or.png",
+     "widthPct": 50
+    },
     {
      "id": "b44",
      "type": "section",
@@ -400,8 +418,14 @@
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "a4",
-    "margin": "normale",
-    "theme": "vigne"
+    "theme": "vigne",
+    "marginMm": {
+     "t": 21,
+     "r": 12,
+     "b": 20,
+     "l": 55
+    },
+    "mirror": true
    },
    "blocks": [
     {
@@ -746,6 +770,10 @@
      "price": "44€"
     },
     {
+     "id": "pb_v1",
+     "type": "pagebreak"
+    },
+    {
      "id": "b105",
      "type": "formule",
      "text": "La Vallée du Rhône",
@@ -1021,6 +1049,10 @@
      "price": "54€"
     },
     {
+     "id": "pb_v2",
+     "type": "pagebreak"
+    },
+    {
      "id": "b146",
      "type": "formule",
      "text": "La Grande Bourgogne",
@@ -1181,8 +1213,14 @@
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "a4",
-    "margin": "normale",
-    "theme": "classique"
+    "theme": "classique",
+    "marginMm": {
+     "t": 15,
+     "r": 12,
+     "b": 15,
+     "l": 55
+    },
+    "mirror": true
    },
    "blocks": [
     {
@@ -1327,6 +1365,10 @@
      "fr": "BLOODY MARY SPICY",
      "en": "Vodka Nuage, jus de tomate, sel de céleri, Chipotle Humo (liqueur de piment), Worcestershire sauce",
      "price": "17€"
+    },
+    {
+     "id": "pb_b1",
+     "type": "pagebreak"
     },
     {
      "id": "b189",
@@ -1803,6 +1845,10 @@
      "price": "11€"
     },
     {
+     "id": "pb_b2",
+     "type": "pagebreak"
+    },
+    {
      "id": "b259",
      "type": "section",
      "fr": "WHISKIES",
@@ -2107,6 +2153,10 @@
      "price": "11€"
     },
     {
+     "id": "pb_b3",
+     "type": "pagebreak"
+    },
+    {
      "id": "b304",
      "type": "section",
      "fr": "BOISSONS FRAÎCHES",
@@ -2340,10 +2390,22 @@
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "a5",
-    "margin": "normale",
-    "theme": "classique"
+    "theme": "classique",
+    "marginMm": {
+     "t": 12,
+     "r": 12,
+     "b": 12,
+     "l": 12
+    },
+    "mirror": false
    },
    "blocks": [
+    {
+     "id": "blogo_cocktails",
+     "type": "image",
+     "src": "assets/logo-or.png",
+     "widthPct": 45
+    },
     {
      "id": "b336",
      "type": "section",

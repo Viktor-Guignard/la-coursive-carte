@@ -7,8 +7,14 @@
   "pageBg": "#ffffff",
   "leaders": true,
   "format": "a4",
-  "margin": "normale",
-  "theme": "classique"
+  "theme": "classique",
+  "marginMm": {
+   "t": 18,
+   "r": 11,
+   "b": 18,
+   "l": 15
+  },
+  "mirror": false
  },
  "blocks": [
   {

@@ -7,10 +7,22 @@
   "pageBg": "#ffffff",
   "leaders": true,
   "format": "a5",
-  "margin": "normale",
-  "theme": "classique"
+  "theme": "classique",
+  "marginMm": {
+   "t": 12,
+   "r": 12,
+   "b": 12,
+   "l": 12
+  },
+  "mirror": false
  },
  "blocks": [
+  {
+   "id": "blogo_cocktails",
+   "type": "image",
+   "src": "assets/logo-or.png",
+   "widthPct": 45
+  },
   {
    "id": "b336",
    "type": "section",

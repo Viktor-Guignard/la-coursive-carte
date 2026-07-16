@@ -12,6 +12,7 @@ const BLOCK_LIBRARY = [
   {type:'item', ttl:'Plat', desc:'Nom FR, nom EN, prix', make:()=>({fr:'NOUVEAU PLAT', en:'New dish', price:'0€'})},
   {type:'formule', ttl:'Ligne formule', desc:'Texte en couleur (ex. prix menu)', make:()=>({text:'NOUVELLE FORMULE'})},
   {type:'note', ttl:'Note / mention', desc:'Petit texte italique gris', make:()=>({text:'Note...'})},
+  {type:'image', ttl:'Image / logo', desc:'Logo ou visuel centré (cliquer pour remplacer)', make:()=>({src:'assets/logo-or.png', widthPct:45})},
   {type:'divider', ttl:'Séparateur', desc:'Ligne fine de séparation', make:()=>({})},
   {type:'pagebreak', ttl:'Saut de page', desc:'Démarre une nouvelle page PDF', make:()=>({})},
 ];
@@ -45,13 +46,19 @@ const PAGE_FORMATS = {
   a4:      { label:'A4 portrait (21 × 29,7 cm)',  w:794,  h:1123, mm:[210,297] },
   a4l:     { label:'A4 paysage (29,7 × 21 cm)',   w:1123, h:794,  mm:[297,210] },
   carte34: { label:'Carte haute (14 × 34 cm)',    w:529,  h:1285, mm:[140,340] },
-  a5:      { label:'A5 portrait (14,8 × 21 cm)',  w:559,  h:794,  mm:[148,210] },
+  a5:      { label:'Demi-A4 / A5 (14,85 × 21 cm)', w:561,  h:794,  mm:[148.5,210] },
 };
-const PAGE_MARGINS = {
-  compacte: { label:'Compactes', pad:'26px 30px 30px' },
-  normale:  { label:'Normales',  pad:'44px 52px 52px' },
-  large:    { label:'Larges',    pad:'62px 70px 70px' },
+/* Anciens presets (rétro-compatibilité) -> valeurs en mm */
+const LEGACY_MARGINS = {
+  compacte: {t:7,  r:8,  b:8,  l:8},
+  normale:  {t:12, r:14, b:14, l:14},
+  large:    {t:16, r:18, b:18, l:18},
 };
+const MM2PX = 96/25.4;
+function normMargins(st){
+  if(st.marginMm && typeof st.marginMm.t === 'number') return st.marginMm;
+  return LEGACY_MARGINS[st.margin] || LEGACY_MARGINS.normale;
+}
 const PAGE_THEMES = {
   classique: { label:'Classique' },
   vigne:     { label:'Vigne (ornements)' },
@@ -66,7 +73,8 @@ function defaultStyle(){
     pageBg:'#ffffff',
     leaders:true,           // pointillés entre plat et prix
     format:'a4',
-    margin:'normale',
+    marginMm:{t:12, r:14, b:14, l:14},
+    mirror:false,
     theme:'classique',
   };
 }
@@ -74,7 +82,8 @@ function defaultStyle(){
 function applyStyle(){
   const st = state.style;
   const fmt = PAGE_FORMATS[st.format] || PAGE_FORMATS.a4;
-  const mar = PAGE_MARGINS[st.margin] || PAGE_MARGINS.normale;
+  const m = normMargins(st);
+  const px = mm => Math.round(mm * MM2PX) + 'px';
   const root = document.documentElement;
   root.style.setProperty('--font-title', `'${st.titleFont}', serif`);
   root.style.setProperty('--font-body', `'${st.bodyFont}', sans-serif`);
@@ -83,7 +92,10 @@ function applyStyle(){
   root.style.setProperty('--page-bg', st.pageBg);
   root.style.setProperty('--page-w', fmt.w + 'px');
   root.style.setProperty('--page-h', fmt.h + 'px');
-  root.style.setProperty('--page-pad', mar.pad);
+  root.style.setProperty('--page-pad', `${px(m.t)} ${px(m.r)} ${px(m.b)} ${px(m.l)}`);
+  // pages paires : marges en miroir (reliure) si demandé
+  const me = st.mirror ? {t:m.t, r:m.l, b:m.b, l:m.r} : m;
+  root.style.setProperty('--page-pad-even', `${px(me.t)} ${px(me.r)} ${px(me.b)} ${px(me.l)}`);
   document.body.classList.toggle('leaders-off', !st.leaders);
   document.body.classList.toggle('theme-vigne', st.theme === 'vigne');
   loadFonts(st);
@@ -255,6 +267,10 @@ function renderBlockInner(blk){
       return ed(blk.id,'text',esc(blk.text),'', 'div');
     case 'note':
       return ed(blk.id,'text',esc(blk.text),'', 'div');
+    case 'image':
+      return `<div class="img-slot img-block-slot" data-id="${blk.id}" data-field="src" title="Cliquer pour remplacer l'image">
+        <img src="${blk.src || 'assets/logo-or.png'}" style="width:${blk.widthPct || 45}%" alt="">
+      </div>`;
     case 'divider':
       return '';
     case 'pagebreak':
@@ -265,7 +281,7 @@ function renderBlockInner(blk){
 }
 
 function blockClass(blk){
-  const map = {header:'blk-header', section:'blk-section', item:'blk-item', formule:'blk-formule', note:'blk-note', divider:'blk-divider', pagebreak:'blk-pagebreak'};
+  const map = {header:'blk-header', section:'blk-section', item:'blk-item', formule:'blk-formule', note:'blk-note', divider:'blk-divider', pagebreak:'blk-pagebreak', image:'blk-image'};
   let c = map[blk.type] || '';
   if(blk.type==='formule' && blk.italic) c += ' italic';
   if(blk.type==='formule' && blk.heading) c += ' heading';
@@ -279,7 +295,7 @@ function render(){
 
   const flushPage = () => {
     const pageEl = document.createElement('div');
-    pageEl.className = 'pdf-page';
+    pageEl.className = 'pdf-page' + (pageNum % 2 === 0 ? ' page-even' : '');
     const label = document.createElement('div');
     label.className = 'page-label';
     label.textContent = 'Page ' + pageNum;
@@ -534,8 +550,12 @@ function fillAppearanceForm(){
   selB.innerHTML = FONT_CHOICES.body.map(f => `<option${f.name===st.bodyFont?' selected':''}>${f.name}</option>`).join('');
   document.getElementById('formatSel').innerHTML = Object.entries(PAGE_FORMATS)
     .map(([k,f]) => `<option value="${k}"${k===(st.format||'a4')?' selected':''}>${f.label}</option>`).join('');
-  document.getElementById('marginSel').innerHTML = Object.entries(PAGE_MARGINS)
-    .map(([k,m]) => `<option value="${k}"${k===(st.margin||'normale')?' selected':''}>${m.label}</option>`).join('');
+  const m = normMargins(st);
+  document.getElementById('marginT').value = m.t;
+  document.getElementById('marginR').value = m.r;
+  document.getElementById('marginB').value = m.b;
+  document.getElementById('marginL').value = m.l;
+  document.getElementById('mirrorChk').checked = !!st.mirror;
   document.getElementById('themeSel').innerHTML = Object.entries(PAGE_THEMES)
     .map(([k,t]) => `<option value="${k}"${k===(st.theme||'classique')?' selected':''}>${t.label}</option>`).join('');
   document.getElementById('titleColorInp').value = st.titleColor;
@@ -553,7 +573,13 @@ function readAppearanceForm(){
     pageBg: document.getElementById('pageBgSel').value,
     leaders: document.getElementById('leadersChk').checked,
     format: document.getElementById('formatSel').value,
-    margin: document.getElementById('marginSel').value,
+    marginMm: {
+      t: parseFloat(document.getElementById('marginT').value) || 0,
+      r: parseFloat(document.getElementById('marginR').value) || 0,
+      b: parseFloat(document.getElementById('marginB').value) || 0,
+      l: parseFloat(document.getElementById('marginL').value) || 0,
+    },
+    mirror: document.getElementById('mirrorChk').checked,
     theme: document.getElementById('themeSel').value,
   };
   applyStyle();
@@ -567,7 +593,7 @@ document.getElementById('appearanceBtn').addEventListener('click', () => {
 });
 document.getElementById('appearanceClose').addEventListener('click', ()=> appearanceBackdrop.classList.remove('open'));
 appearanceBackdrop.addEventListener('click', (e)=>{ if(e.target===appearanceBackdrop) appearanceBackdrop.classList.remove('open'); });
-['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk','formatSel','marginSel','themeSel'].forEach(id => {
+['titleFontSel','bodyFontSel','titleColorInp','accentColorInp','pageBgSel','leadersChk','formatSel','marginT','marginR','marginB','marginL','mirrorChk','themeSel'].forEach(id => {
   document.getElementById(id).addEventListener('change', readAppearanceForm);
 });
 document.getElementById('appearanceReset').addEventListener('click', () => {

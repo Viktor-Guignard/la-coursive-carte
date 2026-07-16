@@ -6,7 +6,7 @@
 <title>La Coursive des Alpes — Éditeur de carte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
@@ -70,9 +70,18 @@
         <label>Format de page</label>
         <select id="formatSel"></select>
       </div>
-      <div class="field">
-        <label>Marges</label>
-        <select id="marginSel"></select>
+      <div class="field margins-field">
+        <label>Marges (mm) — haut / droite / bas / gauche</label>
+        <div class="margin-inputs">
+          <input type="number" id="marginT" step="0.5" min="0" title="Haut">
+          <input type="number" id="marginR" step="0.5" min="0" title="Droite">
+          <input type="number" id="marginB" step="0.5" min="0" title="Bas">
+          <input type="number" id="marginL" step="0.5" min="0" title="Gauche">
+        </div>
+      </div>
+      <div class="field checkbox">
+        <input type="checkbox" id="mirrorChk">
+        <label for="mirrorChk">Marges en miroir (reliure) sur les pages paires</label>
       </div>
       <div class="field">
         <label>Thème graphique</label>
@@ -141,13 +150,13 @@
 
 <div id="toast"></div>
 
-<script src="menus-config.js?v=7"></script>
-<script src="gh.js?v=7"></script>
-<script src="app.js?v=7"></script>
-<script src="storage.js?v=7"></script>
+<script src="menus-config.js?v=8"></script>
+<script src="gh.js?v=8"></script>
+<script src="app.js?v=8"></script>
+<script src="storage.js?v=8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="pdf-export.js?v=7"></script>
+<script src="pdf-export.js?v=8"></script>
 
 </body>
 </html>
