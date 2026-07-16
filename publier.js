@@ -48,7 +48,7 @@ document.getElementById('copyPublic').addEventListener('click', async () => {
 
 /* ---------- Liste des cartes ---------- */
 function fmtDate(name) {
-  const m = (name || '').match(/^carte_(\d{4})-(\d{2})-(\d{2})_(\d{2})h(\d{2})/);
+  const m = (name || '').match(/(\d{4})-(\d{2})-(\d{2})_(\d{2})h(\d{2})/);
   return m ? `${m[3]}/${m[2]}/${m[1]} à ${m[4]}h${m[5]}` : '';
 }
 

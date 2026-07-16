@@ -19,12 +19,12 @@ async function loadVersion(path) {
   return normalizeVersion(f ? f.data : []);
 }
 async function saveVersion(doc, style) {
-  const name = GHUB.timestampName();
+  const name = GHUB.timestampName(window.currentMenuSlug());
   const body = { style, blocks: doc };
-  let res = await GHUB.createJson(`${MENU_DIR}/${name}.json`, body, 'Version ' + MENU_KEY + '/' + name);
+  let res = await GHUB.createJson(`${MENU_DIR}/${name}.json`, body, 'Version ' + name);
   if (res.status === 422) {
     const name2 = name + 's' + GHUB.pad(new Date().getSeconds());
-    res = await GHUB.createJson(`${MENU_DIR}/${name2}.json`, body, 'Version ' + MENU_KEY + '/' + name2);
+    res = await GHUB.createJson(`${MENU_DIR}/${name2}.json`, body, 'Version ' + name2);
     if (!res.ok) throw new Error('GitHub API ' + res.status);
     return name2;
   }
@@ -142,7 +142,7 @@ versionsBtn.addEventListener('click', async () => {
     versions.forEach((v, i) => {
       const row = document.createElement('div');
       row.className = 'version-row';
-      const m = v.name.match(/^carte_(\d{4})-(\d{2})-(\d{2})_(\d{2})h(\d{2})/);
+      const m = v.name.match(/(\d{4})-(\d{2})-(\d{2})_(\d{2})h(\d{2})/);
       const dateStr = m ? `${m[3]}/${m[2]}/${m[1]} à ${m[4]}h${m[5]}` : '';
       row.innerHTML = `
         <div>

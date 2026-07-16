@@ -33,7 +33,13 @@
     return h;
   }
 
-  /* Liste les fichiers .json d'un dossier. -> [{name, path, sha}] trié récent→ancien */
+  /* Clé chronologique tirée du nom (quel que soit le préfixe d'onglet). */
+  function dateKey(name) {
+    const m = (name || '').match(/(\d{4})-(\d{2})-(\d{2})_(\d{2})h(\d{2})(?:s(\d{2}))?/);
+    return m ? (m[1] + m[2] + m[3] + m[4] + m[5] + (m[6] || '00')) : '';
+  }
+
+  /* Liste les fichiers .json d'un dossier. -> [{name, path, sha}] trié récent→ancien (par date). */
   async function listDir(dir) {
     const res = await fetch(`${API}/${dir}?ref=${GH.branch}&t=${Date.now()}`, { headers: authHeaders() });
     if (res.status === 404) return [];
@@ -43,7 +49,7 @@
     return items
       .filter(it => it.type === 'file' && it.name.endsWith('.json'))
       .map(it => ({ name: it.name.replace(/\.json$/, ''), path: it.path, sha: it.sha }))
-      .sort((a, b) => b.name.localeCompare(a.name));
+      .sort((a, b) => { const d = dateKey(b.name).localeCompare(dateKey(a.name)); return d !== 0 ? d : b.name.localeCompare(a.name); });
   }
 
   /* Récupère un fichier {content parsed, sha}. */
@@ -126,14 +132,17 @@
   }
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
-  function timestampName() {
+  function timestampSuffix() {
     const d = new Date();
-    return `carte_${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}_${pad(d.getHours())}h${pad(d.getMinutes())}`;
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}_${pad(d.getHours())}h${pad(d.getMinutes())}`;
+  }
+  function timestampName(prefix) {
+    return `${prefix || 'carte'}_${timestampSuffix()}`;
   }
 
   global.GHUB = {
     conf: GH, getToken, hasToken, setToken,
     listDir, getFile, createJson, putJson, deleteFile,
-    consumeMagicLink, magicUrl, timestampName, pad,
+    consumeMagicLink, magicUrl, timestampName, timestampSuffix, dateKey, pad,
   };
 })(window);
