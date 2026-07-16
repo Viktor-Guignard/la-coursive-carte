@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-16T12:38:25.070Z",
+ "updatedAt": "2026-07-16T17:05:45Z",
  "menus": [
   {
    "key": "carte",
@@ -7,8 +7,8 @@
    "style": {
     "titleFont": "Playfair Display",
     "bodyFont": "Poppins",
-    "titleColor": "#1a1a1a",
-    "accent": "#a3801c",
+    "titleColor": "#f79359",
+    "accent": "#f79359",
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "a4",
@@ -19,7 +19,8 @@
      "b": 18,
      "l": 15
     },
-    "mirror": false
+    "mirror": false,
+    "sectionUnderline": false
    },
    "blocks": [
     {
@@ -315,8 +316,8 @@
    "style": {
     "titleFont": "Playfair Display",
     "bodyFont": "Poppins",
-    "titleColor": "#1a1a1a",
-    "accent": "#a3801c",
+    "titleColor": "#f7945c",
+    "accent": "#f7945c",
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "carte34",
@@ -327,7 +328,8 @@
      "b": 10,
      "l": 8
     },
-    "mirror": false
+    "mirror": false,
+    "sectionUnderline": false
    },
    "blocks": [
     {
@@ -1208,8 +1210,8 @@
    "style": {
     "titleFont": "Playfair Display",
     "bodyFont": "Poppins",
-    "titleColor": "#1a1a1a",
-    "accent": "#a3801c",
+    "titleColor": "#4a5e55",
+    "accent": "#31b44a",
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "a4",
@@ -1220,7 +1222,8 @@
      "b": 15,
      "l": 55
     },
-    "mirror": true
+    "mirror": true,
+    "sectionUnderline": false
    },
    "blocks": [
     {
@@ -2385,8 +2388,8 @@
    "style": {
     "titleFont": "Playfair Display",
     "bodyFont": "Poppins",
-    "titleColor": "#1a1a1a",
-    "accent": "#a3801c",
+    "titleColor": "#5b4d94",
+    "accent": "#5b4d94",
     "pageBg": "#ffffff",
     "leaders": true,
     "format": "a5",
@@ -2397,7 +2400,8 @@
      "b": 12,
      "l": 12
     },
-    "mirror": false
+    "mirror": false,
+    "sectionUnderline": false
    },
    "blocks": [
     {

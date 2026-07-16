@@ -2,8 +2,8 @@
  "style": {
   "titleFont": "Playfair Display",
   "bodyFont": "Poppins",
-  "titleColor": "#1a1a1a",
-  "accent": "#a3801c",
+  "titleColor": "#5b4d94",
+  "accent": "#5b4d94",
   "pageBg": "#ffffff",
   "leaders": true,
   "format": "a5",
@@ -14,7 +14,8 @@
    "b": 12,
    "l": 12
   },
-  "mirror": false
+  "mirror": false,
+  "sectionUnderline": false
  },
  "blocks": [
   {
