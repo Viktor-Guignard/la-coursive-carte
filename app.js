@@ -7,15 +7,23 @@ function newId(){ return 'b' + (uidCounter++) + '_' + Math.random().toString(36)
    En attendant, on part d'un document vide. */
 function defaultDoc(){ return []; }
 
-const BLOCK_LIBRARY = [
-  {type:'section', ttl:'Titre de section', desc:'Ex : « ENTRÉES / Starters »', make:()=>({fr:'NOUVELLE SECTION', en:'New section'})},
-  {type:'item', ttl:'Plat', desc:'Nom FR, nom EN, prix', make:()=>({fr:'NOUVEAU PLAT', en:'New dish', price:'0€'})},
-  {type:'formule', ttl:'Ligne formule', desc:'Texte en couleur (ex. prix menu)', make:()=>({text:'NOUVELLE FORMULE'})},
-  {type:'note', ttl:'Note / mention', desc:'Petit texte italique gris', make:()=>({text:'Note...'})},
-  {type:'image', ttl:'Image / logo', desc:'Logo ou visuel centré (cliquer pour remplacer)', make:()=>({src:'assets/logo-or.png', widthPct:45})},
-  {type:'divider', ttl:'Séparateur', desc:'Ligne fine de séparation', make:()=>({})},
-  {type:'pagebreak', ttl:'Saut de page', desc:'Démarre une nouvelle page PDF', make:()=>({})},
-];
+/* Tous les blocs possibles. Le sélecteur n'en propose qu'un sous-ensemble par
+   carte (voir MENU_BLOCK_PRESETS dans menus-config.js), adapté à sa DA réelle. */
+const BLOCK_DEFS = {
+  section:          {type:'section', ttl:'Titre de section', desc:'Ex : « ENTRÉES / Starters »', make:()=>({fr:'NOUVELLE SECTION', en:'New section'})},
+  item:             {type:'item', ttl:'Plat', desc:'Nom FR, nom EN, prix', make:()=>({fr:'NOUVEAU PLAT', en:'New dish', price:'0€'})},
+  formule:          {type:'formule', ttl:'Ligne formule', desc:'Texte en couleur (accent de la carte)', make:()=>({text:'NOUVELLE FORMULE'})},
+  'formule-heading':{type:'formule', ttl:'Sous-titre', desc:'Ex : « LES SPRITZ », « BULLES »', make:()=>({text:'NOUVEAU SOUS-TITRE', heading:true})},
+  note:             {type:'note', ttl:'Note / mention', desc:'Petit texte italique gris', make:()=>({text:'Note...'})},
+  image:            {type:'image', ttl:'Image / logo', desc:'Logo ou visuel centré (cliquer pour remplacer)', make:()=>({src:'assets/logo-or.png', widthPct:45})},
+  divider:          {type:'divider', ttl:'Séparateur', desc:'Ligne fine de séparation', make:()=>({})},
+  pagebreak:        {type:'pagebreak', ttl:'Saut de page', desc:'Démarre une nouvelle page PDF', make:()=>({})},
+};
+
+function currentBlockLibrary(){
+  const keys = (window.MENU_BLOCK_PRESETS && window.MENU_BLOCK_PRESETS[window.currentMenuKey()]) || Object.keys(BLOCK_DEFS);
+  return keys.map(k => BLOCK_DEFS[k]).filter(Boolean);
+}
 
 /* Champs mono-lignes : Entrée = valider, pas de retour à la ligne */
 const MULTILINE_FIELDS = new Set(['insta','wifi']);
@@ -505,6 +513,8 @@ let pendingInsertIndex = null;
 
 function openBlockPicker(afterIndex){
   pendingInsertIndex = afterIndex;
+  const sub = document.getElementById('pickerSub');
+  if(sub) sub.textContent = `Blocs adaptés à la carte « ${window.currentMenuLabel()} ». Inséré juste après le bloc sélectionné (ou à la fin).`;
   pickerBackdrop.classList.add('open');
 }
 document.getElementById('addBlockBtn').addEventListener('click', ()=>{
@@ -514,7 +524,7 @@ document.getElementById('addBlockBtn').addEventListener('click', ()=>{
 document.getElementById('pickerClose').addEventListener('click', ()=> pickerBackdrop.classList.remove('open'));
 pickerBackdrop.addEventListener('click', (e)=>{ if(e.target===pickerBackdrop) pickerBackdrop.classList.remove('open'); });
 
-BLOCK_LIBRARY.forEach(opt=>{
+currentBlockLibrary().forEach(opt=>{
   const el = document.createElement('button');
   el.className = 'block-opt';
   el.innerHTML = `<div class="ttl">${opt.ttl}</div><div class="desc">${opt.desc}</div>`;

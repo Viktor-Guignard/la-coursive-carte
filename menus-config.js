@@ -23,3 +23,18 @@ window.menuSlug = function (key) {
   return (m && m.slug) || key || 'carte';
 };
 window.currentMenuSlug = function () { return window.menuSlug(window.currentMenuKey()); };
+
+/* Blocs proposés par « + Ajouter un bloc », adaptés à la DA et aux éléments
+   réellement présents dans chaque carte (déterminé sur les PDF sources). */
+window.MENU_BLOCK_PRESETS = {
+  // Cuisine : en-tête au tampon, plats avec pictos végé/spécialité
+  carte:     ['section', 'item', 'note', 'image', 'formule', 'pagebreak'],
+  // Planche 14×34 : juste des plats + le badge or en tête
+  partager:  ['section', 'item', 'image', 'pagebreak'],
+  // Vins (thème Vigne) : gros titres + sous-titres colorés (BULLES, VINS BLANCS…)
+  vins:      ['section', 'formule-heading', 'item', 'pagebreak'],
+  // Alcools & boissons : mêmes gros titres + sous-titres verts (LES SPRITZ…)
+  boissons:  ['section', 'formule-heading', 'item', 'note', 'pagebreak'],
+  // Cocktails signature : titre violet + badge or
+  cocktails: ['section', 'item', 'image', 'pagebreak'],
+};
