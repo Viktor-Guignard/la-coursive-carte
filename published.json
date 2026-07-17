@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-16T18:45:55.271Z",
+ "updatedAt": "2026-07-17T07:05:23.032Z",
  "menus": [
   {
    "key": "carte",
@@ -448,6 +448,801 @@
      "fr": "LES ŒUFS MAYONNAISE À LA TRUFFE",
      "en": "Truffle eggs mayonnaise",
      "price": "21€"
+    }
+   ]
+  },
+  {
+   "key": "vins",
+   "label": "Vins",
+   "style": {
+    "titleFont": "Cormorant Garamond",
+    "bodyFont": "Poppins",
+    "titleColor": "#1a1a1a",
+    "accent": "#a3801c",
+    "pageBg": "#ffffff",
+    "leaders": true,
+    "format": "a4",
+    "theme": "vigne",
+    "marginMm": {
+     "t": 21,
+     "r": 12,
+     "b": 20,
+     "l": 55
+    },
+    "mirror": true
+   },
+   "blocks": [
+    {
+     "id": "b54",
+     "type": "section",
+     "fr": "LES VINS AU VERRE",
+     "en": "Wines by glass · 15 cl"
+    },
+    {
+     "id": "b55",
+     "type": "formule",
+     "text": "Bulles · 12,5 cl",
+     "heading": true
+    },
+    {
+     "id": "b56",
+     "type": "item",
+     "fr": "Coupe de Prosecco D.O.C. 500 Extra Dry",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b57",
+     "type": "item",
+     "fr": "Champagne AOP Devaux, Blanc de Noirs, Cœur des Bar",
+     "en": "",
+     "price": "13€"
+    },
+    {
+     "id": "b58",
+     "type": "formule",
+     "text": "Vins blancs",
+     "heading": true
+    },
+    {
+     "id": "b59",
+     "type": "item",
+     "fr": "Roussette de Savoie, AOP, Marestel",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b60",
+     "type": "item",
+     "fr": "Beaujolais blanc, AOP, Chardonnay, Château de Corcelles",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b61",
+     "type": "item",
+     "fr": "Crozes-Hermitage, AOP, Les Meysonniers, M. Chapoutier",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b62",
+     "type": "item",
+     "fr": "VDF, Pakhus, P. et S. Ravier (vin doux)",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b63",
+     "type": "formule",
+     "text": "Vins rouges",
+     "heading": true
+    },
+    {
+     "id": "b64",
+     "type": "item",
+     "fr": "IGP Collines rhodaniennes, Combe Pilate, Syrah, M. Chapoutier",
+     "en": "",
+     "price": "11€"
+    },
+    {
+     "id": "b65",
+     "type": "item",
+     "fr": "Mondeuse, AOP, Les Intemporelles, sélection Dionysos",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b66",
+     "type": "item",
+     "fr": "VDF du Bugey, Gamay/Poulsard, Pied de Mouton, Dom. des Sonnettes",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b67",
+     "type": "item",
+     "fr": "Vin du Moment",
+     "en": "",
+     "price": "10€"
+    },
+    {
+     "id": "b68",
+     "type": "formule",
+     "text": "Vins rosés",
+     "heading": true
+    },
+    {
+     "id": "b69",
+     "type": "item",
+     "fr": "Coteaux d'Aix en Provence, AOP, Aix",
+     "en": "",
+     "price": "9€"
+    },
+    {
+     "id": "b70",
+     "type": "section",
+     "fr": "LES BULLES",
+     "en": "Sparkling wines · 37,5 / 75 / 150 cl"
+    },
+    {
+     "id": "b71",
+     "type": "formule",
+     "text": "Les bruts",
+     "heading": true
+    },
+    {
+     "id": "b72",
+     "type": "item",
+     "fr": "Champagne AOP, Devaux, Blanc de Noirs, Cœur des Bar",
+     "en": "",
+     "price": "79€"
+    },
+    {
+     "id": "b73",
+     "type": "item",
+     "fr": "Champagne AOP, Ayala Brut Majeur",
+     "en": "",
+     "price": "85€"
+    },
+    {
+     "id": "b74",
+     "type": "item",
+     "fr": "Champagne AOP, Ruinart Blanc Brut « R »",
+     "en": "",
+     "price": "99€"
+    },
+    {
+     "id": "b75",
+     "type": "item",
+     "fr": "Champagne AOP, Ruinart Blanc Brut « R » — 150 cl",
+     "en": "",
+     "price": "199€"
+    },
+    {
+     "id": "b76",
+     "type": "item",
+     "fr": "Champagne AOP, Lallier, Extra Brut",
+     "en": "",
+     "price": "110€"
+    },
+    {
+     "id": "b77",
+     "type": "item",
+     "fr": "Champagne AOP, Bollinger, La Grande Année 2015",
+     "en": "",
+     "price": "288€"
+    },
+    {
+     "id": "b78",
+     "type": "formule",
+     "text": "Les blancs de blancs",
+     "heading": true
+    },
+    {
+     "id": "b79",
+     "type": "item",
+     "fr": "Champagne AOP, Ruinart, Blanc de Blancs — 75 cl",
+     "en": "",
+     "price": "151€"
+    },
+    {
+     "id": "b80",
+     "type": "formule",
+     "text": "Le rosé",
+     "heading": true
+    },
+    {
+     "id": "b81",
+     "type": "item",
+     "fr": "Champagne Rosé AOP, Devaux, Côte des Bar",
+     "en": "",
+     "price": "86€"
+    },
+    {
+     "id": "b82",
+     "type": "formule",
+     "text": "Les autres bulles",
+     "heading": true
+    },
+    {
+     "id": "b83",
+     "type": "item",
+     "fr": "Crémant de Savoie AOP Brut, Blanc, Dom. Perrier",
+     "en": "",
+     "price": "36€"
+    },
+    {
+     "id": "b84",
+     "type": "item",
+     "fr": "Prosecco D.O.C., 500 Extra Dry",
+     "en": "",
+     "price": "38€"
+    },
+    {
+     "id": "b85",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b86",
+     "type": "section",
+     "fr": "LES DOUX ET MOELLEUX",
+     "en": "Sweet wines · 75 cl"
+    },
+    {
+     "id": "b87",
+     "type": "item",
+     "fr": "VDF Moelleux de Savoie, L'Authentique, Roussette de Savoie, F. Carrel, vendanges tardives (50 cl), 2015",
+     "en": "",
+     "price": "60€"
+    },
+    {
+     "id": "b88",
+     "type": "item",
+     "fr": "VDF Pakhus, P. et S. Ravier",
+     "en": "",
+     "price": "36€"
+    },
+    {
+     "id": "b89",
+     "type": "item",
+     "fr": "Coteaux du Layon, AOP, Dom. de la Roulerie, 2018",
+     "en": "",
+     "price": "56€"
+    },
+    {
+     "id": "b90",
+     "type": "item",
+     "fr": "Moscato d'Asti, DOCG Ricossa (Piémont)",
+     "en": "",
+     "price": "35€"
+    },
+    {
+     "id": "b91",
+     "type": "section",
+     "fr": "LES VINS BLANCS",
+     "en": "White wines · 75 / 150 cl"
+    },
+    {
+     "id": "b92",
+     "type": "formule",
+     "text": "La Savoie",
+     "heading": true
+    },
+    {
+     "id": "b93",
+     "type": "item",
+     "fr": "Roussette de Savoie Marestel AOP, Château de La Mar, Le Golliat",
+     "en": "",
+     "price": "52€"
+    },
+    {
+     "id": "b94",
+     "type": "item",
+     "fr": "Roussette de Savoie AOP, Ch. Monterminod, Dom. Perrier (50 cl)",
+     "en": "",
+     "price": "30€"
+    },
+    {
+     "id": "b95",
+     "type": "item",
+     "fr": "Roussette de Savoie AOP, Ch. Monterminod, Dom. Perrier (75 cl)",
+     "en": "",
+     "price": "45€"
+    },
+    {
+     "id": "b96",
+     "type": "item",
+     "fr": "Roussette de Savoie AOP, Ch. Monterminod, Dom. Perrier (150 cl)",
+     "en": "",
+     "price": "93€"
+    },
+    {
+     "id": "b97",
+     "type": "item",
+     "fr": "VDF, Viognier, Château de Candie, « 1891 », Dom. Perrier",
+     "en": "",
+     "price": "38€"
+    },
+    {
+     "id": "b98",
+     "type": "item",
+     "fr": "Vin de Savoie Ayze, Jonquille, vieilles vignes, Fam. Montessuit",
+     "en": "",
+     "price": "42€"
+    },
+    {
+     "id": "b99",
+     "type": "item",
+     "fr": "Apremont, AOP, Dom. Blard",
+     "en": "",
+     "price": "46€"
+    },
+    {
+     "id": "b100",
+     "type": "item",
+     "fr": "Abymes, AOP, Electrick, P. et S. Ravier",
+     "en": "",
+     "price": "35€"
+    },
+    {
+     "id": "b101",
+     "type": "item",
+     "fr": "Chardonnay, AOP, Dom. Grisard",
+     "en": "",
+     "price": "39€"
+    },
+    {
+     "id": "b102",
+     "type": "item",
+     "fr": "Mondeuse Blanche, AOP, Dom. Grisard",
+     "en": "",
+     "price": "56€"
+    },
+    {
+     "id": "b103",
+     "type": "item",
+     "fr": "IGP vin des Allobroges, Domaine des Ardoisières, Cuvée Argile",
+     "en": "",
+     "price": "70€"
+    },
+    {
+     "id": "b104",
+     "type": "item",
+     "fr": "Chignin Bergeron, AOP, Les Intemporelles",
+     "en": "",
+     "price": "44€"
+    },
+    {
+     "id": "pb_v1",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b105",
+     "type": "formule",
+     "text": "La Vallée du Rhône",
+     "heading": true
+    },
+    {
+     "id": "b106",
+     "type": "item",
+     "fr": "Saint-Joseph, AOP, Les Granits, M. Chapoutier, cuvée parcellaire 2016",
+     "en": "",
+     "price": "170€"
+    },
+    {
+     "id": "b107",
+     "type": "item",
+     "fr": "Ermitage, AOP, De l'Orée, M. Chapoutier, 2006",
+     "en": "",
+     "price": "290€"
+    },
+    {
+     "id": "b108",
+     "type": "item",
+     "fr": "Châteauneuf-du-Pape, AOP, Château La Nerthe, 2023",
+     "en": "",
+     "price": "112€"
+    },
+    {
+     "id": "b109",
+     "type": "formule",
+     "text": "La Grande Bourgogne et le Beaujolais",
+     "heading": true
+    },
+    {
+     "id": "b110",
+     "type": "item",
+     "fr": "Mâcon Davayé, AOP, Manoir du Capucin",
+     "en": "",
+     "price": "45€"
+    },
+    {
+     "id": "b111",
+     "type": "item",
+     "fr": "Pernand-Vergelesses, AOP, Dom. Henri de Villamont, 2020",
+     "en": "",
+     "price": "87€"
+    },
+    {
+     "id": "b112",
+     "type": "item",
+     "fr": "Beaujolais blanc, AOP, Chardonnay, Château de Corcelles",
+     "en": "",
+     "price": "39€"
+    },
+    {
+     "id": "b113",
+     "type": "item",
+     "fr": "Saint-Bris, AOP, André Goichot",
+     "en": "",
+     "price": "41€"
+    },
+    {
+     "id": "b114",
+     "type": "item",
+     "fr": "Chablis, AOP, Dom. Gueguen",
+     "en": "",
+     "price": "62€"
+    },
+    {
+     "id": "b115",
+     "type": "formule",
+     "text": "La Vallée de la Loire",
+     "heading": true
+    },
+    {
+     "id": "b116",
+     "type": "item",
+     "fr": "Pouilly-Fumé, AOP, Château de Tracy",
+     "en": "",
+     "price": "75€"
+    },
+    {
+     "id": "b117",
+     "type": "item",
+     "fr": "Saumur, AOP, Domaine de l'Enchantoir, Terres Blanches",
+     "en": "",
+     "price": "43€"
+    },
+    {
+     "id": "b118",
+     "type": "formule",
+     "text": "Le Sud et l'Italie",
+     "heading": true
+    },
+    {
+     "id": "b119",
+     "type": "item",
+     "fr": "Côtes de Provence, AOP, Château Tour l'Évêque",
+     "en": "",
+     "price": "41€"
+    },
+    {
+     "id": "b120",
+     "type": "item",
+     "fr": "Trebbiano d'Abruzzo, DOC, Di Berardino-Fonteamonte (Abruzzes)",
+     "en": "",
+     "price": "32€"
+    },
+    {
+     "id": "b121",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b122",
+     "type": "section",
+     "fr": "LES ROSÉS",
+     "en": "Pink wines · 75 cl"
+    },
+    {
+     "id": "b123",
+     "type": "item",
+     "fr": "Côtes de Provence AOP, Château Minuty Prestige",
+     "en": "",
+     "price": "51€"
+    },
+    {
+     "id": "b124",
+     "type": "item",
+     "fr": "Coteaux d'Aix en Provence, AOP, Aix",
+     "en": "",
+     "price": "38€"
+    },
+    {
+     "id": "b125",
+     "type": "section",
+     "fr": "LES VINS ROUGES",
+     "en": "Red wines · 75 / 150 cl"
+    },
+    {
+     "id": "b126",
+     "type": "formule",
+     "text": "La Savoie et le Bugey",
+     "heading": true
+    },
+    {
+     "id": "b127",
+     "type": "item",
+     "fr": "Mondeuse d'Arbin AOP, Clos Descotes, Maison Richard",
+     "en": "",
+     "price": "39€"
+    },
+    {
+     "id": "b128",
+     "type": "item",
+     "fr": "Mondeuse, AOP, Dom. Saint-Germain, Le pied de la Barme",
+     "en": "",
+     "price": "54€"
+    },
+    {
+     "id": "b129",
+     "type": "item",
+     "fr": "Gamay de Jongieux AOP, vieilles vignes, E. Carrel",
+     "en": "",
+     "price": "36€"
+    },
+    {
+     "id": "b130",
+     "type": "item",
+     "fr": "IGP vin des Allobroges, Etraire de l'Adui, Dom. Grisard",
+     "en": "",
+     "price": "41€"
+    },
+    {
+     "id": "b131",
+     "type": "item",
+     "fr": "IGP vin des Allobroges, Cuvée Argile, Dom. des Ardoisières, 2023",
+     "en": "",
+     "price": "84€"
+    },
+    {
+     "id": "b132",
+     "type": "item",
+     "fr": "Pinot, AOP, Le Pinot, Château de la Mar",
+     "en": "",
+     "price": "65€"
+    },
+    {
+     "id": "b133",
+     "type": "item",
+     "fr": "Persan, AOP, Dom. Giachino",
+     "en": "",
+     "price": "58€"
+    },
+    {
+     "id": "b134",
+     "type": "item",
+     "fr": "VDF du Bugey, Gamay/Poulsard, Pied de Mouton, Dom. des Sonnettes",
+     "en": "",
+     "price": "40€"
+    },
+    {
+     "id": "b135",
+     "type": "item",
+     "fr": "VDF du Bugey, Pinot noir, Tête de Fruits Rouges, Dom. des Sonnettes",
+     "en": "",
+     "price": "50€"
+    },
+    {
+     "id": "b136",
+     "type": "formule",
+     "text": "La Vallée du Rhône — Nord",
+     "heading": true
+    },
+    {
+     "id": "b137",
+     "type": "item",
+     "fr": "Côte-Rôtie, AOP, P. Gaillard, 2023",
+     "en": "",
+     "price": "149€"
+    },
+    {
+     "id": "b138",
+     "type": "item",
+     "fr": "Saint-Joseph, AOP, Yannick Alléno, M. Chapoutier",
+     "en": "",
+     "price": "66€"
+    },
+    {
+     "id": "b139",
+     "type": "item",
+     "fr": "Crozes-Hermitage, AOP, Les Meysonniers, M. Chapoutier",
+     "en": "",
+     "price": "56€"
+    },
+    {
+     "id": "b140",
+     "type": "item",
+     "fr": "Crozes-Hermitage, AOP, Les Meysonniers, M. Chapoutier (150 cl)",
+     "en": "",
+     "price": "112€"
+    },
+    {
+     "id": "b141",
+     "type": "formule",
+     "text": "La Vallée du Rhône — Sud",
+     "heading": true
+    },
+    {
+     "id": "b142",
+     "type": "item",
+     "fr": "Rasteau, AOP, L'Andéol, Famille Perrin",
+     "en": "",
+     "price": "47€"
+    },
+    {
+     "id": "b143",
+     "type": "item",
+     "fr": "Châteauneuf-du-Pape, AOP, Château La Nerthe, 2021 — 75 cl",
+     "en": "",
+     "price": "157€"
+    },
+    {
+     "id": "b144",
+     "type": "item",
+     "fr": "Châteauneuf-du-Pape, AOP, Château La Nerthe, 2017 — 150 cl",
+     "en": "",
+     "price": "299€"
+    },
+    {
+     "id": "b145",
+     "type": "item",
+     "fr": "Vacqueyras, AOP, Dom. des Ondines",
+     "en": "",
+     "price": "54€"
+    },
+    {
+     "id": "pb_v2",
+     "type": "pagebreak"
+    },
+    {
+     "id": "b146",
+     "type": "formule",
+     "text": "La Grande Bourgogne",
+     "heading": true
+    },
+    {
+     "id": "b147",
+     "type": "item",
+     "fr": "Marsannay, AOP, Les Récilles, E. Guillard, 2022",
+     "en": "",
+     "price": "72€"
+    },
+    {
+     "id": "b148",
+     "type": "item",
+     "fr": "Pommard, AOP, Maison Prunier-Bonheur, 2022",
+     "en": "",
+     "price": "166€"
+    },
+    {
+     "id": "b149",
+     "type": "item",
+     "fr": "Gevrey-Chambertin, AOP, v.v., Frédéric Magnien, 2021",
+     "en": "",
+     "price": "198€"
+    },
+    {
+     "id": "b150",
+     "type": "formule",
+     "text": "Le Beaujolais",
+     "heading": true
+    },
+    {
+     "id": "b151",
+     "type": "item",
+     "fr": "Brouilly, AOP, Château Des Tours, Dom. Des Tours",
+     "en": "",
+     "price": "45€"
+    },
+    {
+     "id": "b152",
+     "type": "formule",
+     "text": "La Vallée de la Loire",
+     "heading": true
+    },
+    {
+     "id": "b153",
+     "type": "item",
+     "fr": "Saumur Champigny, AOP, Les calcaires",
+     "en": "",
+     "price": "41€"
+    },
+    {
+     "id": "b154",
+     "type": "item",
+     "fr": "Sancerre, AOP, Dom. Vacheron",
+     "en": "",
+     "price": "88€"
+    },
+    {
+     "id": "b155",
+     "type": "formule",
+     "text": "Le Bordelais",
+     "heading": true
+    },
+    {
+     "id": "b156",
+     "type": "item",
+     "fr": "Pessac-Léognan, AOP, Château Tour Léognan, Second vin du Château Carbonieux, 2022",
+     "en": "",
+     "price": "82€"
+    },
+    {
+     "id": "b157",
+     "type": "item",
+     "fr": "Haut-Médoc, AOP, Château Victoria, Cru Bourgeois, 75 cl, 2021",
+     "en": "",
+     "price": "66€"
+    },
+    {
+     "id": "b158",
+     "type": "item",
+     "fr": "Haut-Médoc, AOP, Château Victoria, Cru Bourgeois, 2019, 150 cl",
+     "en": "",
+     "price": "126€"
+    },
+    {
+     "id": "b159",
+     "type": "item",
+     "fr": "Saint-Estèphe, AOP, Frank Phélan, Second vin du Château Phélan Ségur, 2019",
+     "en": "",
+     "price": "88€"
+    },
+    {
+     "id": "b160",
+     "type": "item",
+     "fr": "Saint-Estèphe, AOP, Château Montrose, Grand cru classé, 2012",
+     "en": "",
+     "price": "320€"
+    },
+    {
+     "id": "b161",
+     "type": "item",
+     "fr": "Saint-Julien, AOP, Aspirant de Beychevelle, 3ème vin du Château Beychevelle, 2023",
+     "en": "",
+     "price": "94€"
+    },
+    {
+     "id": "b162",
+     "type": "item",
+     "fr": "Pauillac, AOP, Baron Nathaniel, Maison Rotschild, 2021",
+     "en": "",
+     "price": "70€"
+    },
+    {
+     "id": "b163",
+     "type": "formule",
+     "text": "Le Languedoc",
+     "heading": true
+    },
+    {
+     "id": "b164",
+     "type": "item",
+     "fr": "Pic-Saint-Loup AOP, Bergerie de l'Hortus",
+     "en": "",
+     "price": "56€"
+    },
+    {
+     "id": "b165",
+     "type": "formule",
+     "text": "L'Italie",
+     "heading": true
+    },
+    {
+     "id": "b166",
+     "type": "item",
+     "fr": "Montepulciano d'Abruzzo, DOC, Di Bernardino (Abruzzes)",
+     "en": "",
+     "price": "39€"
+    },
+    {
+     "id": "b167",
+     "type": "item",
+     "fr": "IGT Salento, Tenuta Giustini, Terrame, Primitivo (Pouilles)",
+     "en": "",
+     "price": "46€"
     }
    ]
   },
