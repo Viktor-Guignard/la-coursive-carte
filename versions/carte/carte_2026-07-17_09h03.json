@@ -1,0 +1,348 @@
+{
+ "style": {
+  "titleFont": "Playfair Display",
+  "bodyFont": "Poppins",
+  "titleColor": "#f79359",
+  "accent": "#f79359",
+  "pageBg": "#ffffff",
+  "leaders": true,
+  "format": "a4",
+  "theme": "classique",
+  "marginMm": {
+   "t": 18,
+   "r": 11,
+   "b": 18,
+   "l": 15
+  },
+  "mirror": false,
+  "sectionUnderline": false
+ },
+ "blocks": [
+  {
+   "id": "mh_header",
+   "type": "header",
+   "line1": "La Coursive",
+   "line2": "des Alpes",
+   "chef": "Par le chef Laurent Hillairet",
+   "insta": "Suivez-nous sur instagram<br>@lacoursivemeribel",
+   "wifi": "Wifi: LiveboxCdb0<br>mdp: lacoursive73",
+   "logoImg": "assets/logo-or.png",
+   "qrImg": "assets/qr.png"
+  },
+  {
+   "id": "b1",
+   "type": "section",
+   "fr": "À PARTAGER",
+   "en": "To share"
+  },
+  {
+   "id": "b2",
+   "type": "item",
+   "fr": "CROQUE JAMBON À LA TRUFFE ET BEAUFORT",
+   "en": "Truffle ham and Beaufort cheese bread",
+   "price": "23€"
+  },
+  {
+   "id": "b3",
+   "type": "item",
+   "fr": "FOIE GRAS MAISON EN BALLOTTINE (100gr)",
+   "en": "Homemade foie gras terrine",
+   "price": "26€"
+  },
+  {
+   "id": "b4",
+   "type": "item",
+   "fr": "PLANCHE DE FROMAGES DES ALPES",
+   "en": "Selection of cheeses from Alps",
+   "price": "22€"
+  },
+  {
+   "id": "b5",
+   "type": "item",
+   "fr": "PLANCHE DE CHARCUTERIE ITALIENNE : mortadelle pistache, bresaola, jambon blanc à la truffe, spianata",
+   "en": "Italian charcuterie board",
+   "price": "23€"
+  },
+  {
+   "id": "b6",
+   "type": "item",
+   "fr": "PLANCHE MIXTE, CHARCUTERIE ET FROMAGES",
+   "en": "Charcuterie and cheeses board",
+   "price": "26€"
+  },
+  {
+   "id": "b7",
+   "type": "item",
+   "fr": "FRITES MAISON",
+   "en": "French fries",
+   "price": "8€"
+  },
+  {
+   "id": "b8",
+   "type": "section",
+   "fr": "ENTRÉES",
+   "en": "Starters"
+  },
+  {
+   "id": "b9",
+   "type": "item",
+   "fr": "CAPPUCCINO DE CHÂTAIGNES, fregola au Beaufort et noix caramélisées",
+   "en": "Chestnuts soup, fregola pasta with Beaufort cheese and candied walnuts",
+   "price": "Petit 17 / Grand 22€",
+   "tags": [
+    "veg"
+   ]
+  },
+  {
+   "id": "b10",
+   "type": "item",
+   "fr": "FRICASSÉE DE CHAMPIGNONS ET VOLAILLE, émulsion morilles",
+   "en": "Chicken with mushrooms fricassée, morels emulsion",
+   "price": "18€"
+  },
+  {
+   "id": "b11",
+   "type": "item",
+   "fr": "RACLETTE AÉRIENNE, brioche en pain perdu, crumble de raclette",
+   "en": "Espuma of Raclette cheese, brioch bread cooking as pain perdu's style, raclette crumble",
+   "price": "17€",
+   "tags": [
+    "veg"
+   ]
+  },
+  {
+   "id": "b12",
+   "type": "item",
+   "fr": "HOUMOUS, pois chiche, crémeux burrata, avocat grillé et grenade",
+   "en": "Chickpea houmous, creamy burrata, grilled avocado and pomegranate",
+   "price": "Petit 17 / Grand 26€",
+   "tags": [
+    "veg"
+   ]
+  },
+  {
+   "id": "b14",
+   "type": "item",
+   "fr": "SAUMON GRAVLAX, label rouge, pickles de légumes",
+   "en": "Marinated red label salmon as gravlax' style, vegetables pickles",
+   "price": "jusdudsoudsiosdiodsiidsdispsd€",
+   "tags": [
+    "veg"
+   ]
+  },
+  {
+   "id": "b13",
+   "type": "item",
+   "fr": "VITELLO TONNATO, veau et sauce au thon et câpres, harissa de carottes",
+   "en": "Veal slices with tuna and capers sauce, carrots sauce",
+   "price": "22€",
+   "tags": [
+    "spec"
+   ]
+  },
+  {
+   "id": "b15",
+   "type": "section",
+   "fr": "PIZZAS",
+   "en": null
+  },
+  {
+   "id": "b16",
+   "type": "item",
+   "fr": "SPIANATA : base tomate, mozzarella fior di latte, spianata, roquette, parmesan",
+   "en": "Tomato, Mozzarella Fior di latte, spianata, arugula salad, parmesan cheese",
+   "price": "24€"
+  },
+  {
+   "id": "b17",
+   "type": "item",
+   "fr": "TARTUFO : base crème, mozzarella fior di latte, jambon blanc à la truffe, truffe noire et roquette",
+   "en": "Cream, Mozzarella Fior di latte, truffle ham, black truffle and arugula salad",
+   "price": "49€"
+  },
+  {
+   "id": "b18",
+   "type": "item",
+   "fr": "CLASSICO MARGARITA : base tomate, mozzarella fior di latte, basilic",
+   "en": "Tomato, Mozzarella Fior di latte, basil",
+   "price": "19€",
+   "tags": [
+    "veg"
+   ]
+  },
+  {
+   "id": "b19",
+   "type": "item",
+   "fr": "MOZZA LOVER : base tomate, mozzarella fior di latte, burrata, scarmozza fumée, basilic, roquette",
+   "en": "Tomato, Mozzarella Fior di latte, burrata, scarmozza, basil, arugula salad",
+   "price": "25€",
+   "tags": [
+    "veg"
+   ]
+  },
+  {
+   "id": "b20",
+   "type": "pagebreak"
+  },
+  {
+   "id": "b21",
+   "type": "section",
+   "fr": "PLATS",
+   "en": "Main Courses"
+  },
+  {
+   "id": "b22",
+   "type": "item",
+   "fr": "« LA » SALADE CAESAR, bacon, volaille rôtie, parmesan",
+   "en": "Caesar salad, roasted chicken, bacon and parmesan cheese",
+   "price": "25€"
+  },
+  {
+   "id": "b23",
+   "type": "item",
+   "fr": "VÉRITABLES LINGUINI CARBONARA, guanciale (lard italien)",
+   "en": "True carbonara linguini",
+   "price": "26€"
+  },
+  {
+   "id": "b24",
+   "type": "item",
+   "fr": "« MÉRIBURGER » AU BEAUFORT, steak haché, lard croustillant, confit d'oignons, roquette, frites maison",
+   "en": "Special homemade burger bun with beef meat, Beaufort cheese, crispy bacon, candied onions, French fries",
+   "price": "29€"
+  },
+  {
+   "id": "b25",
+   "type": "item",
+   "fr": "BŒUF CONFIT DE « 8 HEURES », foie gras poêlé, gnocchi au parmesan",
+   "en": "Confit beef « 8 hours » with roasted foie gras, parmesan gnocchi",
+   "price": "41€"
+  },
+  {
+   "id": "b26",
+   "type": "item",
+   "fr": "FILET DE BŒUF AUX POIVRES, croustillant de pommes de terre et morilles",
+   "en": "Beef tenderloin with peppers, crispy potatoes and morels mushrooms",
+   "price": "49€"
+  },
+  {
+   "id": "b27",
+   "type": "item",
+   "fr": "SAINT-JACQUES POÊLÉES, risoni et céleri en risotto au Comté",
+   "en": "Roasted scallops, risoni and celeri risotto with Comté cheese",
+   "price": "40€"
+  },
+  {
+   "id": "b28",
+   "type": "item",
+   "fr": "POULPE SNACKÉ, rigatoni à la ricotta, chou-fleur grillé, émulsion curry-gingembre",
+   "en": "Snacked octopus, ricotta rigatoni, grilled cauliflower, curry-ginger sauce",
+   "price": "37€"
+  },
+  {
+   "id": "b29",
+   "type": "item",
+   "fr": "LÉGUMES DU MOMENT",
+   "en": "Cooked vegetables of the moment",
+   "price": "Petit 11 / Grand 23€",
+   "tags": [
+    "veg"
+   ]
+  },
+  {
+   "id": "b30",
+   "type": "section",
+   "fr": "CÔTÉ ALPES",
+   "en": "Alps side"
+  },
+  {
+   "id": "b31",
+   "type": "note",
+   "text": "Prix par personne / min 2 personnes — Price per person / min 2 people"
+  },
+  {
+   "id": "b32",
+   "type": "item",
+   "fr": "FONDUE SUISSE, SALADE",
+   "en": "2 cheeses fondue (vacherin fribourgeois, gruyère suisse), salad, roasted potatoes",
+   "price": "31€",
+   "tags": [
+    "veg"
+   ]
+  },
+  {
+   "id": "b33",
+   "type": "item",
+   "fr": "ASSIETTE DE JAMBON BLANC À LA TRUFFE",
+   "en": "Truffle ham plate",
+   "price": "18€"
+  },
+  {
+   "id": "b34",
+   "type": "section",
+   "fr": "À PARTAGER POUR DEUX",
+   "en": "For 2 people"
+  },
+  {
+   "id": "b35",
+   "type": "note",
+   "text": "Min. 30 min"
+  },
+  {
+   "id": "b36",
+   "type": "item",
+   "fr": "CÔTE DE BŒUF DE 800 GR, frites maison",
+   "en": "Rib of beef, homemade French fries",
+   "price": "110€"
+  },
+  {
+   "id": "b37",
+   "type": "item",
+   "fr": "ÉPAULE D'AGNEAU CONFITE, légumes rôtis",
+   "en": "Lamb shoulder slowly cooked, roasted vegetables",
+   "price": "97€"
+  },
+  {
+   "id": "b38",
+   "type": "section",
+   "fr": "DESSERTS",
+   "en": "Desserts"
+  },
+  {
+   "id": "b39",
+   "type": "item",
+   "fr": "LA POIRE POCHÉE FAÇON BELLE-HÉLÈNE",
+   "en": "Poached pear as Belle-Hélène's style",
+   "price": "13€"
+  },
+  {
+   "id": "b40",
+   "type": "item",
+   "fr": "BABA AU RHUM, confit d'oranges et chantilly vanillée",
+   "en": "Rhum baba cake, orange jam and vanilla chantilly",
+   "price": "12€"
+  },
+  {
+   "id": "b41",
+   "type": "item",
+   "fr": "TARTELETTE AU CHOCOLAT, crémeux, glace noisette",
+   "en": "Chocolate creamy tart, hazelnuts ice cream",
+   "price": "14€"
+  },
+  {
+   "id": "b42",
+   "type": "item",
+   "fr": "RIZ AU LAIT, fruits secs torréfiés (noisettes, amandes, pistaches), caramel crémeux au beurre salé",
+   "en": "Rice pudding, roasted nuts (hazelnuts, almonds, pistachios), creamy salted butter caramel",
+   "price": "12€",
+   "tags": [
+    "spec"
+   ]
+  },
+  {
+   "id": "b43",
+   "type": "note",
+   "text": "Ici, tout est fait maison — Here, everything is homemade. La Coursive des Alpes, par Laurent Hillairet."
+  }
+ ]
+}
