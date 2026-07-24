@@ -113,7 +113,7 @@
       id: 'enregistrer',
       cat: 'Enregistrer',
       q: 'Comment enregistrer mes modifications ?',
-      k: 'enregistrer sauvegarder sauver save version garder valider conserver',
+      k: 'enregistrer enregistre sauvegarder sauver save version garder valider conserver modif modifs modification modifications changement',
       a: `<p>Cliquez sur <b>💾 Enregistrer</b> en haut.</p>
         <p>Chaque enregistrement crée une <b>nouvelle version horodatée</b> : rien n'est jamais écrasé, vous pouvez toujours revenir en arrière.</p>
         <p class="tip">Enregistrer ne rend pas la carte visible aux clients — pour ça, il faut <b>Publier</b> (onglet 📱 Publier / QR).</p>`
@@ -279,8 +279,10 @@
       cat: 'Général',
       q: 'Je ne trouve pas ma réponse / j\'ai un problème',
       k: 'aide contact probleme bug aide viktor appeler assistance sos marche pas comprends rien',
-      a: `<p>Contactez <b>Viktor</b>, il vous répondra rapidement.</p>
-        <p>Pour aller plus vite, précisez : la carte concernée (onglet), ce que vous vouliez faire, et ce qui s'est passé.</p>`
+      a: `<p>Écrivez à <b>VIKTO LABS</b> — <b>vikto.labs@gmail.com</b> — on vous répond rapidement.</p>
+        <p>Pour aller plus vite, précisez : la carte concernée (onglet), ce que vous vouliez faire, et ce qui s'est passé.</p>
+        <p class="tip">Utilisez le bouton ci-dessous : votre question et la page consultée sont ajoutées automatiquement au message.</p>`,
+      mail: true
     },
   ];
 
@@ -293,7 +295,51 @@
   const STOP = new Set(['le','la','les','un','une','des','du','de','a','au','aux','je','tu','il','on','pour','comment','faire','fait','faut','est','ce','que','qui','quoi','ou','et','en','dans','sur','avec','mon','ma','mes','se','sa','son','ne','pas','plus','peux','peut','veux','vais','dois','y','c','j','l','d','n','s','t','me','moi','nous','vous','par','the','how']);
 
   function tokens(s) {
-    return norm(s).split(' ').filter(w => w.length > 2 && !STOP.has(w));
+    return norm(s).split(' ').filter(w => w.length >= 2 && !STOP.has(w));
+  }
+
+  /* Distance de Levenshtein bornée : tolère les fautes de frappe.
+     Sort dès que la distance dépasse `max` (rapide). */
+  function lev(a, b, max) {
+    if (a === b) return 0;
+    const la = a.length, lb = b.length;
+    if (Math.abs(la - lb) > max) return max + 1;
+    let prev = new Array(lb + 1);
+    for (let j = 0; j <= lb; j++) prev[j] = j;
+    for (let i = 1; i <= la; i++) {
+      const cur = new Array(lb + 1);
+      cur[0] = i;
+      let best = i;
+      for (let j = 1; j <= lb; j++) {
+        const cost = a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1;
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+        if (cur[j] < best) best = cur[j];
+      }
+      if (best > max) return max + 1;
+      prev = cur;
+    }
+    return prev[lb];
+  }
+
+  /* Score d'un mot de la question contre les mots-clés d'une fiche.
+     1 = exact, 0.75 = même racine, 0.7/0.5 = faute de frappe tolérée. */
+  function wordScore(w, kw) {
+    if (kw.has(w)) return 1;
+    let best = 0;
+    const maxD = w.length >= 7 ? 2 : (w.length >= 4 ? 1 : 0);
+    for (const k of kw) {
+      if (k.length > 3 && w.length > 3 && (k.startsWith(w) || w.startsWith(k))) {
+        if (best < 0.75) best = 0.75;
+      }
+      if (maxD > 0 && k.length >= 4) {
+        const d = lev(w, k, maxD);
+        if (d <= maxD) {
+          const sc = d === 1 ? 0.8 : 0.55;   // faute corrigée > simple préfixe
+          if (sc > best) best = sc;
+        }
+      }
+    }
+    return best;
   }
 
   function score(query, entry) {
@@ -301,22 +347,29 @@
     if (!qt.length) return 0;
     const kw = new Set(tokens(entry.k + ' ' + entry.q));
     let hits = 0;
-    qt.forEach(w => {
-      if (kw.has(w)) { hits += 1; return; }
-      // correspondance partielle (pluriel, conjugaison…)
-      for (const k of kw) {
-        if (k.length > 3 && w.length > 3 && (k.startsWith(w) || w.startsWith(k))) { hits += 0.6; return; }
-      }
-    });
+    qt.forEach(w => { hits += wordScore(w, kw); });
     return hits / qt.length;
   }
 
   function search(query) {
     return FAQ.map(e => ({ e, s: score(query, e) }))
-      .filter(x => x.s >= 0.34)
+      .filter(x => x.s >= 0.3)
       .sort((a, b) => b.s - a.s)
       .slice(0, 3)
       .map(x => x.e);
+  }
+
+  /* ---------- Repli : écrire à VIKTO LABS ---------- */
+  const MAIL = 'vikto.labs@gmail.com';
+  function mailtoUrl(question) {
+    const isPublier = /publier\.html/.test(location.pathname);
+    const ctx = isPublier
+      ? 'Page Publier / QR'
+      : 'Éditeur — carte : ' + (typeof window.currentMenuLabel === 'function' ? window.currentMenuLabel() : '?');
+    const body = "Bonjour,\n\nJe n'ai pas trouvé la réponse à ma question dans l'aide :\n\n« "
+      + (question || '') + " »\n\n----------\nContexte : " + ctx + "\nPage : " + location.href + "\n\nMerci !";
+    return 'mailto:' + MAIL + '?subject=' + encodeURIComponent("Question sur l'éditeur de carte")
+      + '&body=' + encodeURIComponent(body);
   }
 
   /* ---------- Interface ---------- */
@@ -380,8 +433,20 @@
       body.appendChild(wrap);
       body.scrollTop = body.scrollHeight;
     }
+    function addMail(question) {
+      const wrap = document.createElement('div');
+      wrap.className = 'aide-mailbox';
+      wrap.innerHTML = `
+        <div class="aide-mailbox-txt">Envoyez votre question à VIKTO LABS, on vous répond rapidement.</div>
+        <a class="aide-mail" href="${mailtoUrl(question)}">✉️ Écrire à ${MAIL}</a>
+        <div class="aide-mailbox-alt">Ou écrivez directement à <b>${MAIL}</b></div>`;
+      body.appendChild(wrap);
+      body.scrollTop = body.scrollHeight;
+    }
+
     function answer(entry) {
       addBot(`<div class="aide-a-title">${esc(entry.q)}</div>${entry.a}`);
+      if (entry.mail) { addMail(''); return; }
       // suggestions de la même catégorie
       const related = FAQ.filter(e => e.cat === entry.cat && e.id !== entry.id).slice(0, 3);
       if (related.length) addChips(related, 'Sur le même sujet');
@@ -409,8 +474,9 @@
       input.value = '';
       const found = search(q);
       if (!found.length) {
-        addBot(`Je n'ai pas trouvé de réponse à cette question. Voici les sujets que je connais :`);
-        addChips(FAQ.filter(e => ['modifier-texte','ajouter-plat','enregistrer','publier','pdf','contact'].includes(e.id)), null);
+        addBot(`Je n'ai pas trouvé de réponse à cette question 😕`);
+        addMail(q);
+        addChips(FAQ.filter(e => ['modifier-texte','ajouter-plat','enregistrer','publier','pdf'].includes(e.id)), 'Ou consultez ces sujets');
       } else if (found.length === 1) {
         answer(found[0]);
       } else {
