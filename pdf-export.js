@@ -28,12 +28,16 @@ async function exportPdf(){
     const pdf = new jsPDF({ orientation, unit:'mm', format:[wMm, hMm] });
 
     /* La classe « exporting » rétablit les dimensions exactes de la page
-       (la vue responsive les écrase en fenêtre étroite). On laisse le
-       navigateur recalculer la mise en page avant de capturer.
+       (la vue responsive les écrase en fenêtre étroite). On attend que
+       tout soit stable avant de capturer : polices chargées + mise en
+       page recalculée. Le tout premier export après l'ouverture de la
+       page est le plus fragile — capturer trop tôt peint l'ombre de la
+       page au mauvais endroit (voile gris).
        setTimeout et non requestAnimationFrame : rAF est suspendu quand
        l'onglet passe en arrière-plan, ce qui bloquerait l'export. */
+    try{ await document.fonts.ready; }catch(_){/* vieux navigateurs */}
     document.body.offsetHeight;                       // force le recalcul immédiat
-    await new Promise(r => setTimeout(r, 80));
+    await new Promise(r => setTimeout(r, 300));
 
     for(let i=0;i<pages.length;i++){
       const canvas = await html2canvas(pages[i], {

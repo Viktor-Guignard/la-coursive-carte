@@ -550,8 +550,18 @@ body.exporting .pdf-page{
   min-height:0 !important;
   max-width:none !important;
   padding:var(--page-pad, 44px 52px 52px) !important;
+  /* L'ombre portée est un décor d'éditeur : html2canvas peut la peindre
+     au mauvais endroit (voile gris dans le PDF) quand la géométrie vient
+     de changer. On la retire pendant la capture, elle n'a rien à faire
+     dans un document imprimé. */
+  box-shadow:none !important;
 }
 body.exporting .pdf-page.page-even{
   padding:var(--page-pad-even, var(--page-pad, 44px 52px 52px)) !important;
 }
-body.exporting #canvasWrap{max-width:none !important; padding:0 !important;}
+body.exporting #canvasWrap{
+  max-width:none !important; padding:0 !important;
+  /* pages alignées à gauche : jamais de position X négative pendant la
+     capture (fenêtre plus étroite que la page = page centrée hors écran) */
+  align-items:flex-start !important;
+}
