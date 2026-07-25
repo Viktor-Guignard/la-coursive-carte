@@ -38,11 +38,20 @@ async function exportPdf(){
     for(let i=0;i<pages.length;i++){
       const canvas = await html2canvas(pages[i], {
         scale: 2.5,
-        backgroundColor: null, // respecter le fond choisi (blanc/crème/ivoire)
+        /* fond de la carte : évite toute zone transparente ou grise
+           dans les parties situées hors de la fenêtre visible */
+        backgroundColor: st.pageBg || '#ffffff',
         useCORS: true,
         /* dimensions du format choisi, jamais celles de l'écran */
         width: fmt.w,
         height: fmt.h,
+        /* viewport virtuel du rendu : au moins la taille de la page,
+           sinon html2canvas ne peint pas ce qui dépasse de la fenêtre
+           (bande grise à droite quand la fenêtre est étroite) */
+        windowWidth: Math.max(document.documentElement.clientWidth, fmt.w + 40),
+        windowHeight: Math.max(document.documentElement.clientHeight, fmt.h + 40),
+        scrollX: 0,
+        scrollY: 0,
       });
       const imgData = canvas.toDataURL('image/jpeg', 0.93);
       if(i > 0) pdf.addPage([wMm, hMm], orientation);
