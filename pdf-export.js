@@ -27,13 +27,22 @@ async function exportPdf(){
     const orientation = wMm > hMm ? 'landscape' : 'portrait';
     const pdf = new jsPDF({ orientation, unit:'mm', format:[wMm, hMm] });
 
+    /* La classe « exporting » rétablit les dimensions exactes de la page
+       (la vue responsive les écrase en fenêtre étroite). On laisse le
+       navigateur recalculer la mise en page avant de capturer.
+       setTimeout et non requestAnimationFrame : rAF est suspendu quand
+       l'onglet passe en arrière-plan, ce qui bloquerait l'export. */
+    document.body.offsetHeight;                       // force le recalcul immédiat
+    await new Promise(r => setTimeout(r, 80));
+
     for(let i=0;i<pages.length;i++){
       const canvas = await html2canvas(pages[i], {
         scale: 2.5,
         backgroundColor: null, // respecter le fond choisi (blanc/crème/ivoire)
         useCORS: true,
-        width: pages[i].offsetWidth,
-        height: pages[i].offsetHeight,
+        /* dimensions du format choisi, jamais celles de l'écran */
+        width: fmt.w,
+        height: fmt.h,
       });
       const imgData = canvas.toDataURL('image/jpeg', 0.93);
       if(i > 0) pdf.addPage([wMm, hMm], orientation);

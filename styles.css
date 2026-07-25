@@ -537,3 +537,21 @@ body.exporting #aideBtn, body.exporting #aidePanel{display:none !important;}
 body.exporting .block.is-hidden{opacity:1 !important;}
 body.exporting .block.is-hidden *{text-decoration:none !important;}
 body.exporting .hidden-badge{display:none !important;}
+
+/* =====================================================
+   CORRECTIF EXPORT : le PDF doit TOUJOURS sortir au format
+   exact, même si la fenêtre du navigateur est étroite.
+   Sans ça, la media query mobile (≤900px) transforme la page
+   en colonne et le PDF sort condensé.
+   ===================================================== */
+body.exporting .pdf-page{
+  width:var(--page-w) !important;
+  height:var(--page-h) !important;
+  min-height:0 !important;
+  max-width:none !important;
+  padding:var(--page-pad, 44px 52px 52px) !important;
+}
+body.exporting .pdf-page.page-even{
+  padding:var(--page-pad-even, var(--page-pad, 44px 52px 52px)) !important;
+}
+body.exporting #canvasWrap{max-width:none !important; padding:0 !important;}
