@@ -306,8 +306,12 @@ function blockClass(blk){
   let c = map[blk.type] || '';
   if(blk.type==='formule' && blk.italic) c += ' italic';
   if(blk.type==='formule' && blk.heading) c += ' heading';
+  if(blk.hidden) c += ' is-hidden';
   return c;
 }
+
+/* Blocs qu'on peut masquer temporairement (pas le saut de page) */
+const HIDEABLE = new Set(['item','section','formule','note','image','divider']);
 
 function render(){
   canvasWrap.innerHTML = '';
@@ -386,17 +390,26 @@ function buildBlockEl(blk){
   wrap.dataset.blockId = blk.id;
   wrap.innerHTML = renderBlockInner(blk);
   if(blk.type === 'formule' && blk.color) wrap.style.setProperty('--formule-color-override', blk.color);
+  if(blk.hidden){
+    const badge = document.createElement('span');
+    badge.className = 'hidden-badge';
+    badge.textContent = '👁 Masqué du site';
+    wrap.appendChild(badge);
+  }
 
   const controls = document.createElement('div');
   controls.className = 'row-controls';
   const tagBtn = blk.type === 'item'
     ? `<button class="rctrl" data-act="tag" title="Pictogramme (végétarien / spécialité)">${blk.tags && blk.tags[0] ? `<img src="${TAG_ICONS[blk.tags[0]].src}" alt="">` : '🏷'}</button>`
     : '';
+  const hideBtn = HIDEABLE.has(blk.type)
+    ? `<button class="rctrl${blk.hidden ? ' is-off' : ''}" data-act="hide" title="${blk.hidden ? 'Réafficher sur le site' : 'Masquer temporairement (rupture…)'}">${blk.hidden ? '🚫' : '👁'}</button>`
+    : '';
   controls.innerHTML = `
     <button class="rctrl del" data-act="del" title="Supprimer">✕</button>
     <button class="rctrl" data-act="dup" title="Dupliquer">⧉</button>
     <button class="rctrl" data-act="up" title="Monter">↑</button>
-    <button class="rctrl" data-act="down" title="Descendre">↓</button>${tagBtn}`;
+    <button class="rctrl" data-act="down" title="Descendre">↓</button>${hideBtn}${tagBtn}`;
   wrap.appendChild(controls);
 
   wrap.addEventListener('click', (e) => {
@@ -416,6 +429,12 @@ function buildBlockEl(blk){
       const next = TAG_CYCLE[(TAG_CYCLE.indexOf(cur) + 1) % TAG_CYCLE.length];
       blk.tags = next ? [next] : [];
       markDirty(); render();
+      return;
+    }
+    if(act==='hide'){
+      blk.hidden = !blk.hidden;
+      markDirty(); render();
+      toast(blk.hidden ? 'Masqué du site (pensez à Enregistrer + Publier)' : 'Réaffiché sur le site');
       return;
     }
     if(act==='up' && idx>0){

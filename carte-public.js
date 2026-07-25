@@ -19,6 +19,7 @@
     const ensure = () => { if (!sec) { sec = document.createElement('div'); sec.className = 'm-section'; wrap.appendChild(sec); } return sec; };
 
     (menu.blocks || []).forEach(b => {
+      if (b.hidden) return;   // plat masqué temporairement : jamais côté client
       switch (b.type) {
         case 'section': {
           sec = document.createElement('div'); sec.className = 'm-section';

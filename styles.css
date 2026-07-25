@@ -521,3 +521,19 @@ body.exporting #aideBtn, body.exporting #aidePanel{display:none !important;}
 }
 .aide-mail:hover{background:var(--teal-dark);}
 .aide-mailbox-alt{font-size:11px; color:var(--grey); margin-top:8px; text-align:center;}
+
+/* ---------- Bloc masqué temporairement (rupture…) ---------- */
+.block.is-hidden{opacity:.42;}
+.block.is-hidden .fr, .block.is-hidden .price, .block.is-hidden > div[contenteditable],
+.block.is-hidden h2, .block.is-hidden .txt{text-decoration:line-through; text-decoration-color:rgba(0,0,0,.35);}
+.hidden-badge{
+  position:absolute; left:4px; top:-9px; z-index:3;
+  background:#7a5b1e; color:#fff; font-size:9px; font-weight:600;
+  letter-spacing:.04em; padding:1px 7px; border-radius:10px; white-space:nowrap;
+  text-decoration:none !important; opacity:1;
+}
+.rctrl.is-off{color:#b0782a; opacity:1 !important;}
+/* À l'export PDF, le plat masqué s'imprime normalement (le support papier est durable) */
+body.exporting .block.is-hidden{opacity:1 !important;}
+body.exporting .block.is-hidden *{text-decoration:none !important;}
+body.exporting .hidden-badge{display:none !important;}

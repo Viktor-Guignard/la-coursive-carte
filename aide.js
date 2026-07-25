@@ -70,6 +70,21 @@
         <p class="tip">Ces pictogrammes existent sur la carte cuisine. Pour en créer d'autres (sans gluten, épicé…), demandez à Viktor.</p>`
     },
     {
+      id: 'masquer',
+      cat: 'Modifier',
+      q: 'Comment masquer un plat en rupture (sans le supprimer) ?',
+      k: 'masquer cacher rupture stock indisponible plus dispo temporaire retirer momentane epuise fini absent enlever provisoire desactiver reactiver reafficher oeil',
+      a: `<p>Pour retirer un plat du site <b>sans le supprimer</b> (rupture, produit du jour épuisé…) :</p>
+        <ol>
+          <li>Survolez la ligne du plat</li>
+          <li>Cliquez sur le bouton <b>👁</b> dans les contrôles à droite</li>
+          <li>Le plat s'affiche <b>grisé et barré</b> avec l'étiquette « Masqué du site »</li>
+          <li><b>💾 Enregistrer</b>, puis <b>Publier</b> pour appliquer côté clients</li>
+        </ol>
+        <p>Le plat <b>disparaît du QR et du site</b>, mais reste dans votre carte. Pour le remettre : recliquez sur <b>🚫</b>, enregistrez et republiez.</p>
+        <p class="tip">Le plat masqué reste présent sur le <b>PDF imprimé</b> (support durable) — seul l'affichage en ligne est concerné.</p>`
+    },
+    {
       id: 'section',
       cat: 'Modifier',
       q: 'Comment ajouter une section (ENTRÉES, DESSERTS…) ?',
