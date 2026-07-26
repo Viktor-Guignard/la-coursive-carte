@@ -82,7 +82,7 @@
           <li><b>💾 Enregistrer</b>, puis <b>Publier</b> pour appliquer côté clients</li>
         </ol>
         <p>Le plat <b>disparaît du QR et du site</b>, mais reste dans votre carte. Pour le remettre : recliquez sur <b>🚫</b>, enregistrez et republiez.</p>
-        <p class="tip">Le plat masqué reste présent sur le <b>PDF imprimé</b> (support durable) — seul l'affichage en ligne est concerné.</p>`
+        <p class="tip">Le plat masqué disparaît <b>partout</b> : du QR, du site et du <b>PDF téléchargé</b>. Il reste seulement visible (grisé) dans l'éditeur.</p>`
     },
     {
       id: 'section',

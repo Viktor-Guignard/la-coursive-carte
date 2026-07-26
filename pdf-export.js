@@ -1,5 +1,14 @@
 /* Export PDF : chaque .pdf-page = une page au format choisi dans 🎨 Apparence
-   (A4, carte 14×34, A5…), sans fond perdu ni traits de coupe. */
+   (A4, carte 14×34, A5…), sans fond perdu ni traits de coupe.
+
+   NB : la capture SVG (html-to-image) a été essayée puis abandonnée —
+   Safari ne charge pas les polices web dans les images SVG (bug WebKit),
+   le texte sortait en police de secours avec des chevauchements. */
+
+/* Version inscrite dans le nom du fichier exporté : permet de savoir
+   immédiatement quelle version du code a produit un PDF donné
+   (indispensable pour diagnostiquer les problèmes de cache navigateur). */
+const EXPORT_VERSION = 'v20';
 
 async function exportPdf(){
   const btn = document.getElementById('exportPdfBtn');
@@ -31,8 +40,7 @@ async function exportPdf(){
        (la vue responsive les écrase en fenêtre étroite). On attend que
        tout soit stable avant de capturer : polices chargées + mise en
        page recalculée. Le tout premier export après l'ouverture de la
-       page est le plus fragile — capturer trop tôt peint l'ombre de la
-       page au mauvais endroit (voile gris).
+       page est le plus fragile.
        setTimeout et non requestAnimationFrame : rAF est suspendu quand
        l'onglet passe en arrière-plan, ce qui bloquerait l'export. */
     try{ await document.fonts.ready; }catch(_){/* vieux navigateurs */}
@@ -42,16 +50,13 @@ async function exportPdf(){
     for(let i=0;i<pages.length;i++){
       const canvas = await html2canvas(pages[i], {
         scale: 2.5,
-        /* fond de la carte : évite toute zone transparente ou grise
-           dans les parties situées hors de la fenêtre visible */
         backgroundColor: st.pageBg || '#ffffff',
         useCORS: true,
         /* dimensions du format choisi, jamais celles de l'écran */
         width: fmt.w,
         height: fmt.h,
-        /* viewport virtuel du rendu : au moins la taille de la page,
-           sinon html2canvas ne peint pas ce qui dépasse de la fenêtre
-           (bande grise à droite quand la fenêtre est étroite) */
+        /* viewport virtuel au moins aussi grand que la page, sinon
+           html2canvas ne peint pas ce qui dépasse de la fenêtre */
         windowWidth: Math.max(document.documentElement.clientWidth, fmt.w + 40),
         windowHeight: Math.max(document.documentElement.clientHeight, fmt.h + 40),
         scrollX: 0,
@@ -64,7 +69,7 @@ async function exportPdf(){
 
     const d = new Date();
     const pad = n => n<10 ? '0'+n : ''+n;
-    const filename = `carte_${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}_${pad(d.getHours())}h${pad(d.getMinutes())}.pdf`;
+    const filename = `carte_${EXPORT_VERSION}_${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}_${pad(d.getHours())}h${pad(d.getMinutes())}.pdf`;
     pdf.save(filename);
     window.__CARTE_HELPERS__.toast('PDF exporté : ' + filename);
   } catch(err){

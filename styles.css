@@ -533,10 +533,9 @@ body.exporting #aideBtn, body.exporting #aidePanel{display:none !important;}
   text-decoration:none !important; opacity:1;
 }
 .rctrl.is-off{color:#b0782a; opacity:1 !important;}
-/* À l'export PDF, le plat masqué s'imprime normalement (le support papier est durable) */
-body.exporting .block.is-hidden{opacity:1 !important;}
-body.exporting .block.is-hidden *{text-decoration:none !important;}
-body.exporting .hidden-badge{display:none !important;}
+/* À l'export PDF, le plat masqué disparaît aussi — comme sur le site
+   et la page QR (demande de Viktor, 26 juil) */
+body.exporting .block.is-hidden{display:none !important;}
 
 /* =====================================================
    CORRECTIF EXPORT : le PDF doit TOUJOURS sortir au format
