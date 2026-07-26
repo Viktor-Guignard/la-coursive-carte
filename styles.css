@@ -395,14 +395,26 @@ body.exporting .block{background:transparent !important;}
 body.exporting .block.selected{outline:none !important;}
 body.exporting .pdf-page.overflowing{outline:none !important;}
 
-/* ---------- Print (secours) ---------- */
+/* ---------- Print (rendu cloud + impression navigateur) ---------- */
 @media print{
   body{padding-top:0; background:#fff;}
-  #toolbar,.row-controls,.insert-bar,.modal-backdrop,#toast,#draftBanner{display:none !important;}
-  .pdf-page{box-shadow:none; margin:0; page-break-after:always;}
-  #canvasWrap{margin:0; padding:0; gap:0;}
-  .page-label,.page-overflow-warning{display:none;}
+  #toolbar,#menuTabs,.row-controls,.insert-bar,.modal-backdrop,#toast,#draftBanner,
+  #aideBtn,#aidePanel{display:none !important;}
+  .pdf-page{box-shadow:none; margin:0; break-after:page; page-break-after:always;}
+  #canvasWrap{margin:0; padding:0; gap:0; max-width:none;}
+  .page-label,.page-overflow-warning,.hidden-badge{display:none;}
+  .block.is-hidden{display:none !important;}
+  .pdf-page.overflowing{outline:none;}
 }
+
+/* Mode impression (?print=1) : la page ne montre QUE les cartes,
+   aux dimensions exactes. */
+body.print-mode{padding:0; background:#fff;}
+body.print-mode #toolbar, body.print-mode #menuTabs, body.print-mode #aideBtn,
+body.print-mode #aidePanel, body.print-mode #draftBanner, body.print-mode #toast,
+body.print-mode .page-label, body.print-mode .page-overflow-warning{display:none !important;}
+body.print-mode #canvasWrap{margin:0; padding:0; gap:0; max-width:none; align-items:flex-start;}
+body.print-mode .pdf-page{margin:0;}
 
 @media (max-width:900px){
   .pdf-page{width:100%; height:auto; min-height:60vh; padding:30px 22px;}
@@ -569,4 +581,32 @@ body.exporting #canvasWrap{
   /* pages alignées à gauche : jamais de position X négative pendant la
      capture (fenêtre plus étroite que la page = page centrée hors écran) */
   align-items:flex-start !important;
+}
+
+/* Impression : mêmes règles, mais elles doivent l'emporter sur la vue
+   mobile (la largeur du papier, 794 px en A4, passe sous son seuil). */
+@media print{
+  body.exporting .pdf-page, .pdf-page{
+    width:var(--page-w) !important;
+    height:var(--page-h) !important;
+    min-height:0 !important;
+    max-width:none !important;
+    padding:var(--page-pad, 44px 52px 52px) !important;
+    box-shadow:none !important;
+    margin:0 !important;
+    break-after:page; page-break-after:always;
+  }
+  .pdf-page.page-even{
+    padding:var(--page-pad-even, var(--page-pad, 44px 52px 52px)) !important;
+  }
+  .pdf-page:last-child{break-after:auto; page-break-after:auto;}
+  #canvasWrap{
+    max-width:none !important; padding:0 !important; margin:0 !important;
+    gap:0 !important; align-items:flex-start !important;
+  }
+  /* repères d'édition : jamais imprimés */
+  .blk-pagebreak, .page-label, .page-overflow-warning, .hidden-badge,
+  .row-controls, .insert-bar{display:none !important;}
+  .block.is-hidden{display:none !important;}
+  .block, .block:hover{background:none !important; outline:none !important;}
 }

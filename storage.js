@@ -206,4 +206,6 @@ versionsBackdrop.addEventListener('click', (e) => { if (e.target === versionsBac
       if (!draftResumed) { applyLoaded(data, versions[0].name); H().toast('Dernière version chargée : ' + versions[0].name); }
     }
   } catch (err) { console.warn('Chargement initial impossible', err); }
+  /* Signal pour le rendu cloud (render.mjs attend ce drapeau). */
+  window.__BOOT_DONE__ = true;
 })();
