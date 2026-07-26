@@ -196,14 +196,9 @@
       cat: 'Imprimer',
       q: 'Comment obtenir le PDF pour l\'imprimeur ?',
       k: 'pdf imprimer imprimeur telecharger export fichier papier impression editer sortir',
-      a: `<p>Cliquez sur <b>⬇️ PDF</b> en haut. La fenêtre d'impression de votre navigateur s'ouvre : c'est elle qui fabrique le PDF, ce qui garantit un résultat <b>identique à l'écran</b>.</p>
-        <ol>
-          <li><b>Destination</b> : <b>Enregistrer au format PDF</b> (dans Safari : menu <b>PDF</b> en bas à gauche → <i>Enregistrer au format PDF</i>)</li>
-          <li><b>Marges</b> : <b>Aucune</b></li>
-          <li>Décochez <b>En-têtes et pieds de page</b></li>
-          <li>Échelle : <b>100 %</b></li>
-        </ol>
-        <p>Le PDF sort <b>exactement au format choisi</b> dans 🎨 Apparence (A4, 14×34 cm…), sans fond perdu ni traits de coupe. Le texte reste du vrai texte (net à l'impression, et l'imprimeur peut le vérifier).</p>
+      a: `<p>Cliquez sur <b>⬇️ PDF</b> en haut : le fichier se télécharge directement, nommé avec la date et l'heure. Rien à régler.</p>
+        <p>Le PDF sort <b>exactement au format choisi</b> dans 🎨 Apparence (A4, 14×34 cm…), sans fond perdu ni traits de coupe, et <b>identique à ce que vous voyez à l'écran</b>.</p>
+        <p>Le texte reste du <b>vrai texte</b> : net à n'importe quelle taille d'impression, et votre imprimeur peut le sélectionner pour vérifier les accents ou les prix.</p>
         <p class="tip">Le PDF ne concerne que la carte de l'onglet en cours — répétez l'opération pour chaque carte.</p>`
     },
     {
