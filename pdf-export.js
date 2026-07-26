@@ -9,7 +9,7 @@
    irrégulier). Cette capture image reste accessible en secours via
    window.__exportPdfImage(). */
 
-const EXPORT_VERSION = 'v22';
+const EXPORT_VERSION = 'v26';
 
 const XP_S = () => window.__CARTE_STATE__;
 const XP_H = () => window.__CARTE_HELPERS__;

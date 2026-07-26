@@ -111,11 +111,14 @@
       }
       /* nouvelle ligne visuelle si le haut change nettement */
       if (!cur || Math.abs(r.top - cur.top) > 1) {
-        cur = { text: txt[i], left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+        cur = { text: txt[i], left: r.left, right: r.right, rightTrim: r.right, top: r.top, bottom: r.bottom };
         lines.push(cur);
       } else {
         cur.text += txt[i];
         cur.right = Math.max(cur.right, r.right);
+        /* fin du dernier caractere visible : les espaces de fin ne
+           comptent pas dans la largeur du texte reellement ecrit */
+        if (txt[i].trim()) cur.rightTrim = r.right;
         cur.bottom = Math.max(cur.bottom, r.bottom);
       }
     }
@@ -434,7 +437,7 @@
            du navigateur et celle du PDF ne peuvent plus décaler la
            suite de la ligne. */
         let cs2 = charSpace;
-        const wScreen = (line.right - line.left) * PX2MM;
+        const wScreen = ((line.rightTrim || line.right) - line.left) * PX2MM;
         if (text.length > 1 && wScreen > 0) {
           const wPdf = pdf.getTextWidth(text) + charSpace * text.length;
           const fix = (wScreen - wPdf) / text.length;
