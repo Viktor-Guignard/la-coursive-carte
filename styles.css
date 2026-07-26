@@ -555,6 +555,12 @@ body.exporting .pdf-page{
      de changer. On la retire pendant la capture, elle n'a rien à faire
      dans un document imprimé. */
   box-shadow:none !important;
+  /* Bug Safari/WebKit : html2canvas perd les espaces entre les mots
+     (texte « collé ») pour tout texte SANS letter-spacing explicite.
+     Une valeur microscopique — héritée par tous les descendants qui
+     n'ont pas la leur — force le positionnement caractère par
+     caractère, fiable sur tous les navigateurs. Invisible à l'œil. */
+  letter-spacing:0.01px;
 }
 body.exporting .pdf-page.page-even{
   padding:var(--page-pad-even, var(--page-pad, 44px 52px 52px)) !important;
