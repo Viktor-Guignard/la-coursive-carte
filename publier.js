@@ -2,6 +2,22 @@
 
 const PUBLIC_URL = window.COURSIVE_PUBLIC_URL;
 let latestByKey = {};   // key -> {name, path, sha} (dernière version enregistrée)
+
+/* Garde-fou : on ne publie QUE ce qui a été enregistré. Si un brouillon
+   non enregistré traîne sur cet ordinateur, on le dit clairement — sinon
+   on croit publier ses dernières retouches alors qu'elles restent en
+   local. */
+function draftWarning(menu) {
+  try {
+    const raw = localStorage.getItem('carte_draft_' + menu.key);
+    if (!raw) return '';
+    const d = JSON.parse(raw);
+    if (!d || !Array.isArray(d.doc) || !d.doc.length) return '';
+    const when = d.ts ? new Date(d.ts).toLocaleString('fr-FR') : '';
+    return `<div class="pub-row-warn">⚠️ Modifications non enregistrées sur cet ordinateur${when ? ' (' + when + ')' : ''} —
+      elles <b>ne seront pas publiées</b>. Ouvrez la carte et cliquez 💾 Enregistrer d'abord.</div>`;
+  } catch (e) { return ''; }
+}
 let publishedKeys = new Set();
 let publishedAt = null;
 
@@ -85,6 +101,7 @@ function render() {
   window.COURSIVE_MENUS.forEach(m => {
     const latest = latestByKey[m.key];
     const row = document.createElement('label');
+    row.dataset.key = m.key;
     row.className = 'pub-row';
     // par défaut : coché si déjà publié, sinon coché si une version existe
     const checked = anyPublished ? publishedKeys.has(m.key) : !!latest;
@@ -93,6 +110,7 @@ function render() {
       <div class="pub-row-main">
         <div class="pub-row-title">${m.label}${publishedKeys.has(m.key) ? '<span class="tag live">en ligne</span>' : ''}</div>
         <div class="pub-row-meta">${latest ? 'Dernière version : ' + fmtDate(latest.name) : 'Aucune version enregistrée — rien à publier'}</div>
+        ${draftWarning(m)}
       </div>
       <a class="pub-row-edit" href="index.html?menu=${m.key}">Éditer ↗</a>`;
     list.appendChild(row);
