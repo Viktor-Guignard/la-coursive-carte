@@ -75,6 +75,21 @@
     return FONTS.some(f => f.name === first) ? first : 'Poppins';
   }
 
+
+  /* La combinaison demandee (famille + style + graisse) n'existe pas
+     toujours — un texte italique en demi-gras, par exemple. Sans
+     repli, jsPDF abandonne la police embarquee et retombe sur une
+     police generique. On degrade proprement : meme style d'abord,
+     puis graisse normale. */
+  function resolveFont(family, style, weight) {
+    const has = (st, w) => FONTS.some(f => f.name === family && f.style === st && f.weight === w);
+    if (has(style, weight)) return [style, weight];
+    if (has(style, 'normal')) return [style, 'normal'];
+    if (has('normal', weight)) return ['normal', weight];
+    const any = FONTS.find(f => f.name === family);
+    return any ? [any.style, any.weight] : ['normal', 'normal'];
+  }
+
   function rgb(str) {
     const m = (str || '').match(/rgba?\(([^)]+)\)/);
     if (!m) return { r: 0, g: 0, b: 0, a: 1 };
@@ -412,7 +427,8 @@
       const col = rgb(cs.color);
       const deco = cs.textDecorationLine || '';
 
-      pdf.setFont(fam, style, weight);
+      const [fStyle, fWeight] = resolveFont(fam, style, weight);
+      pdf.setFont(fam, fStyle, fWeight);
       pdf.setFontSize(size * PX2MM * 72 / 25.4);   // px CSS -> points PDF
       pdf.setTextColor(col.r, col.g, col.b);
 
