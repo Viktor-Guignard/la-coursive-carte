@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-17T07:05:23.032Z",
+ "updatedAt": "2026-09-26T10:13:32.576Z",
  "menus": [
   {
    "key": "carte",
@@ -45,7 +45,8 @@
      "type": "item",
      "fr": "CROQUE JAMBON À LA TRUFFE ET BEAUFORT",
      "en": "Truffle ham and Beaufort cheese bread",
-     "price": "23€"
+     "price": "23€",
+     "hidden": true
     },
     {
      "id": "b3",
