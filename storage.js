@@ -191,6 +191,9 @@ versionsBackdrop.addEventListener('click', (e) => { if (e.target === versionsBac
       draftResumed = true;
       S().doc = draft.doc;
       if (draft.style) S().style = draft.style;
+      /* le brouillon repart de SA version : l'enregistrement préviendra si une
+         version plus récente existe entre-temps */
+      if (draft.base) S().baseVersion = draft.base;
       S().dirty = true;
       H().applyStyle(); window.__CARTE_RENDER__(); H().resetHistory(); H().updateSyncStatus();
       banner.classList.remove('show');
@@ -204,6 +207,26 @@ versionsBackdrop.addEventListener('click', (e) => { if (e.target === versionsBac
     if (versions.length && !draftResumed) {
       const data = await loadVersion(versions[0].path);
       if (!draftResumed) { applyLoaded(data, versions[0].name); H().toast('Dernière version chargée : ' + versions[0].name); }
+    }
+    if (draft && !draftResumed && versions.length) {
+      const banner = document.getElementById('draftBanner');
+      const same = JSON.stringify(draft.doc) === JSON.stringify(S().doc);
+      const m = versions[0].name.match(/(\d{4})-(\d{2})-(\d{2})_(\d{2})h(\d{2})/);
+      const vDate = m ? new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]) : null;
+      if (same) {
+        /* brouillon identique à la version affichée : rien à reprendre */
+        H().clearDraft(); banner.classList.remove('show');
+      } else if (vDate && new Date(draft.ts) < vDate) {
+        /* brouillon plus ancien que la dernière version enregistrée : on le dit
+           clairement, la version affichée est la bonne */
+        const when = new Date(draft.ts).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+        banner.querySelector('.msg').textContent = `Un ancien brouillon du ${when} existe sur cet ordinateur. La carte affichée est la dernière version enregistrée (${m[3]}/${m[2]} à ${m[4]}h${m[5]}) : c'est la bonne.`;
+        banner.classList.add('old');
+        document.getElementById('draftDiscard').textContent = 'OK, oublier l\'ancien brouillon';
+        document.getElementById('draftDiscard').classList.add('primary');
+        document.getElementById('draftResume').textContent = 'Reprendre quand même';
+        document.getElementById('draftResume').classList.remove('primary');
+      }
     }
   } catch (err) { console.warn('Chargement initial impossible', err); }
   /* Signal pour le rendu cloud (render.mjs attend ce drapeau). */

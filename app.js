@@ -69,6 +69,7 @@ function normMargins(st){
 }
 const PAGE_THEMES = {
   classique: { label:'Classique' },
+  sobre:     { label:'Sobre (carte de février 2026)' },
   vigne:     { label:'Vigne (ornements)' },
 };
 
@@ -108,6 +109,7 @@ function applyStyle(){
   root.style.setProperty('--page-pad-even', `${px(me.t)} ${px(me.r)} ${px(me.b)} ${px(me.l)}`);
   document.body.classList.toggle('leaders-off', !st.leaders);
   document.body.classList.toggle('theme-vigne', st.theme === 'vigne');
+  document.body.classList.toggle('theme-sobre', st.theme === 'sobre');
   document.body.classList.toggle('no-section-underline', st.sectionUnderline === false);
   root.style.setProperty('--item-pad-v', (st.itemSpacing != null ? st.itemSpacing : 2) + 'px');
   loadFonts(st);
@@ -193,7 +195,7 @@ const DRAFT_KEY = 'carte_draft_' + window.currentMenuKey();
 
 function saveDraft(){
   try{
-    localStorage.setItem(DRAFT_KEY, JSON.stringify({ts: new Date().toISOString(), doc: state.doc, style: state.style}));
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({ts: new Date().toISOString(), doc: state.doc, style: state.style, base: state.baseVersion || null}));
   }catch(e){ /* stockage plein : tant pis, le brouillon est un filet de sécurité */ }
 }
 function clearDraft(){ localStorage.removeItem(DRAFT_KEY); state.dirty = false; updateSyncStatus(); }
@@ -257,6 +259,14 @@ function ed(id, field, value, extraClass, tag){
 function renderBlockInner(blk){
   switch(blk.type){
     case 'header':
+      if(blk.layout === 'ligne') return `
+        <div class="hl">
+          <div class="hl-line"><span class="hl-title">${ed(blk.id,'line1',esc(blk.line1))}</span> <span class="hl-chef">${ed(blk.id,'chef',esc(blk.chef))}</span></div>
+          <div class="hl-tag">${ed(blk.id,'tag',esc(blk.tag || ''))}</div>
+        </div>
+        <div class="badgeRow img-slot" data-id="${blk.id}" data-field="logoImg" title="Cliquer pour remplacer le logo">
+          <img src="${blk.logoImg || 'assets/logo.png'}" class="logo-badge" alt="logo">
+        </div>`;
       return `
         <div class="titles">
           <h1>${ed(blk.id,'line1',esc(blk.line1))}<br>${ed(blk.id,'line2',esc(blk.line2))}</h1>
@@ -304,6 +314,7 @@ function renderBlockInner(blk){
 function blockClass(blk){
   const map = {header:'blk-header', section:'blk-section', item:'blk-item', formule:'blk-formule', note:'blk-note', divider:'blk-divider', pagebreak:'blk-pagebreak', image:'blk-image'};
   let c = map[blk.type] || '';
+  if(blk.type==='header' && blk.layout) c += ' layout-' + blk.layout;
   if(blk.type==='formule' && blk.italic) c += ' italic';
   if(blk.type==='formule' && blk.heading) c += ' heading';
   if(blk.hidden) c += ' is-hidden';
