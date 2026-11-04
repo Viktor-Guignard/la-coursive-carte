@@ -218,10 +218,12 @@ versionsBackdrop.addEventListener('click', (e) => { if (e.target === versionsBac
       H().toast('Dernière version chargée : ' + versions[0].name);
     }
     if (draft) {
-      const k = GHUB.dateKey(versions.length ? versions[0].name : '');
-      const vDate = k ? new Date(+k.slice(0, 4), +k.slice(4, 6) - 1, +k.slice(6, 8), +k.slice(8, 10), +k.slice(10, 12), +k.slice(12, 14)) : null;
+      const vDate = versions.length ? GHUB.nameDate(versions[0].name) : null;   // nom écrit à l'heure de Paris
       const same = versions.length && JSON.stringify(draft.doc) === JSON.stringify(S().doc);
-      if (same || (vDate && new Date(draft.ts) <= vDate)) archiveDraft();
+      const onLatest = versions.length && draft.base && draft.base === versions[0].name;   // fait à partir de la dernière version
+      if (same) archiveDraft();
+      else if (onLatest) offerDraft();
+      else if (vDate && new Date(draft.ts) <= vDate) archiveDraft();   // plus ancien que la dernière version
       else offerDraft();
     }
   } catch (err) {
