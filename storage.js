@@ -180,15 +180,21 @@ versionsBackdrop.addEventListener('click', (e) => { if (e.target === versionsBac
 (async function boot() {
   H().updateSyncStatus();
   const draft = H().getDraft();
-  let draftResumed = false;
+  const banner = document.getElementById('draftBanner');
 
-  if (draft) {
-    const banner = document.getElementById('draftBanner');
-    const when = new Date(draft.ts).toLocaleString('fr-FR');
-    banner.querySelector('.msg').textContent = `Un brouillon non enregistré du ${when} existe sur cet ordinateur (carte : ${window.currentMenuLabel()}).`;
+  /* Le brouillon local n'est proposé qu'APRÈS avoir chargé la dernière version
+     enregistrée, et seulement s'il contient du travail plus récent qu'elle.
+     Un brouillon identique, ou plus ancien que la dernière version, est
+     oublié sans rien demander (copie de secours gardée dans ce navigateur). */
+  function archiveDraft() {
+    try { localStorage.setItem('carte_draft_archive_' + window.currentMenuKey(), JSON.stringify(draft)); } catch (e) { }
+    H().clearDraft();
+  }
+  function offerDraft() {
+    const when = new Date(draft.ts).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+    banner.querySelector('.msg').textContent = `Des modifications du ${when} n'ont pas été enregistrées sur cet ordinateur (carte : ${window.currentMenuLabel()}).`;
     banner.classList.add('show');
     document.getElementById('draftResume').onclick = () => {
-      draftResumed = true;
       S().doc = draft.doc;
       if (draft.style) S().style = draft.style;
       /* le brouillon repart de SA version : l'enregistrement préviendra si une
@@ -197,38 +203,30 @@ versionsBackdrop.addEventListener('click', (e) => { if (e.target === versionsBac
       S().dirty = true;
       H().applyStyle(); window.__CARTE_RENDER__(); H().resetHistory(); H().updateSyncStatus();
       banner.classList.remove('show');
-      H().toast('Brouillon repris — pensez à Enregistrer une version.');
+      H().toast('Modifications reprises — pensez à Enregistrer.');
     };
-    document.getElementById('draftDiscard').onclick = () => { H().clearDraft(); banner.classList.remove('show'); };
+    document.getElementById('draftDiscard').onclick = () => { archiveDraft(); banner.classList.remove('show'); };
   }
 
   try {
     const versions = await listVersions();
-    if (versions.length && !draftResumed) {
+    if (versions.length) {
       const data = await loadVersion(versions[0].path);
-      if (!draftResumed) { applyLoaded(data, versions[0].name); H().toast('Dernière version chargée : ' + versions[0].name); }
+      applyLoaded(data, versions[0].name);
+      H().toast('Dernière version chargée : ' + versions[0].name);
     }
-    if (draft && !draftResumed && versions.length) {
-      const banner = document.getElementById('draftBanner');
-      const same = JSON.stringify(draft.doc) === JSON.stringify(S().doc);
-      const m = versions[0].name.match(/(\d{4})-(\d{2})-(\d{2})_(\d{2})h(\d{2})/);
-      const vDate = m ? new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]) : null;
-      if (same) {
-        /* brouillon identique à la version affichée : rien à reprendre */
-        H().clearDraft(); banner.classList.remove('show');
-      } else if (vDate && new Date(draft.ts) < vDate) {
-        /* brouillon plus ancien que la dernière version enregistrée : on le dit
-           clairement, la version affichée est la bonne */
-        const when = new Date(draft.ts).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
-        banner.querySelector('.msg').textContent = `Un ancien brouillon du ${when} existe sur cet ordinateur. La carte affichée est la dernière version enregistrée (${m[3]}/${m[2]} à ${m[4]}h${m[5]}) : c'est la bonne.`;
-        banner.classList.add('old');
-        document.getElementById('draftDiscard').textContent = 'OK, oublier l\'ancien brouillon';
-        document.getElementById('draftDiscard').classList.add('primary');
-        document.getElementById('draftResume').textContent = 'Reprendre quand même';
-        document.getElementById('draftResume').classList.remove('primary');
-      }
+    if (draft) {
+      const k = GHUB.dateKey(versions.length ? versions[0].name : '');
+      const vDate = k ? new Date(+k.slice(0, 4), +k.slice(4, 6) - 1, +k.slice(6, 8), +k.slice(8, 10), +k.slice(10, 12), +k.slice(12, 14)) : null;
+      const same = versions.length && JSON.stringify(draft.doc) === JSON.stringify(S().doc);
+      if (same || (vDate && new Date(draft.ts) <= vDate)) archiveDraft();
+      else offerDraft();
     }
-  } catch (err) { console.warn('Chargement initial impossible', err); }
+  } catch (err) {
+    console.warn('Chargement initial impossible', err);
+    /* hors ligne : le brouillon peut être précieux, on le propose */
+    if (draft) offerDraft();
+  }
   /* Signal pour le rendu cloud (render.mjs attend ce drapeau). */
   window.__BOOT_DONE__ = true;
 })();
