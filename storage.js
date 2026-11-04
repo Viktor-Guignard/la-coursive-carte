@@ -18,8 +18,8 @@ async function loadVersion(path) {
   const f = await GHUB.getFile(path);
   return normalizeVersion(f ? f.data : []);
 }
-async function saveVersion(doc, style) {
-  const name = GHUB.timestampName(window.currentMenuSlug());
+async function saveVersion(doc, style, latestName) {
+  const name = GHUB.nextName(window.currentMenuSlug(), latestName);
   const body = { style, blocks: doc };
   let res = await GHUB.createJson(`${MENU_DIR}/${name}.json`, body, 'Version ' + name);
   if (res.status === 422) {
@@ -108,16 +108,18 @@ saveBtn.addEventListener('click', async () => {
   const original = saveBtn.textContent;
   saveBtn.textContent = 'Enregistrement…';
   try {
+    let latestName = null;
     try {
       const latest = (await listVersions())[0];
+      latestName = latest ? latest.name : null;
       if (latest && latest.name !== S().baseVersion) {
         const ok = confirm(
-          'Attention : une version plus récente (« ' + latest.name + ' ») de cette carte a été enregistrée depuis votre point de départ — probablement depuis un autre ordinateur.\n\n' +
+          'Attention : une version plus récente (« ' + latest.name + ' ») de cette carte a été enregistrée depuis votre point de départ — depuis un autre ordinateur ou un autre onglet.\n\n' +
           'Si vous continuez, VOTRE version deviendra la version courante ; l\'autre restera consultable dans 🕑 Versions.\n\nEnregistrer quand même ?');
-        if (!ok) { return; }
+        if (!ok) { H().toast('Rien n\'a été enregistré : vos modifications restent à l\'écran.'); return; }
       }
     } catch (e) { /* hors-ligne : on tente quand même */ }
-    const name = await saveVersion(S().doc, S().style);
+    const name = await saveVersion(S().doc, S().style, latestName);
     S().baseVersion = name;
     H().clearDraft();
     H().toast('Version enregistrée : ' + name);
