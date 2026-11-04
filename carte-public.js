@@ -7,6 +7,10 @@
 
   function esc(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
 
+/* Prix à l'écran : la carte imprimée peut écrire « 23 » sans symbole (comme le
+   PDF) ; sur le téléphone on affiche « 23€ », comme les autres cartes. */
+function webPrice(p) { p = String(p || '').trim(); return p && !/€/.test(p) && /\d$/.test(p) ? p + '€' : p; }
+
   const TAG_ICONS = {
     veg:  { src:'assets/icon-veg.svg',  label:'Végétarien' },
     spec: { src:'assets/icon-spec.svg', label:'Spécialité de la maison' },
@@ -46,7 +50,7 @@
           const el = document.createElement('div'); el.className = 'm-item';
           const tags = (b.tags||[]).map(t => TAG_ICONS[t] ? `<img class="item-tag" src="${TAG_ICONS[t].src}" alt="${TAG_ICONS[t].label}" title="${TAG_ICONS[t].label}">` : '').join('');
           const en = b.en ? `<div class="en">${esc(b.en)}</div>` : '';
-          const p = b.price ? `<div class="p">${esc(b.price)}</div>` : '';
+          const p = b.price ? `<div class="p">${esc(webPrice(b.price))}</div>` : '';
           el.innerHTML = `<div class="n"><div class="fr">${esc(b.fr)}${tags}</div>${en}</div><div class="dots"></div>${p}`;
           ensure().appendChild(el);
           break;
