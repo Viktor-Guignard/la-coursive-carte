@@ -223,7 +223,10 @@ function updateSyncStatus(){
   const txt = el.querySelector('.txt');
   const hasToken = !!window.CarteStorage && window.CarteStorage.hasToken();
   el.classList.remove('ok','warn');
-  if(state.dirty){
+  if(window.GHUB && GHUB.isTokenRejected && GHUB.isTokenRejected()){
+    el.classList.add('warn');
+    txt.textContent = 'Clé d\'accès expirée : la carte s\'affiche, l\'enregistrement est bloqué (⚙️)';
+  } else if(state.dirty){
     el.classList.add('warn');
     txt.textContent = 'Modifications non enregistrées';
   } else if(hasToken){
